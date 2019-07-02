@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>市区小组长日常数据统计</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .j-rookieCard {
+            padding: 20px;
+        }
+
+        .paddingTop8 {
+            padding-top: 8px;
+        }
+
+        .marginTop6 {
+            margin-top: 6px;
+        }
+
+        .cursorPointer {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="J_rookieCard" class="j-rookieCard">
+        <h4 class="text-primary" style="text-align: center;">市区小组长日常数据统计</h4>
+        <form action="http://ajuntechhome.cn:19090/api/v1/devotion" method="POST" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-xs-4 paddingTop8 control-label">
+                    <span class="text-danger">* </span>你的姓名</label>
+                <div class="col-xs-8">
+                    <select class="form-control" name="name" id="name">
+                        <option value="丁俊">丁俊</option>
+                        <option value="梁思思">梁思思</option>
+                        <option value="王嘉宇">王嘉宇</option>
+                        <option value="于凡格">于凡格</option>
+                        <option value="金世璐">金世璐</option>
+                        <option value="张伟">张伟</option>
+                        <option value="胡玉环">胡玉环</option>
+                        <option value="俞佳顺">俞佳顺</option>
+                        <option value="柯银燕">柯银燕</option>
+                        <option value="李玲玲">李玲玲</option>
+                        <option value="倪冬瑞">倪冬瑞</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mTime" class="col-xs-4 paddingTop8 control-label">
+                    <span class="text-danger">* </span>日期</label>
+                <div class="col-xs-8">
+                    <select class="form-control" id="mTime" name="mTime">
+                        <option id="day0">星期日</option>
+                        <option id="day1">星期一</option>
+                        <option id="day2">星期二</option>
+                        <option id="day3">星期三</option>
+                        <option id="day4">星期四</option>
+                        <option id="day5">星期五</option>
+                        <option id="day6">星期六</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="scripture" class="col-xs-12 paddingTop8 control-label">
+                    <span class="text-danger">* </span>灵修经文/书籍</label>
+                <div class="col-xs-12">
+                    <textarea name="scripture" id="scripture" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="thanks" class="col-xs-12 paddingTop8 control-label">
+                    <span class="text-danger">* </span>感恩事项</label>
+                <div class="col-xs-12">
+                    <textarea name="thanks" id="thanks" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prayer" class="col-xs-12 paddingTop8 control-label">
+                    <span class="text-danger">* </span>代祷事项</label>
+                <div class="col-xs-12">
+                    <textarea name="prayer" id="prayer" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="groupNum" class="col-xs-6 paddingTop8 control-label">
+                    <span class="text-danger">* </span>小组出勤人数</label>
+                <div class="col-xs-6">
+                    <input type="number" class="form-control" name="groupNum" id="groupNum" maxlength="11">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sundayNum" class="col-xs-6 paddingTop8 control-label">
+                    <span class="text-danger">* </span>主日出勤人数</label>
+                <div class="col-xs-6">
+                    <input type="number" class="form-control" name="sundayNum" id="sundayNum" maxlength="11">
+                </div>
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary j-submit cursorPointer">提交</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    function changeDefaultWeekDay() {
+        var text = "";
+        var i;
+        var id_prefix = "day"
+        for (i = 0; i < 7; i++) {
+            concat_id = id_prefix.concat(i)
+            var dat = new Date;
+            var newDat = new Date(dat.setDate(dat.getDate() - (6 - i) ))
+            var month = newDat.getMonth() + 1
+            var text = newDat.getFullYear() + "-" + month + "-" + newDat.getDate()
+            document.getElementById(concat_id).text = text;
+        }
+        var mySelect = document.getElementById('mTime');
+        mySelect.selectedIndex = 6;
+    }
+    window.onload = function() {
+        changeDefaultWeekDay();
+
+        var data = { name: '金世璐', mTime: '2019-02-27' };
+$.ajax({
+    url: "http://localhost:3000/devotion",
+    type: "get",
+    data: data,
+    // contentType: 'application/json;charset=utf-8',
+    success: function (result) {
+        console.log(result);
+    },
+    error: function (msg) {
+        console.log(msg);
+    }
+})
+    }
+</script>
+
+</html>
