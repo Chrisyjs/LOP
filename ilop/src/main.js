@@ -7,9 +7,9 @@ import {
   Row, 
   Col, 
   Button, 
-  Sidebar, 
-  SidebarItem, 
-  Stepper
+  Stepper,
+  NavBar,
+  Card
 } from 'vant';
 import 'flex.css'
 
@@ -18,9 +18,9 @@ Vue.use(Field)
   .use(Row)
   .use(Col)
   .use(Button)
-  .use(Sidebar)
-  .use(SidebarItem)
   .use(Stepper)
+  .use(NavBar)
+  .use(Card)
 
 Vue.config.productionTip = false
 
