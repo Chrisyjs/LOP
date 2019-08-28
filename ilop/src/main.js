@@ -9,7 +9,8 @@ import {
   Button, 
   Stepper,
   NavBar,
-  Card
+  Card,
+  Divider
 } from 'vant';
 import 'flex.css'
 
@@ -21,6 +22,7 @@ Vue.use(Field)
   .use(Stepper)
   .use(NavBar)
   .use(Card)
+  .use(Divider)
 
 Vue.config.productionTip = false
 

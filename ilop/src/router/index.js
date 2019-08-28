@@ -4,7 +4,8 @@ import Login from '../views/login';
 import MainPage from '../views/mainPage';
 import WaitingList from '../views/waitingList';
 import MyList from '../views/myList';
-import confirmClaim from '../views/confirmClaim';
+import ConfirmClaim from '../views/confirmClaim';
+import ClaimDetail from '../views/claimDetail';
 
 Vue.use(VueRouter);
 
@@ -36,7 +37,11 @@ export default new VueRouter({
     },
     {
       path: '/confirmClaim',
-      component: confirmClaim
+      component: ConfirmClaim
+    },
+    {
+      path: '/claimDetail',
+      component: ClaimDetail
     },
     {
       path: '*',

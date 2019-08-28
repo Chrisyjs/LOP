@@ -283,3 +283,46 @@ export function getMyListData(phone) {
   }
 }
 
+export function getClaimDetail(id) {
+  // return axios.get(`${domain}/api/crowdfunding/order/detail/${id}`)
+  return {
+    "msg": "success",
+    "code": 200,
+    "data": {
+        "orderId": 3,
+        "orderCode": "LOP647190",
+        "orderStatus": 1,
+        "payMoney": 8200.0,
+        "itemAmount": 2,
+        "memberMobile": "15068865038",
+        "memberName": "15068865038",
+        "payAccount": null,
+        "payImageUrl": null,
+        "remark": null,
+        "timeSubmit": "2019-08-27 17:56:50",
+        "timePay": null,
+        "timeAudit": null,
+        "orderStatusName": "待付款",
+        "itemList": [
+            {
+                "recordId": 5,
+                "orderId": 3,
+                "itemId": 13,
+                "amount": 1,
+                "name": "小班空调",
+                "payPrice": 4100.0,
+                "imageUrl": null
+            },
+            {
+                "recordId": 6,
+                "orderId": 3,
+                "itemId": 12,
+                "amount": 1,
+                "name": "大班空调",
+                "payPrice": 4100.0,
+                "imageUrl": null
+            }
+        ]
+    }
+}
+}
