@@ -1,7 +1,6 @@
 
 module.exports = {
   lintOnSave: true,
- 
   devServer: {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
@@ -11,6 +10,15 @@ module.exports = {
         pathRewrite: {
           // '^/api': '/'    //代理的路径
         }
+      }
+    }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `
+          @import "@/assets/styles/_variable.scss";
+        `
       }
     }
   }

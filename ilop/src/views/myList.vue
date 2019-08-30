@@ -1,16 +1,28 @@
 <template>
   <div class="my-list">
-    <order-panel :item="item" @click.native="() => goClaimDetail(item.id)" v-for="item in myList" :key="item.id"></order-panel>
+    <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
+      <template v-slot:footer>
+        <div flex="main:justify cross:center">
+          <van-button plain type="info" size="small" v-if="item.orderStatus === 1" @click.stop="handleComfirmCancel(item.orderId)">取消订单</van-button>
+          <van-button type="info" size="small" v-if="item.orderStatus === 1">上传付款凭证</van-button>
+        </div>
+      </template>
+    </order-panel>
+
+    <!-- 确认弹框 -->
+    <van-dialog v-model="showDialog" title="系统提示" message="确认删除订单？" :showCancelButton="true"></van-dialog>
   </div>
 </template>
 
 <script>
 import { getMyListData } from "../api";
 import OrderPanel from '../components/orderPanel';
+
 export default {
   data() {
     return {
-      myList: []
+      myList: [],
+      showDialog: false
     };
   },
   components: {
@@ -21,18 +33,25 @@ export default {
   },
   methods: {
     async _getMyListData() {
-      const { code, data } = await getMyListData();
+      let param = {
+        mobile: "15068865038"
+      }
+      const { code, data } = await getMyListData(param);
       if (code === 200) {
         this.myList = data;
       }
     },
     goClaimDetail(id) {
       this.$router.push({
+        name: 'claimDetail',
         path: '/claimDetail',
         query: {
           id
         }
       })
+    },
+    handleComfirmCancel(id) {
+      this.showDialog = true;
     }
   }
 };

@@ -14,12 +14,13 @@
       thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
     />
     <div class="total-pay">
-      <span class="count">共{{item.itemAmount}}件商品</span>
-      <span class="money">
-        合计：
-        <span>￥{{item.payMoney}}</span>
+      <span class="count font-size-12">共{{item.itemAmount}}件商品</span>
+      <span>
+        <span class="font-size-12">合计：</span>
+        <span class="money">￥{{item.payMoney}}</span>
       </span>
     </div>
+    <slot name="footer"></slot>
   </div>
 </template>
 
@@ -38,25 +39,17 @@ export default {
 
 <style lang="scss" scoped>
 .panel {
-  border: 1px solid #dbdbdb;
-  border-radius: 4px;
-  padding: 6px;
-  margin-bottom: 6px;
   .title {
     padding: 2px;
   }
   .total-pay {
     text-align: right;
-    margin-top: 6px;
+    padding: 6px 0;
     .count {
-      font-size: 12px;
       margin-right: 10px;
     }
     .money {
-      font-size: 12px;
-      span {
-        font-size: 14px;
-      }
+      color: $red;
     }
   }
 }

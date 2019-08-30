@@ -10,9 +10,16 @@ import {
   Stepper,
   NavBar,
   Card,
-  Divider
+  Divider,
+  Notify,
+  Dialog,
+  Toast,
+  Uploader,
+  ImagePreview
 } from 'vant';
+import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
+import './api/interceptors.js';
 
 Vue.use(Field)
   .use(CellGroup)
@@ -23,6 +30,13 @@ Vue.use(Field)
   .use(NavBar)
   .use(Card)
   .use(Divider)
+  .use(Notify)
+  .use(Dialog)
+  .use(Toast)
+  .use(Uploader)
+  .use(ImagePreview)
+
+  .use(VueClipboard)
 
 Vue.config.productionTip = false
 

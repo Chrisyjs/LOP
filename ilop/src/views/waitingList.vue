@@ -9,7 +9,7 @@
           :key="item.categoryId"
         >
         {{item.categoryName}}
-        <span class="total" v-if="item.total">{{item.total < 99 ? item.total : '99+'}}</span>
+        <span class="total font-size-12" v-if="item.total">{{item.total < 99 ? item.total : '99+'}}</span>
         </div>
       </div>
       <div class="list" @scroll="handleScroll">
@@ -25,14 +25,14 @@
             <div class="content">
               <div class="title">{{jtem.name}}</div>
               <div flex="main:justify">
-                <span class="price">￥{{jtem.payPrice}}</span>
+                <span class="price font-size-12">￥{{jtem.payPrice}}</span>
                 <van-stepper @change="(val) => handleStepChange(val, item)" :min="0" :max="100" :button-size="'20px'" :class="[{'active': jtem.amount}]" integer v-model="jtem.amount" />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <van-button type="info" :to="'/confirmClaim'" class="goClaimBtn">去认领</van-button>
+      <van-button type="info" :to="'/confirmClaim'" class="bottom-btn">去认领</van-button>
     </div>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
   mounted () {
     this.$nextTick(() => {
       let dom = document.querySelector('.is-waitingList-wrap .list');
-      dom.style.height = document.documentElement.clientHeight - 110 + 'px';
+      dom.style.height = document.documentElement.clientHeight - 100 + 'px';
     })
   },
   methods: {
@@ -89,7 +89,7 @@ export default {
       function (e){
         this.waitingListData.forEach(item => {
           let rect = document.getElementById(`${item.categoryId}`).getBoundingClientRect();
-          if (rect.top <= 80) {
+          if (rect.top <= 100) {
             this.setSideBarStatus(item);
           }
         })
@@ -108,12 +108,6 @@ export default {
 <style lang="scss" scoped>
 .claim-list {
   .is-waitingList-wrap {
-    .goClaimBtn {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-    }
     .side-bar {
       height: 100%;
       position: fixed;
@@ -129,10 +123,9 @@ export default {
         }
         .total {
           position: absolute;
-          font-size: 12px;
           top: 2px;
           right: 2px;
-          background-color: #1989fa;
+          background-color: $blue;
           color: #fff;
           padding: 3px;
           border-radius: 16px;
@@ -152,7 +145,7 @@ export default {
       overflow-y: auto;
       .part {
         .part-title {
-          color: #9a210a;
+          // color: $blue;
         }
       }
     }
@@ -165,7 +158,7 @@ export default {
       .active {
         /deep/ .van-stepper__input {
           color: #fff;
-          background-color: #1989fa;
+          background-color: $blue;
         }
       }
       .image {
@@ -178,7 +171,7 @@ export default {
         color: #222;
       }
       .price {
-        color: rgba(153, 153, 153, 1);
+        color: $red;
       }
       .content {
         width: calc(100% - 64px);

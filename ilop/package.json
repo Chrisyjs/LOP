@@ -12,7 +12,8 @@
     "flex.css": "^1.1.7",
     "qs.js": "^0.1.12",
     "vue": "^2.6.10",
-    "vue-axios": "^2.1.4"
+    "vue-axios": "^2.1.4",
+    "vue-clipboard2": "^0.3.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

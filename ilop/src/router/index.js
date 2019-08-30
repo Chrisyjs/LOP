@@ -40,6 +40,7 @@ export default new VueRouter({
       component: ConfirmClaim
     },
     {
+      name: 'claimDetail',
       path: '/claimDetail',
       component: ClaimDetail
     },
