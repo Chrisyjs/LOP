@@ -1,8 +1,14 @@
 <template>
   <div>
     <van-nav-bar @click-left="handleClickLeft" left-arrow left-text="返回" title="认领详情"></van-nav-bar>
-    <div class="claim-detail">
+    <div class="claim-detail overflow-scroll">
       <order-panel :item="detail">
+        <template v-slot:header>
+          <div class="title" flex="main:justify cross:center">
+            <div>认领编号：{{detail.orderCode}}</div>
+            <div>订单状态：{{detail.orderStatusName}}</div>
+          </div>
+        </template>
         <!-- <template v-slot:footer>
         <div flex="main:left">
           <van-button plain type="info">取消订单</van-button>
@@ -14,10 +20,10 @@
         <div class="content font-size-12">
           <div class="item">订单创建时间：{{detail.timeSubmit}}</div>
           <div class="item" v-if="orderStatusIsOne">
-            i认领支付宝账号：{{alipay}}
+            i认领支付宝账号：{{iLopAlipay}}
             <span
               class="copy cursor-pointer"
-              v-clipboard:copy="alipay"
+              v-clipboard:copy="iLopAlipay"
               v-clipboard:success="handleCopy"
             >一键复制</span>
           </div>
@@ -31,19 +37,28 @@
           <div class="item" flex="main:left cross:center">
             <label :class="[orderStatusIsOne && 'form-required']">你的支付宝账号：</label>
             <template v-if="orderStatusIsOne">
-              <input class="input form-item" type="text" />
+              <input class="input form-item" v-model="yourAlipay" type="text" />
             </template>
             <template v-else>
               <span>{{detail.payAccount}}</span>
             </template>
           </div>
           <div class="item" flex="main:left cross:top">
-            <label :class="[orderStatusIsOne && 'form-required']">你的付款凭证：</label>
+            <label :class="[orderStatusIsOne && 'form-required']">
+              你的付款凭证：
+              <br />
+              <span style="opacity: .7;">（即账单截图）</span>
+            </label>
             <template v-if="orderStatusIsOne">
               <van-uploader :max-count="1" v-model="payVouchers" />
             </template>
             <template v-else>
-              <img :src="detail.payImageUrl" alt="" style="width: 78px; height: 78px;" @click="() => showImagePreview(detail.payImageUrl)">
+              <img
+                :src="detail.payImageUrl"
+                alt
+                style="width: 78px; height: 78px;"
+                @click="() => showImagePreview(detail.payImageUrl)"
+              />
             </template>
           </div>
           <div class="item" flex="main:left cross:top">
@@ -58,13 +73,14 @@
         </div>
       </div>
     </div>
-    <van-button type="info" class="bottom-btn">确认提交</van-button>
+    <van-button type="info" class="bottom-btn" @click="handleSubmit">确认提交</van-button>
     <van-image-preview v-model="showImage" :images="images"></van-image-preview>
   </div>
 </template>
 
 <script>
 import OrderPanel from "../components/orderPanel";
+import Layout from '../mixins/layout';
 import { getClaimDetail } from "../api";
 
 export default {
@@ -72,28 +88,29 @@ export default {
     return {
       detail: {},
       id: this.$route.query.id,
-      alipay: "onemore6@163.com",
+      iLopAlipay: "onemore6@163.com",
+      yourAlipay: "",
       payVouchers: [],
       showImage: false,
       images: []
     };
   },
   computed: {
-    orderStatusIsOne () {
+    orderStatusIsOne() {
       return this.detail.orderStatus === 1;
     }
   },
   components: {
     OrderPanel
   },
+  mixins: [
+    Layout
+  ],
   created() {
     this._getClaimDetail();
   },
   mounted() {
-    this.$nextTick(() => {
-      let dom = document.querySelector('.claim-detail');
-      dom.style.height = document.documentElement.clientHeight - 100 + 'px';
-    })
+    
   },
   methods: {
     async _getClaimDetail() {
@@ -108,12 +125,33 @@ export default {
     handleCopy() {
       this.$toast({
         message: "复制成功",
-        duration: 500
+        duration: 800
       });
     },
     showImagePreview(imgUrl) {
       this.images = [imgUrl];
       this.showImage = true;
+    },
+    checkSubmitInfo() {
+      let warnMsg = "";
+      if (!this.yourAlipay) {
+        warnMsg = "请填写您的支付宝账号";
+      }
+      if (!this.payVouchers.length) {
+        warnMsg = "请上传您的付款凭证";
+      }
+      if (warnMsg) {
+        this.$notify({
+          message: warnMsg,
+          type: "warning",
+          duration: 800
+        });
+        return false;
+      }
+      return true;
+    },
+    handleSubmit() {
+      if (!this.checkSubmitInfo()) return;
     }
   }
 };
@@ -121,7 +159,6 @@ export default {
 
 <style lang="scss" scoped>
 .claim-detail {
-  overflow-y: auto;
   padding: 10px;
   padding-bottom: 0;
   .content {

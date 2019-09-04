@@ -1,6 +1,12 @@
 <template>
-  <div class="my-list">
+  <div class="my-list overflow-scroll">
     <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
+      <template v-slot:header>
+        <div class="title" flex="main:justify cross:center">
+          <div>认领编号：{{item.orderCode}}</div>
+          <div>订单状态：{{item.orderStatusName}}</div>
+        </div>       
+      </template>
       <template v-slot:footer>
         <div flex="main:justify cross:center">
           <van-button plain type="info" size="small" v-if="item.orderStatus === 1" @click.stop="handleComfirmCancel(item.orderId)">取消订单</van-button>

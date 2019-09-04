@@ -9,10 +9,10 @@
           :key="item.categoryId"
         >
         {{item.categoryName}}
-        <span class="total font-size-12" v-if="item.total">{{item.total < 99 ? item.total : '99+'}}</span>
+        <span class="total font-size-12" v-if="item.allAmount">{{item.allAmount < 99 ? item.allAmount : '99+'}}</span>
         </div>
       </div>
-      <div class="list" @scroll="handleScroll">
+      <div class="list overflow-scroll" @scroll="handleScroll">
         <div class="part" v-for="item in waitingListData" :key="item.categoryId">
           <div :id="`${item.categoryId}`" class="part-title">{{item.categoryName}}</div>
           <div
@@ -25,8 +25,8 @@
             <div class="content">
               <div class="title">{{jtem.name}}</div>
               <div flex="main:justify">
-                <span class="price font-size-12">￥{{jtem.payPrice}}</span>
-                <van-stepper @change="(val) => handleStepChange(val, item)" :min="0" :max="100" :button-size="'20px'" :class="[{'active': jtem.amount}]" integer v-model="jtem.amount" />
+                <span class="price font-size-12">￥{{jtem.price}}</span>
+                <van-stepper @change="(val) => handleStepChange(val, item)" :min="0" :max="100" :button-size="'20px'" :class="[{'active': jtem.choosedAmount}]" integer v-model="jtem.choosedAmount" />
               </div>
             </div>
           </div>
@@ -40,40 +40,59 @@
 <script>
 import { getWaitingListData } from "../api/index.js";
 import { debounce } from 'lodash';
+import { mapState, mapMutations, mapActions } from 'vuex'
+import Layout from '../mixins/layout';
 
 export default {
   data() {
     return {
       activeIdx: 0,
-      waitingListData: [],
+      // waitingListData: [],
     };
   },
-  created () {
-    this._getWaitingListData();
+  computed: {
+    ...mapState(['waitingListData'])
   },
+  created () {
+    // this._getWaitingListData();
+  },
+  mixins: [
+    Layout
+  ],
   mounted () {
-    this.$nextTick(() => {
-      let dom = document.querySelector('.is-waitingList-wrap .list');
-      dom.style.height = document.documentElement.clientHeight - 100 + 'px';
-    })
+  },
+  watch: {
   },
   methods: {
-    async _getWaitingListData() {
+    ...mapMutations(['setChoosedList']),
+    /* async _getWaitingListData() {
       const { code, data } = await getWaitingListData();
       if (code === 200) {
         this.waitingListData = data.map((item, index) => {
-          return {
-            categoryId: item.categoryId,
-            categoryName: item.categoryName,
-            itemList: item.itemList.map(jtem => {
-              return Object.assign({}, jtem, {amount: 0})
-            }),
-            total: 0,
-            active: index === 0
-          }
+          return this.resetFromVuex(item, index);
         });
       }
     },
+    resetFromVuex(item, index) {
+      let categoryItem = this.choosedList.find(i => i.categoryId === item.categoryId) || {};
+      return {
+        categoryId: item.categoryId,
+        categoryName: item.categoryName,
+        itemList: item.itemList.map(jtem => {
+          let obj = categoryItem.itemList && categoryItem.itemList.find(i => i.id === jtem.id) || {};
+          return Object.assign({}, {
+            id: jtem.id,
+            name: jtem.name,
+            imageUrl: jtem.imageUrl,
+            price: jtem.price,
+            progressPercent: jtem.progressPercent,
+          }, {amount: obj.amount || 0})
+        }),
+        allAmount: categoryItem.allAmount || 0,
+        allPayMoney: categoryItem.allPayMoney || 0,
+        active: index === 0
+      }
+    }, */
     setSideBarStatus (item) {
       let obj = this.waitingListData.find(jtem => jtem.active === true);
       obj.active = false;
@@ -96,10 +115,13 @@ export default {
       },
     200),
     handleStepChange (val, item) {
-      item.total = 0;
+      item.allAmount = 0;
+      item.allPayMoney = 0;
       item.itemList.forEach(jtem => {
-        item.total += jtem.amount;
+        item.allAmount += jtem.amount;
+        item.allPayMoney += jtem.price * jtem.amount;
       })
+      this.setChoosedList(this.waitingListData);
     }
   }
 };
@@ -142,7 +164,6 @@ export default {
       // margin-top: 50px;
       border-top: 1px solid #dbdbdb;
       padding-left: 104px;
-      overflow-y: auto;
       .part {
         .part-title {
           // color: $blue;

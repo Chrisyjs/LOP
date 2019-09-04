@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { getValidCode, login } from '../api';
 export default {
   data() {
     return {
@@ -47,6 +48,7 @@ export default {
       if (this.phoneErrMsg) return;
       this.isSending = true;
       this.validText = 60;
+      getValidCode({mobile: this.phone});
       const interval = window.setInterval(() => {
         this.validText = this.validText - 1;
         if (this.validText <= 0) {
@@ -68,19 +70,27 @@ export default {
       }
     },
     checkValidCode () {
-      this.validCodeErrMsg = '验证码错误';
+      this.validCodeErrMsg = this.validCode ? '' : '验证码错误';
     },
-    checkAllInfo () {
+    async submit () {
       this.checkPhone();
       this.checkValidCode();
-    },
-    submit () {
-      this.checkAllInfo();
-      if (!this.phoneErrMsg && !this.validCodeErrMsg) {
-        this.$router.push({
-          path: '/list'
-        })
-      }
+      this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
+      this.$router.push({
+        path: '/list'
+      })
+      // if (!this.phoneErrMsg && !this.validCodeErrMsg) {
+      //   const { data, code } = await login({
+      //     mobile: this.phone,
+      //     code: this.validCode
+      //   })
+      //   if (code === 200) {
+      //     this.$utils.setCookie('mobile', data.mobile, 1000 * 30 * 60);
+      //     this.$router.push({
+      //       path: '/list'
+      //     })
+      //   }
+      // }
     },
   }
 };

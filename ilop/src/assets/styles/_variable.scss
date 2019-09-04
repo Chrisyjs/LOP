@@ -41,3 +41,16 @@ $gray: #999999;
   padding-left: 10px;
   box-sizing: border-box;
 }
+.overflow-scroll {
+  overflow-y: auto;
+}
+.total-pay {
+  text-align: right;
+  padding: 6px 0;
+  .count {
+    margin-right: 10px;
+  }
+  .money {
+    color: $red;
+  }
+}

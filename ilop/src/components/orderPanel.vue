@@ -1,15 +1,12 @@
 <template>
   <div class="panel">
-    <div class="title" flex="main:justify cross:center">
-      <div>认领编号：{{item.orderCode}}</div>
-      <div>订单状态：{{item.orderStatusName}}</div>
-    </div>
+    <slot name="header"></slot>
     <van-card
       v-for="jtem in item.itemList"
       :key="jtem.id"
       :num="jtem.amount"
       :price="jtem.payPrice"
-      desc
+      desc=""
       :title="jtem.name"
       thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
     />
@@ -41,16 +38,6 @@ export default {
 .panel {
   .title {
     padding: 2px;
-  }
-  .total-pay {
-    text-align: right;
-    padding: 6px 0;
-    .count {
-      margin-right: 10px;
-    }
-    .money {
-      color: $red;
-    }
   }
 }
 </style>

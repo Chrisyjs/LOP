@@ -10,8 +10,8 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   response => {
     let { data } = response;
-    if (data.code === 0) {
-      window.location.href = '/login'
+    if (!Vue.prototype.$utils.getCookie('mobile')) {
+      window.location.href = '';
     }
     else if (data.code === 200) {
       return data;
@@ -19,8 +19,10 @@ http.interceptors.response.use(
     else {
       Vue.prototype.$notify({
         message: `${data.msg}`,
-        type: 'warning'
+        type: 'warning',
+        duration: 800
       })
+      return data;
     }
   },
   error => {
