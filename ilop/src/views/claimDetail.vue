@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar @click-left="handleClickLeft" left-arrow left-text="返回" title="认领详情"></van-nav-bar>
+    <van-nav-bar class="fixed-header" @click-left="handleClickLeft" left-arrow left-text="返回" title="认领详情"></van-nav-bar>
     <div class="claim-detail overflow-scroll">
       <order-panel :item="detail">
         <template v-slot:header>
@@ -22,7 +22,7 @@
           <div class="item" v-if="orderStatusIsOne">
             i认领支付宝账号：{{iLopAlipay}}
             <span
-              class="copy cursor-pointer"
+              class="copy color-blue cursor-pointer"
               v-clipboard:copy="iLopAlipay"
               v-clipboard:success="handleCopy"
             >一键复制</span>
@@ -35,7 +35,7 @@
         <div class="title">提交信息</div>
         <div class="content font-size-12">
           <div class="item" flex="main:left cross:center">
-            <label :class="[orderStatusIsOne && 'form-required']">你的支付宝账号：</label>
+            <label :class="[orderStatusIsOne && 'form-required']">您的支付宝账号：</label>
             <template v-if="orderStatusIsOne">
               <input class="input form-item" v-model="yourAlipay" type="text" />
             </template>
@@ -45,7 +45,7 @@
           </div>
           <div class="item" flex="main:left cross:top">
             <label :class="[orderStatusIsOne && 'form-required']">
-              你的付款凭证：
+              您的付款凭证：
               <br />
               <span style="opacity: .7;">（即账单截图）</span>
             </label>
@@ -62,9 +62,9 @@
             </template>
           </div>
           <div class="item" flex="main:left cross:top">
-            <label :class="[orderStatusIsOne && 'form-unrequired']">你的备注信息：</label>
+            <label :class="[orderStatusIsOne && 'form-unrequired']">您的备注信息：</label>
             <template v-if="orderStatusIsOne">
-              <textarea class="input form-item" rows="3"></textarea>
+              <textarea v-model="remark" class="input form-item" rows="3"></textarea>
             </template>
             <template v-else>
               <span>{{detail.remark}}</span>
@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-    <van-button type="info" class="bottom-btn" @click="handleSubmit">确认提交</van-button>
+    <van-button type="info" class="bottom-btn fixed-bottom" @click="handleSubmit">确认提交</van-button>
     <van-image-preview v-model="showImage" :images="images"></van-image-preview>
   </div>
 </template>
@@ -81,7 +81,7 @@
 <script>
 import OrderPanel from "../components/orderPanel";
 import Layout from '../mixins/layout';
-import { getClaimDetail } from "../api";
+import { getClaimDetail, uploadImage, submitOrder } from "../api";
 
 export default {
   data() {
@@ -92,7 +92,8 @@ export default {
       yourAlipay: "",
       payVouchers: [],
       showImage: false,
-      images: []
+      images: [],
+      remark: ''
     };
   },
   computed: {
@@ -134,24 +135,38 @@ export default {
     },
     checkSubmitInfo() {
       let warnMsg = "";
-      if (!this.yourAlipay) {
-        warnMsg = "请填写您的支付宝账号";
-      }
       if (!this.payVouchers.length) {
         warnMsg = "请上传您的付款凭证";
+      }
+      if (!this.yourAlipay) {
+        warnMsg = "请填写您的支付宝账号";
       }
       if (warnMsg) {
         this.$notify({
           message: warnMsg,
           type: "warning",
-          duration: 800
         });
         return false;
       }
       return true;
     },
-    handleSubmit() {
+    async handleSubmit() {
       if (!this.checkSubmitInfo()) return;
+      let param = new FormData();
+      param.append('mulFile', this.payVouchers[0].file);
+      let { code, data } = await uploadImage(param);
+      if (code === 200) {
+        param = {
+          orderId: this.detail.orderCode,
+          payAccount: this.yourAlipay,
+          payImageUrl: data,
+          remark: this.remark
+        }
+        let response = await submitOrder(param);
+        if (response.code === 200) {
+          this.$router.push('/myList');
+        }
+      }      
     }
   }
 };
@@ -162,10 +177,8 @@ export default {
   padding: 10px;
   padding-bottom: 0;
   .content {
-    color: $gray;
   }
   .copy {
-    color: $blue;
   }
   .item {
     margin: 6px 0;

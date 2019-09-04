@@ -23,6 +23,7 @@
 <script>
 import { getMyListData } from "../api";
 import OrderPanel from '../components/orderPanel';
+import Layout from '../mixins/layout';
 
 export default {
   data() {
@@ -34,6 +35,7 @@ export default {
   components: {
     OrderPanel
   },
+  mixins: [Layout],
   created() {
     this._getMyListData();
   },

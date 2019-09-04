@@ -18,7 +18,8 @@ import {
   Toast,
   Uploader,
   ImagePreview,
-  Icon
+  Icon,
+  Checkbox
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
@@ -40,6 +41,7 @@ Vue.use(Field)
   .use(Uploader)
   .use(ImagePreview)
   .use(Icon)
+  .use(Checkbox)
 
   .use(VueClipboard)
 

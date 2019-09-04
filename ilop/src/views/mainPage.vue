@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="top-btn-group">
+    <div class="top-btn-group fixed-header">
       <van-button class="left-btn" type="info" to="/home/waitingList" :plain="currentTab !== 'waitingList'" size="small">待认领物品</van-button>
       <van-button class="right-btn" type="info" to="/home/myList" :plain="currentTab !== 'myList'" size="small">我的认领</van-button>
     </div>

@@ -14,6 +14,18 @@ $gray: #999999;
 .font-size-12 {
   font-size: 12px;
 }
+.font-size-14 {
+  font-size: 14px;
+}
+.color-gray {
+  color: $gray;
+}
+.color-red {
+  color: $red;
+}
+.color-blue {
+  color: $blue;
+}
 .input {
   border: 1px solid #dcdfe6;
   color: #606266;
@@ -43,6 +55,7 @@ $gray: #999999;
 }
 .overflow-scroll {
   overflow-y: auto;
+  box-sizing: border-box;
 }
 .total-pay {
   text-align: right;
