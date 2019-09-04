@@ -21,7 +21,7 @@
             :key="jtem.id"
             flex="main:justify cross:stretch"
           >
-            <div class="image"></div>
+            <div class="image" :style="{'background-image': `url(${jtem.imageUrl})`}"></div>
             <div class="content">
               <div flex="main:justify">
                 <div class="title">{{jtem.name}}</div>
@@ -137,7 +137,9 @@ export default {
         })
         return;
       }
-      this.$router.push('/confirmClaim');
+      this.$router.push({
+        path: '/confirmClaim'
+      });
     }
   }
 };
@@ -200,7 +202,7 @@ export default {
       .image {
         width: 60px;
         height: 60px;
-        background: url(https://img.yzcdn.cn/vant/t-thirt.jpg) no-repeat;
+        background-repeat: no-repeat;
         background-size: contain;
       }
       .title {

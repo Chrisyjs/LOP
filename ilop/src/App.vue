@@ -24,7 +24,9 @@ export default {
       }).then(() => {
         this.$utils.delCookie('mobile');
         this.resetChoosedList();
-        this.$router.push('/login');
+        this.$router.push({
+          path: '/login'
+        });
       })
     }
   },

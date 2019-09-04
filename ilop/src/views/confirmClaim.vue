@@ -10,7 +10,7 @@
         :num="jtem.choosedAmount"
         :price="jtem.price"
         :title="jtem.name"
-        thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
+        :thumb="jtem.imageUrl || 'https://img.yzcdn.cn/vant/t-thirt.jpg'"
         ></van-card>
       </div>
       <div class="total-pay">
@@ -105,7 +105,9 @@ export default {
       const { code, data } = await confirmClaim(param);
       if (code === 200) {
         this.resetChoosedList();
-        this.$router.push('/myList');
+        this.$router.push({
+          path: '/home/myList'
+        });
       }
     }
   },

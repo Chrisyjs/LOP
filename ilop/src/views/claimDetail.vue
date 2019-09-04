@@ -20,12 +20,22 @@
         <div class="content font-size-12">
           <div class="item">订单创建时间：{{detail.timeSubmit}}</div>
           <div class="item" v-if="orderStatusIsOne">
-            i认领支付宝账号：{{iLopAlipay}}
-            <span
-              class="copy color-blue cursor-pointer"
-              v-clipboard:copy="iLopAlipay"
-              v-clipboard:success="handleCopy"
-            >一键复制</span>
+            <div class="item">
+                i认领支付宝账号：{{iLopAlipay}}(张晓红)
+              <span
+                class="copy color-blue cursor-pointer"
+                v-clipboard:copy="iLopAlipay"
+                v-clipboard:success="handleCopy"
+              >一键复制</span>
+            </div>
+            <div class="item">
+              银行卡账号：{{bankCard}}(屠密迦)
+              <span
+                class="copy color-blue cursor-pointer"
+                v-clipboard:copy="bankCard"
+                v-clipboard:success="handleCopy"
+              >一键复制</span>
+            </div>
           </div>
           <div class="item" v-if="detail.timePay">订单付款时间：{{detail.timePay}}</div>
           <div class="item" v-if="detail.timeAudit">订单确认时间：{{detail.timeAudit}}</div>
@@ -67,7 +77,7 @@
               <textarea v-model="remark" class="input form-item" rows="3"></textarea>
             </template>
             <template v-else>
-              <span>{{detail.remark}}</span>
+              <span>{{detail.remark ? detail.remark : '无'}}</span>
             </template>
           </div>
         </div>
@@ -89,6 +99,7 @@ export default {
       detail: {},
       id: this.$route.query.id,
       iLopAlipay: "onemore6@163.com",
+      bankCard: "6236681540019117469",
       yourAlipay: "",
       payVouchers: [],
       showImage: false,
@@ -157,14 +168,16 @@ export default {
       let { code, data } = await uploadImage(param);
       if (code === 200) {
         param = {
-          orderId: this.detail.orderCode,
+          orderId: this.detail.orderId,
           payAccount: this.yourAlipay,
           payImageUrl: data,
           remark: this.remark
         }
         let response = await submitOrder(param);
         if (response.code === 200) {
-          this.$router.push('/myList');
+          this.$router.push({
+            path: '/home/myList'
+          });
         }
       }      
     }

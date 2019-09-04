@@ -8,7 +8,7 @@
       :price="jtem.payPrice"
       desc=""
       :title="jtem.name"
-      thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
+      :thumb="jtem.imageUrl || 'https://img.yzcdn.cn/vant/t-thirt.jpg'"
     />
     <div class="total-pay">
       <span class="count font-size-12">共{{item.itemAmount}}件商品</span>
