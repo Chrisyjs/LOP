@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const state = {
   choosedList: [],
-  waitingListData: []
+  waitingListData: [],
 }
 
 const mutations = {
@@ -20,7 +20,7 @@ const mutations = {
   },
   resetChoosedList (state) {
     state.choosedList = [];
-  }
+  },
 }
 
 const getters = {

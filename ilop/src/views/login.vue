@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div class="title">
+    <div class="title text-center">
       <div class="small">感谢您加入【全民联名 为i认领】</div>
       <div class="big">iLop</div>
     </div>
@@ -100,7 +100,6 @@ export default {
 .login {
   margin-top: 60px;
   .title {
-    text-align: center;
     .small {
       color: rgba(16, 16, 16, 1);
       font-size: 20px;

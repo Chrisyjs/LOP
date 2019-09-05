@@ -1,27 +1,31 @@
 <template>
   <div class="my-list overflow-scroll">
-    <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
-      <template v-slot:header>
-        <div class="title" flex="main:justify cross:center">
-          <div>认领编号：{{item.orderCode}}</div>
-          <div>订单状态：{{item.orderStatusName}}</div>
-        </div>       
-      </template>
-      <template v-slot:footer>
-        <div flex="main:justify cross:center">
-          <van-button plain type="info" size="small" v-if="item.orderStatus === 1" @click.stop="handleComfirmCancel(item.orderId)">取消订单</van-button>
-          <van-button type="info" size="small" v-if="item.orderStatus === 1">上传付款凭证</van-button>
-        </div>
-      </template>
-    </order-panel>
-
+    <div v-if="myList.length">
+      <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
+        <template v-slot:header>
+          <div class="title" flex="main:justify cross:center">
+            <div>认领编号：{{item.orderCode}}</div>
+            <div>订单状态：{{item.orderStatusName}}</div>
+          </div>       
+        </template>
+        <template v-slot:footer>
+          <div flex="main:justify cross:center">
+            <van-button plain type="info" size="small" v-if="item.orderStatus === 1" @click.stop="() => showCancelOrderDialog(item.orderId)">取消订单</van-button>
+            <van-button type="info" size="small" v-if="item.orderStatus === 1">上传付款凭证</van-button>
+          </div>
+        </template>
+      </order-panel>
+    </div>
+    <div v-else class="panel no-data-tip text-center font-size-14">
+      暂无认领，赶快去认领吧！
+    </div>
     <!-- 确认弹框 -->
-    <van-dialog v-model="showDialog" title="系统提示" message="确认删除订单？" :showCancelButton="true"></van-dialog>
+    <van-dialog v-model="showDialog" title="系统提示" message="确认删除订单？" @confirm="handleComfirmCancel" :showCancelButton="true"></van-dialog>
   </div>
 </template>
 
 <script>
-import { getMyListData } from "../api";
+import { getMyListData, cancelOrder } from "../api";
 import OrderPanel from '../components/orderPanel';
 import Layout from '../mixins/layout';
 
@@ -29,7 +33,8 @@ export default {
   data() {
     return {
       myList: [],
-      showDialog: false
+      showDialog: false,
+      cancelOrderId: 0
     };
   },
   components: {
@@ -41,11 +46,19 @@ export default {
   },
   methods: {
     async _getMyListData() {
+      this.$toast({
+        message: '加载中...',
+        mask: true,
+        loadingType: 'spinner',
+        duration: 0,
+        forbidClick: true
+      })
       let param = {
-        mobile: "15068865038"
+        mobile: this.$utils.getCookie('mobile')
       }
       const { code, data } = await getMyListData(param);
       if (code === 200) {
+        this.$toast.clear();
         this.myList = data;
       }
     },
@@ -58,8 +71,15 @@ export default {
         }
       })
     },
-    handleComfirmCancel(id) {
+    showCancelOrderDialog(id) {
       this.showDialog = true;
+      this.cancelOrderId = id;
+    },
+    async handleComfirmCancel() {
+      const { code, data } = await cancelOrder(this.cancelOrderId);
+      if (code === 200) {
+        this._getMyListData();
+      }
     }
   }
 };
@@ -68,5 +88,7 @@ export default {
 <style lang="scss" scoped>
 .my-list {
   padding: 10px;
+  .no-data-tip {
+  }
 }
 </style>

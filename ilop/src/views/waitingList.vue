@@ -9,7 +9,7 @@
           :key="item.categoryId"
         >
         {{item.categoryName}}
-        <span class="total font-size-12" v-if="item.allChoosedAmount">{{item.allChoosedAmount < 99 ? item.allChoosedAmount : '99+'}}</span>
+        <span class="total text-center font-size-12" v-if="item.allChoosedAmount">{{item.allChoosedAmount < 99 ? item.allChoosedAmount : '99+'}}</span>
         </div>
       </div>
       <div class="list overflow-scroll" @scroll="handleScroll">
@@ -69,8 +69,16 @@ export default {
   methods: {
     ...mapMutations(['setChoosedList']),
     async _getWaitingListData() {
+      this.$toast({
+        message: '加载中...',
+        mask: true,
+        loadingType: 'spinner',
+        duration: 0,
+        forbidClick: true
+      })
       const { code, data } = await getWaitingListData();
       if (code === 200) {
+        this.$toast.clear();
         this.waitingListData = data.map((item, index) => {
           return this.resetFromVuex(item, index);
         });
@@ -171,7 +179,6 @@ export default {
           border-radius: 16px;
           min-width: 16px;
           line-height: 14px;
-          text-align: center;
           border: 1px solid #fff;
         }
       }

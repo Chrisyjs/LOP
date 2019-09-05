@@ -19,7 +19,9 @@ import {
   Uploader,
   ImagePreview,
   Icon,
-  Checkbox
+  Checkbox,
+  Loading,
+  Overlay
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
@@ -42,6 +44,8 @@ Vue.use(Field)
   .use(ImagePreview)
   .use(Icon)
   .use(Checkbox)
+  .use(Loading)
+  .use(Overlay)
 
   .use(VueClipboard)
 

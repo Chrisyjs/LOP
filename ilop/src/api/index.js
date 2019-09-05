@@ -38,3 +38,7 @@ export function uploadImage(param) {
 export function submitOrder(param) {
   return axios.post(`${domain}/api/crowdfunding/order/pay`, param);
 }
+// 取消订单
+export function cancelOrder(id) {
+  return axios.post(`${domain}/api/crowdfunding/order/cancel/${id}`, );
+}

@@ -2,6 +2,13 @@
   <div>
     <van-nav-bar class="fixed-header" @click-left="handleClickLeft" left-arrow left-text="返回" title="认领详情"></van-nav-bar>
     <div class="claim-detail overflow-scroll">
+      <div class="panel thanks-info text-center">
+        <div class="font-size-14">感谢您的奉献</div>
+        <div>
+          LOP的建设离不开您！谢谢您的摆上！<br>
+          愿上帝祝福您和您的家庭！
+        </div>
+      </div>
       <order-panel :item="detail">
         <template v-slot:header>
           <div class="title" flex="main:justify cross:center">
@@ -9,14 +16,9 @@
             <div>订单状态：{{detail.orderStatusName}}</div>
           </div>
         </template>
-        <!-- <template v-slot:footer>
-        <div flex="main:left">
-          <van-button plain type="info">取消订单</van-button>
-        </div>
-        </template>-->
       </order-panel>
       <div class="order-info panel">
-        <div class="title">订单信息</div>
+        <div class="title font-size-14">订单信息</div>
         <div class="content font-size-12">
           <div class="item">订单创建时间：{{detail.timeSubmit}}</div>
           <div class="item" v-if="orderStatusIsOne">
@@ -42,7 +44,7 @@
         </div>
       </div>
       <div class="form-info panel">
-        <div class="title">提交信息</div>
+        <div class="title font-size-14">提交信息</div>
         <div class="content font-size-12">
           <div class="item" flex="main:left cross:center">
             <label :class="[orderStatusIsOne && 'form-required']">您的支付宝账号：</label>
@@ -204,6 +206,8 @@ export default {
     .form-item {
       width: calc(100% - 108px);
     }
+  }
+  .thanks-info {
   }
 }
 .submit-btn {

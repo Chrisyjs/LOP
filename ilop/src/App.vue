@@ -9,11 +9,14 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'app',
   components: {
+  },
+  computed: {
+    ...mapState(['showLoading'])
   },
   methods: {
     ...mapMutations(['resetChoosedList']),
