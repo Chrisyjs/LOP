@@ -1,6 +1,7 @@
 
 module.exports = {
   lintOnSave: true,
+  publicPath: './',
   devServer: {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
