@@ -85,7 +85,7 @@ export default {
           code: this.validCode
         })
         if (code === 200) {
-          this.$utils.setCookie('mobile', data.mobile, 1000 * 30 * 60);
+          this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
           this.$router.push({
             path: '/home/waitingList'
           })

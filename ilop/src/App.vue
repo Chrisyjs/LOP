@@ -54,6 +54,7 @@ export default {
 
 <style lang="scss">
 #app {
+  background-color: #fff;
   font-size: 12px;
   .user {
     font-size: 12px;

@@ -2,15 +2,10 @@
   <div class="claim-list">
     <div class="is-waitingList-wrap">
       <div class="side-bar" flex="dir:top">
-        <div class="side-bar-item"
-          @click="() => scrollTo(item)"
-          :class="[item.active && 'active']"
-          v-for="(item) in waitingListData"
-          :key="item.categoryId"
-        >
-        {{item.categoryName}}
-        <span class="total text-center font-size-12" v-if="item.allChoosedAmount">{{item.allChoosedAmount < 99 ? item.allChoosedAmount : '99+'}}</span>
-        </div>
+        <a class="side-bar-item" :href="`#${item.categoryId}`" @click="() => scrollTo(item)" :class="[item.active && 'active']" v-for="(item) in waitingListData" :key="item.categoryId">
+          {{item.categoryName}}
+          <span class="total text-center font-size-12" v-if="item.allChoosedAmount">{{item.allChoosedAmount < 99 ? item.allChoosedAmount : '99+'}}</span>
+        </a>
       </div>
       <div class="list overflow-scroll" @scroll="handleScroll">
         <div class="part" v-for="item in waitingListData" :key="item.categoryId">
@@ -114,9 +109,6 @@ export default {
     },
     scrollTo (item) {
       this.setSideBarStatus(item);
-      document.getElementById(`${item.categoryId}`).scrollIntoView({
-        behavior: "smooth"
-      });
     },
     handleScroll: debounce(
       function (e){
