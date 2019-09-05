@@ -5,21 +5,37 @@
       <span class="account">{{$utils.getCookie('mobile')}}</span>
     </div>
     <router-view></router-view>
+    <van-image-preview v-model="showImagePreview" :images="imagePreview"></van-image-preview>
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex';
+import Layout from './mixins/layout';
 
 export default {
   name: 'app',
   components: {
   },
   computed: {
-    ...mapState(['showLoading'])
+    showImagePreview: {
+      get() {
+        return this.$store.state.showImagePreview;
+      },
+      set(n) {
+        this.setShowImagePreview(n);
+      }
+    },
+    ...mapState(['showLoading', 'imagePreview'])
+  },
+  mixins: [Layout],
+  mounted() {
+    window.onresize = () => {
+      this.setOverflowScrollHeight();
+    }
   },
   methods: {
-    ...mapMutations(['resetChoosedList']),
+    ...mapMutations(['resetChoosedList', 'setShowImagePreview']),
     handleLogout() {
       this.$dialog.confirm({
         title: '系统提示',

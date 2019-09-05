@@ -60,6 +60,7 @@ export default {
       if (code === 200) {
         this.$toast.clear();
         this.myList = data;
+        this.setOverflowScrollHeight();
       }
     },
     goClaimDetail(id) {
@@ -88,6 +89,7 @@ export default {
 <style lang="scss" scoped>
 .my-list {
   padding: 10px;
+  padding-top: 0;
   .no-data-tip {
   }
 }

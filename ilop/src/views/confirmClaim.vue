@@ -68,6 +68,7 @@ export default {
       this.allAmount += item.allChoosedAmount;
       this.allPayMoney += item.allChoosedPayMoney;
     })
+    this.setOverflowScrollHeight();
   },
   methods: {
     ...mapMutations(['resetChoosedList']),
@@ -102,8 +103,16 @@ export default {
         memberName: this.name,
         itemList: list
       }
+      this.$toast({
+        message: '认领中...',
+        mask: true,
+        loadingType: 'spinner',
+        duration: 0,
+        forbidClick: true
+      })
       const { code, data } = await confirmClaim(param);
       if (code === 200) {
+        this.$toast.clear();
         this.resetChoosedList();
         this.$router.push({
           path: '/home/myList'

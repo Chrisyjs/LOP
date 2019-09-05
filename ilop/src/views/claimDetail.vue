@@ -69,7 +69,7 @@
                 :src="detail.payImageUrl"
                 alt
                 style="width: 78px; height: 78px;"
-                @click="() => showImagePreview(detail.payImageUrl)"
+                @click="() => setImagePreview([detail.payImageUrl])"
               />
             </template>
           </div>
@@ -85,8 +85,7 @@
         </div>
       </div>
     </div>
-    <van-button type="info" class="bottom-btn fixed-bottom" @click="handleSubmit">确认提交</van-button>
-    <van-image-preview v-model="showImage" :images="images"></van-image-preview>
+    <van-button v-if="orderStatusIsOne" type="info" class="bottom-btn fixed-bottom" @click="handleSubmit">确认提交</van-button>
   </div>
 </template>
 
@@ -104,7 +103,6 @@ export default {
       bankCard: "6236681540019117469",
       yourAlipay: "",
       payVouchers: [],
-      showImage: false,
       images: [],
       remark: ''
     };
@@ -130,6 +128,7 @@ export default {
     async _getClaimDetail() {
       const { code, data } = await getClaimDetail(this.id);
       this.detail = data;
+      this.setOverflowScrollHeight();
     },
     handleClickLeft() {
       this.$router.push({
@@ -141,10 +140,6 @@ export default {
         message: "复制成功",
         duration: 800
       });
-    },
-    showImagePreview(imgUrl) {
-      this.images = [imgUrl];
-      this.showImage = true;
     },
     checkSubmitInfo() {
       let warnMsg = "";
@@ -167,6 +162,13 @@ export default {
       if (!this.checkSubmitInfo()) return;
       let param = new FormData();
       param.append('mulFile', this.payVouchers[0].file);
+      this.$toast({
+        message: '提交中...',
+        mask: true,
+        loadingType: 'spinner',
+        duration: 0,
+        forbidClick: true
+      })
       let { code, data } = await uploadImage(param);
       if (code === 200) {
         param = {
@@ -177,6 +179,7 @@ export default {
         }
         let response = await submitOrder(param);
         if (response.code === 200) {
+          this.$toast.clear();
           this.$router.push({
             path: '/home/myList'
           });

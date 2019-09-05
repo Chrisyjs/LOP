@@ -21,7 +21,7 @@
             :key="jtem.id"
             flex="main:justify cross:stretch"
           >
-            <div class="image" :style="{'background-image': `url(${jtem.imageUrl})`}"></div>
+            <div @click="() => setImagePreview([jtem.imageUrl])" class="image" :style="{'background-image': `url(${jtem.imageUrl})`}"></div>
             <div class="content">
               <div flex="main:justify">
                 <div class="title">{{jtem.name}}</div>
@@ -82,6 +82,7 @@ export default {
         this.waitingListData = data.map((item, index) => {
           return this.resetFromVuex(item, index);
         });
+        this.setOverflowScrollHeight();
       }
     },
     resetFromVuex(item, index) {

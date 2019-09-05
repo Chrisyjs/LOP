@@ -7,6 +7,8 @@ Vue.use(Vuex);
 const state = {
   choosedList: [],
   waitingListData: [],
+  imagePreview: [],
+  showImagePreview: false
 }
 
 const mutations = {
@@ -21,6 +23,13 @@ const mutations = {
   resetChoosedList (state) {
     state.choosedList = [];
   },
+  setImagePreview(state, imagePreview) {
+    state.imagePreview = imagePreview;
+    state.showImagePreview = !!imagePreview.length;
+  },
+  setShowImagePreview(state, showImagePreview) {
+    state.showImagePreview = showImagePreview;
+  }
 }
 
 const getters = {
