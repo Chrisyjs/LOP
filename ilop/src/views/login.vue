@@ -75,22 +75,22 @@ export default {
     async submit () {
       this.checkPhone();
       this.checkValidCode();
-      this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
-      this.$router.push({
-        path: '/list'
-      })
-      // if (!this.phoneErrMsg && !this.validCodeErrMsg) {
-      //   const { data, code } = await login({
-      //     mobile: this.phone,
-      //     code: this.validCode
-      //   })
-      //   if (code === 200) {
-      //     this.$utils.setCookie('mobile', data.mobile, 1000 * 30 * 60);
-      //     this.$router.push({
-      //       path: '/home/waitingList'
-      //     })
-      //   }
-      // }
+      // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
+      // this.$router.push({
+      //   path: '/list'
+      // })
+      if (!this.phoneErrMsg && !this.validCodeErrMsg) {
+        const { data, code } = await login({
+          mobile: this.phone,
+          code: this.validCode
+        })
+        if (code === 200) {
+          this.$utils.setCookie('mobile', data.mobile, 1000 * 30 * 60);
+          this.$router.push({
+            path: '/home/waitingList'
+          })
+        }
+      }
     },
   }
 };
