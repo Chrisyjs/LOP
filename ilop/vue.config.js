@@ -1,9 +1,9 @@
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
-const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
+// const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 module.exports = {
   lintOnSave: true,
-  // publicPath: './',
+  publicPath: './',
   devServer: {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
@@ -33,8 +33,6 @@ module.exports = {
     };
     Object.assign(config, { externals });
     // if (process.env.NODE_ENV === 'production') {
-    // 为生产环境修改配置...
-    config.mode = 'production'
     // 将每个依赖包打包成单独的js文件
     let optimization = {
       minimizer: [new UglifyPlugin({
@@ -51,7 +49,8 @@ module.exports = {
     Object.assign(config, {
       optimization
     })
-    config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
+    // config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
+    config.plugins = config.plugins.concat([new LodashModuleReplacementPlugin()]);
     // }
   },
   css: {

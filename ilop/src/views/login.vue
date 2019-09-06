@@ -77,7 +77,7 @@ export default {
       this.checkValidCode();
       // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
       // this.$router.push({
-      //   path: '/list'
+      //   path: '/home/waitingList'
       // })
       if (!this.phoneErrMsg && !this.validCodeErrMsg) {
         const { data, code } = await login({
