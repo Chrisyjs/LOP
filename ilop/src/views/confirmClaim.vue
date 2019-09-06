@@ -8,7 +8,7 @@
         v-for="jtem in item.itemList"
         :key="jtem.id"
         :num="jtem.choosedAmount"
-        :price="jtem.price"
+        :price="jtem.payPrice"
         :title="jtem.name"
         :thumb="jtem.imageUrl || 'https://img.yzcdn.cn/vant/t-thirt.jpg'"
         ></van-card>

@@ -1,7 +1,7 @@
-
+const UglifyPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
   lintOnSave: true,
-  publicPath: './',
+  // publicPath: './',
   devServer: {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
@@ -15,13 +15,41 @@ module.exports = {
       }
     }
   },
-  configureWebpack: {
-    externals: {
+  chainWebpack: config => {
+    config.plugin('prefetch').tap(options => {
+      options[0].fileBlacklist = options[0].fileBlacklist || []
+      options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/)
+      return options
+    })
+  },
+  configureWebpack: (config) => {
+  let externals = {
       'vue': 'Vue',
       'vuex': 'Vuex',
       'vue-router': 'VueRouter',
       'Axios':'axios'
-    }
+    };
+    Object.assign(config, {externals});
+    // if (process.env.NODE_ENV === 'production') {
+      // 为生产环境修改配置...
+      config.mode = 'production'
+      // 将每个依赖包打包成单独的js文件
+      let optimization = {
+        minimizer: [new UglifyPlugin({
+          uglifyOptions: {
+            compress: {
+              // warnings: false,
+              drop_console: true, // console
+              drop_debugger: true,
+              pure_funcs: ['console.log'] // 移除console
+            }
+          }
+        })]
+      }
+      Object.assign(config, {
+        optimization
+      })
+    // }
   },
   css: {
     loaderOptions: {

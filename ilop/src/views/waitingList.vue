@@ -23,7 +23,7 @@
                 <div class="color-gray font-size-12">剩余：{{jtem.payAmount - jtem.amountClaimed}}份</div>
               </div>
               <div flex="main:justify">
-                <span class="price color-red font-size-12">￥{{jtem.price}}</span>
+                <span class="price color-red font-size-12">￥{{jtem.payPrice}}</span>
                 <van-stepper @change="(val) => handleStepChange(val, item)" :min="0" :max="jtem.payAmount - jtem.amountClaimed" :button-size="'20px'" :class="[{'active': jtem.choosedAmount}]" integer v-model="jtem.choosedAmount" />
               </div>
             </div>
@@ -91,7 +91,7 @@ export default {
             id: jtem.id,
             name: jtem.name,
             imageUrl: jtem.imageUrl,
-            price: jtem.price,
+            payPrice: jtem.payPrice,
             progressPercent: jtem.progressPercent,
             amountClaimed: jtem.amountClaimed,
             payAmount: jtem.payAmount
@@ -125,7 +125,7 @@ export default {
       item.allChoosedPayMoney = 0;
       item.itemList.forEach(jtem => {
         item.allChoosedAmount += jtem.choosedAmount;
-        item.allChoosedPayMoney += jtem.price * jtem.choosedAmount;
+        item.allChoosedPayMoney += jtem.payPrice * jtem.choosedAmount;
       })
       this.setChoosedList(this.waitingListData);
     },

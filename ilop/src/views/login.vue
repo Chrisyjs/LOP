@@ -2,7 +2,7 @@
   <div class="login">
     <div class="title text-center">
       <div class="small">感谢您加入【全民联名 为i认领】</div>
-      <div class="big">iLop</div>
+      <div class="big">iLOP</div>
     </div>
     <div class="form">
       <van-cell-group>
@@ -75,22 +75,22 @@ export default {
     async submit () {
       this.checkPhone();
       this.checkValidCode();
-      // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
-      // this.$router.push({
-      //   path: '/list'
-      // })
-      if (!this.phoneErrMsg && !this.validCodeErrMsg) {
-        const { data, code } = await login({
-          mobile: this.phone,
-          code: this.validCode
-        })
-        if (code === 200) {
-          this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
-          this.$router.push({
-            path: '/home/waitingList'
-          })
-        }
-      }
+      this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
+      this.$router.push({
+        path: '/list'
+      })
+      // if (!this.phoneErrMsg && !this.validCodeErrMsg) {
+      //   const { data, code } = await login({
+      //     mobile: this.phone,
+      //     code: this.validCode
+      //   })
+      //   if (code === 200) {
+      //     this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
+      //     this.$router.push({
+      //       path: '/home/waitingList'
+      //     })
+      //   }
+      // }
     },
   }
 };
