@@ -1,4 +1,6 @@
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 module.exports = {
   lintOnSave: true,
   // publicPath: './',
@@ -23,32 +25,33 @@ module.exports = {
     })
   },
   configureWebpack: (config) => {
-  let externals = {
+    let externals = {
       'vue': 'Vue',
       'vuex': 'Vuex',
       'vue-router': 'VueRouter',
-      'Axios':'axios'
+      'Axios': 'axios'
     };
-    Object.assign(config, {externals});
+    Object.assign(config, { externals });
     // if (process.env.NODE_ENV === 'production') {
-      // 为生产环境修改配置...
-      config.mode = 'production'
-      // 将每个依赖包打包成单独的js文件
-      let optimization = {
-        minimizer: [new UglifyPlugin({
-          uglifyOptions: {
-            compress: {
-              // warnings: false,
-              drop_console: true, // console
-              drop_debugger: true,
-              pure_funcs: ['console.log'] // 移除console
-            }
+    // 为生产环境修改配置...
+    config.mode = 'production'
+    // 将每个依赖包打包成单独的js文件
+    let optimization = {
+      minimizer: [new UglifyPlugin({
+        uglifyOptions: {
+          compress: {
+            // warnings: false,
+            drop_console: true, // console
+            drop_debugger: true,
+            pure_funcs: ['console.log'] // 移除console
           }
-        })]
-      }
-      Object.assign(config, {
-        optimization
-      })
+        }
+      })]
+    }
+    Object.assign(config, {
+      optimization
+    })
+    config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
     // }
   },
   css: {

@@ -1,4 +1,4 @@
-import router from './index2';
+import router from './index';
 import Vue from 'vue';
 
 router.beforeEach((to, from, next) => {

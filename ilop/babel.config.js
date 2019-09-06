@@ -8,6 +8,8 @@ module.exports = {
       libraryDirectory: 'es',
       style: true
     }, 'vant'],
-    '@babel/plugin-syntax-dynamic-import'
+    '@babel/plugin-syntax-dynamic-import',
+    // "transform-vue-jsx", "transform-runtime", "lodash"
+    "lodash"
   ]
 }
