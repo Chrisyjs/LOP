@@ -183,7 +183,7 @@ export default {
       padding-left: 104px;
       .part {
         .part-title {
-          // color: $blue;
+          padding-top: 6px;
         }
       }
     }

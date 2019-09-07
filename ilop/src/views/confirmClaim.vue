@@ -3,7 +3,7 @@
     <van-nav-bar class="fixed-header" @click-left="handleClickLeft" left-arrow left-text="返回" title="您认领的物品"></van-nav-bar>
     <div class="content overflow-scroll">
       <div class="part" v-for="item in choosedList" :key="item.categoryId">
-        <div class="part-title">{{item.categoryName}}</div>
+        <div class="part-title font-size-14">{{item.categoryName}}</div>
         <van-card
         v-for="jtem in item.itemList"
         :key="jtem.id"
@@ -21,17 +21,29 @@
         </span>
       </div>
       <div class="panel care-note-wrap">
-        <label class="form-required" for="">您的姓名：<input v-model="name" type="text" class="input"></label>
+        <div style="padding-bottom: 8px;">
+          <label class="form-required" for="">您的姓名：</label>
+          <input v-model="name" type="text" class="input">
+        </div>
         <div class="font-size-12 care-note">
-          A.感谢您的摆上和奉献，每一笔奉献都会被记录在案。LOP因为有您的加入而更加温暖！！<br>
-          B.整体流程如下：<br>
-          1）提交认领物品、数量，了解具体的金额<br>
-          2）支付宝付款、截图作为付款凭证<br>
-          3）“我的认领“页面找到这次认领清单，提交付款凭证、填写相关信息即可<br>
-          C.如有任何问题，可以联系XXX@landofpromise.co
+          具体流程：<br>
+          1）	认领：选择物品，确认提交认领<br>
+          2）	支付方式：<br>
+          支付宝账号：{{iLopAlipay}}（张晓红）<span
+              class="copy color-blue cursor-pointer"
+              v-clipboard:copy="iLopAlipay"
+              v-clipboard:success="handleCopy"
+            >一键复制</span><br>
+          银行卡账号：{{bankCard}}（屠密迦）<span
+                class="copy color-blue cursor-pointer"
+                v-clipboard:copy="bankCard"
+                v-clipboard:success="handleCopy"
+              >一键复制</span><br>
+          转账备注：认领人姓名+物品名字<br>
+          3）	上传：上传付款凭证（转账截图），确认提交联名认领需上传合成的付款凭证长图
         </div>
         <div style="overflow: hidden;">
-          <van-checkbox class="check-box font-size-12" flex="cross:baseline" icon-size="12px" v-model="hasRead">已阅读注意事项</van-checkbox>
+          <van-checkbox class="check-box font-size-12" flex="cross:baseline" icon-size="12px" v-model="hasRead"><span class="color-blue">已阅读注意事项</span></van-checkbox>
         </div>
       </div>
     </div>
@@ -51,7 +63,9 @@ export default {
       allAmount: 0,
       allPayMoney: 0,
       hasRead: false,
-      name: ''
+      name: '',
+      iLopAlipay: 'onemore6@landofpromise.co',
+      bankCard: '6236681540019117469'
     }
   },
   computed: {
@@ -76,6 +90,12 @@ export default {
       this.$router.push({
         path: '/home'
       })
+    },
+    handleCopy() {
+      this.$toast({
+        message: "复制成功",
+        duration: 800
+      });
     },
     async handleConfirm() {
       if (!this.hasRead || !this.name) {
@@ -129,10 +149,17 @@ export default {
     padding: 10px;
   }
   .check-box {
+    padding-top: 4px;
     float: right;
+    /deep/ .van-checkbox__icon .van-icon {
+      border-color: $blue;
+    }
   }
   .care-note {
     line-height: 1.6;
+  }
+  .part-title {
+    padding-left: 10px;
   }
   .input {
     width: calc(100% - 90px);

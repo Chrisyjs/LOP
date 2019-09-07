@@ -1,5 +1,17 @@
 <template>
   <div class="my-list overflow-scroll">
+    <div class="panel">
+      支付宝账号：{{iLopAlipay}}（张晓红）<span
+          class="copy color-blue cursor-pointer"
+          v-clipboard:copy="iLopAlipay"
+          v-clipboard:success="handleCopy"
+        >一键复制</span><br>
+      银行卡账号：{{bankCard}}（屠密迦）<span
+            class="copy color-blue cursor-pointer"
+            v-clipboard:copy="bankCard"
+            v-clipboard:success="handleCopy"
+          >一键复制</span><br>
+    </div>
     <div v-if="myList.length">
       <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
         <template v-slot:header>
@@ -34,7 +46,9 @@ export default {
     return {
       myList: [],
       showDialog: false,
-      cancelOrderId: 0
+      cancelOrderId: 0,
+      iLopAlipay: 'onemore6@landofpromise.co',
+      bankCard: '6236681540019117469'
     };
   },
   components: {

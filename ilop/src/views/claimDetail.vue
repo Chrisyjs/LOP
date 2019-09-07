@@ -2,13 +2,6 @@
   <div>
     <van-nav-bar class="fixed-header" @click-left="handleClickLeft" left-arrow left-text="返回" title="认领详情"></van-nav-bar>
     <div class="claim-detail overflow-scroll">
-      <div class="panel thanks-info text-center">
-        <div class="font-size-14">感谢您的奉献</div>
-        <div>
-          LOP的建设离不开您！谢谢您的摆上！<br>
-          愿上帝祝福您和您的家庭！
-        </div>
-      </div>
       <order-panel :item="detail">
         <template v-slot:header>
           <div class="title" flex="main:justify cross:center">
@@ -21,24 +14,6 @@
         <div class="title font-size-14">订单信息</div>
         <div class="content font-size-12">
           <div class="item">订单创建时间：{{detail.timeSubmit}}</div>
-          <div class="item" v-if="orderStatusIsOne">
-            <div class="item">
-                i认领支付宝账号：{{iLopAlipay}}(张晓红)
-              <span
-                class="copy color-blue cursor-pointer"
-                v-clipboard:copy="iLopAlipay"
-                v-clipboard:success="handleCopy"
-              >一键复制</span>
-            </div>
-            <div class="item">
-              银行卡账号：{{bankCard}}(屠密迦)
-              <span
-                class="copy color-blue cursor-pointer"
-                v-clipboard:copy="bankCard"
-                v-clipboard:success="handleCopy"
-              >一键复制</span>
-            </div>
-          </div>
           <div class="item" v-if="detail.timePay">订单付款时间：{{detail.timePay}}</div>
           <div class="item" v-if="detail.timeAudit">订单确认时间：{{detail.timeAudit}}</div>
         </div>
@@ -47,13 +22,6 @@
         <div class="title font-size-14">提交信息</div>
         <div class="content font-size-12">
           <div class="item" flex="main:left cross:center">
-            <label :class="[orderStatusIsOne && 'form-required']">您的支付宝账号：</label>
-            <template v-if="orderStatusIsOne">
-              <input class="input form-item" v-model="yourAlipay" type="text" />
-            </template>
-            <template v-else>
-              <span>{{detail.payAccount}}</span>
-            </template>
           </div>
           <div class="item" flex="main:left cross:top">
             <label :class="[orderStatusIsOne && 'form-required']">
@@ -74,9 +42,9 @@
             </template>
           </div>
           <div class="item" flex="main:left cross:top">
-            <label :class="[orderStatusIsOne && 'form-unrequired']">您的备注信息：</label>
+            <label :class="[orderStatusIsOne && 'form-required']">您的备注信息：</label>
             <template v-if="orderStatusIsOne">
-              <textarea v-model="remark" class="input form-item" rows="3"></textarea>
+              <textarea placeholder="可留下您的支付账号，以便核对" v-model="remark" class="input form-item" rows="3"></textarea>
             </template>
             <template v-else>
               <span>{{detail.remark ? detail.remark : '无'}}</span>
@@ -101,7 +69,6 @@ export default {
       id: this.$route.query.id,
       iLopAlipay: "onemore6@163.com",
       bankCard: "6236681540019117469",
-      yourAlipay: "",
       payVouchers: [],
       images: [],
       remark: ''
@@ -135,19 +102,13 @@ export default {
         path: "/home/myList"
       });
     },
-    handleCopy() {
-      this.$toast({
-        message: "复制成功",
-        duration: 800
-      });
-    },
     checkSubmitInfo() {
       let warnMsg = "";
+      if (!this.remark) {
+        warnMsg = "请输入备注信息";
+      }
       if (!this.payVouchers.length) {
         warnMsg = "请上传您的付款凭证";
-      }
-      if (!this.yourAlipay) {
-        warnMsg = "请填写您的支付宝账号";
       }
       if (warnMsg) {
         this.$notify({
@@ -173,7 +134,6 @@ export default {
       if (code === 200) {
         param = {
           orderId: this.detail.orderId,
-          payAccount: this.yourAlipay,
           payImageUrl: data,
           remark: this.remark
         }
@@ -194,10 +154,6 @@ export default {
 .claim-detail {
   padding: 10px;
   padding-bottom: 0;
-  .content {
-  }
-  .copy {
-  }
   .item {
     margin: 6px 0;
   }

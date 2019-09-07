@@ -1,7 +1,11 @@
 $blue: #1989fa;
 $red: rgb(255, 68, 68);
 $gray: #999999;
+$dark-red:#9a1a1a;
 
+.inline-block {
+  display: inline-block;
+}
 .panel {
   border: 1px solid #dbdbdb;
   border-radius: 4px;
@@ -10,6 +14,10 @@ $gray: #999999;
 }
 .text-center {
   text-align: center;
+}
+.part-title {
+  color: $dark-red;
+  font-weight: 700;
 }
 .cursor-pointer {
   cursor: pointer;
