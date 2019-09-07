@@ -20,7 +20,7 @@
             <div class="content">
               <div flex="main:justify">
                 <div class="title">{{jtem.name}}</div>
-                <div class="color-gray font-size-12">剩余：{{jtem.payAmount - jtem.amountClaimed}}份</div>
+                <div class="color-gray font-size-12">剩余：{{jtem.payAmount - jtem.amountClaimed}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
               </div>
               <div flex="main:justify">
                 <span class="price color-red font-size-12">￥{{jtem.payPrice}}</span>
@@ -94,7 +94,8 @@ export default {
             payPrice: jtem.payPrice,
             progressPercent: jtem.progressPercent,
             amountClaimed: jtem.amountClaimed,
-            payAmount: jtem.payAmount
+            payAmount: jtem.payAmount,
+            categoryType: jtem.categoryType
           }, {choosedAmount: obj.choosedAmount || 0})
         }),
         allChoosedAmount: categoryItem.allChoosedAmount || 0,

@@ -24,7 +24,7 @@
           <div class="title" flex="main:justify cross:center">
             <div>认领编号：{{item.orderCode}}</div>
             <div>订单状态：{{item.orderStatusName}}</div>
-          </div>       
+          </div>
         </template>
         <template v-slot:footer>
           <div flex="main:justify cross:center">
@@ -95,6 +95,12 @@ export default {
     showCancelOrderDialog(id) {
       this.showDialog = true;
       this.cancelOrderId = id;
+    },
+    handleCopy() {
+      this.$toast({
+        message: "复制成功",
+        duration: 800
+      });
     },
     async handleComfirmCancel() {
       const { code, data } = await cancelOrder(this.cancelOrderId);
