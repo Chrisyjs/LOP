@@ -29,17 +29,25 @@
           具体流程：<br>
           1）	认领：选择物品，确认提交认领<br>
           2）	支付方式：<br>
-          支付宝账号：{{iLopAlipay}}（张晓红）<span
+          <div class="item">
+            支付宝账号：{{iLopAlipay}}（张晓红）<br>
+          <div flex="main:right"> 
+            <span
               class="copy color-blue cursor-pointer"
               v-clipboard:copy="iLopAlipay"
               v-clipboard:success="handleCopy"
-            >一键复制</span><br>
-          银行卡账号：{{bankCard}}（屠密迦）<span
+            >一键复制</span>
+          </div>
+          银行卡账号：{{bankCard}}（屠密迦）<br>
+          <div flex="main:right">
+          <span
                 class="copy color-blue cursor-pointer"
                 v-clipboard:copy="bankCard"
                 v-clipboard:success="handleCopy"
-              >一键复制</span><br>
-          转账备注：认领人姓名+物品名字<br>
+              >一键复制</span> 
+          </div>
+          转账备注：认领人姓名+物品名字
+          </div>
           3）	上传：上传付款凭证（转账截图），确认提交联名认领需上传合成的付款凭证长图
         </div>
         <div style="overflow: hidden;">

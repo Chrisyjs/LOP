@@ -1,16 +1,22 @@
 <template>
   <div class="my-list overflow-scroll">
     <div class="panel">
-      支付宝账号：{{iLopAlipay}}（张晓红）<span
+      支付宝账号：{{iLopAlipay}}（张晓红）<br>
+      <div flex="main:right">
+        <span
           class="copy color-blue cursor-pointer"
           v-clipboard:copy="iLopAlipay"
           v-clipboard:success="handleCopy"
-        >一键复制</span><br>
-      银行卡账号：{{bankCard}}（屠密迦）<span
-            class="copy color-blue cursor-pointer"
-            v-clipboard:copy="bankCard"
-            v-clipboard:success="handleCopy"
-          >一键复制</span><br>
+        >一键复制</span>
+      </div>
+      银行卡账号：{{bankCard}}（屠密迦）<br>
+      <div flex="main:right">
+        <span
+              class="copy color-blue cursor-pointer"
+              v-clipboard:copy="bankCard"
+              v-clipboard:success="handleCopy"
+            >一键复制</span>
+      </div>
     </div>
     <div v-if="myList.length">
       <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
