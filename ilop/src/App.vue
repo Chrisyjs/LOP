@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 import { mapMutations, mapState } from 'vuex';
 import Layout from './mixins/layout';
 
