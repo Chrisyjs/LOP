@@ -11,7 +11,7 @@
         <div class="part" v-for="item in waitingListData" :key="item.categoryId">
           <div :id="`${item.categoryId}`" class="part-title font-size-14">{{item.categoryName}}</div>
           <div
-            class="card"
+            class="card color-gray"
             v-for="jtem in item.itemList"
             :key="jtem.id"
             flex="main:justify cross:stretch"
@@ -20,11 +20,11 @@
             <div class="content">
               <div flex="main:justify">
                 <div class="title">{{jtem.name}}</div>
-                <div class="color-gray font-size-12">剩余：{{jtem.payAmount - jtem.amountClaimed}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
+                <div :class="{'color-gray': !jtem.stockNum, 'color-red': jtem.stockNum, 'font-size-12': true}">剩余：{{jtem.stockNum}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
               </div>
               <div flex="main:justify">
                 <span class="price color-red font-size-12">￥{{jtem.payPrice}}</span>
-                <van-stepper @change="(val) => handleStepChange(val, item)" :min="0" :max="jtem.payAmount - jtem.amountClaimed" :button-size="'20px'" :class="[{'active': jtem.choosedAmount}]" integer v-model="jtem.choosedAmount" />
+                <van-stepper @change="(val) => handleStepChange(val, item)" :min="0" :max="jtem.stockNum" :button-size="'20px'" :class="[{'active': jtem.choosedAmount}]" integer v-model="jtem.choosedAmount" />
               </div>
             </div>
           </div>
@@ -95,7 +95,8 @@ export default {
             progressPercent: jtem.progressPercent,
             amountClaimed: jtem.amountClaimed,
             payAmount: jtem.payAmount,
-            categoryType: jtem.categoryType
+            categoryType: jtem.categoryType,
+            stockNum: jtem.payAmount - jtem.amountClaimed
           }, {choosedAmount: obj.choosedAmount || 0})
         }),
         allChoosedAmount: categoryItem.allChoosedAmount || 0,
