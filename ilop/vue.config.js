@@ -9,6 +9,7 @@ const cdn = {
     'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js'
   ]
 };
+const isPro = process.env.NODE_ENV === 'production' ? true : false;
 
 module.exports = {
   lintOnSave: true,
@@ -26,19 +27,23 @@ module.exports = {
       }
     }
   },
+  productionSourceMap: isPro ? false : true,
   chainWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
+    if (isPro) {
       config.plugin('prefetch').tap(options => {
         options[0].fileBlacklist = options[0].fileBlacklist || []
         options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/)
-        options[0].cdn = cdn;
         return options
       })
-
+      config.plugin('html')
+      .tap(args => {
+          args[0].cdn = cdn;
+        return args;
+      })
     }
   },
   configureWebpack: (config) => {
-    if (process.env.NODE_ENV === 'production') {
+    if (isPro) {
       let externals = {
         'vue': 'Vue',
         'vuex': 'Vuex',
