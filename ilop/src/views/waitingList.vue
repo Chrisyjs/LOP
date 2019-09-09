@@ -5,7 +5,7 @@
         <a class="side-bar-item" :href="`#${item.categoryId}`" @click="() => scrollTo(item)" :class="[item.active && 'active']" v-for="(item) in waitingListData" :key="item.categoryId">
           {{item.categoryName}}
           <span class="total text-center font-size-12" v-if="item.allChoosedAmount">{{item.allChoosedAmount < 99 ? item.allChoosedAmount : '99+'}}</span>
-          <span class="red-dot" v-if="item.hasStock"></span>
+          <span class="red-dot" v-if="item.hasStock && !item.allChoosedAmount"></span>
         </a>
       </div>
       <div class="list overflow-scroll" @scroll="handleScroll">
@@ -181,6 +181,8 @@ export default {
           width: 4px;
           height: 4px;
           border-radius: 4px;
+          right: 10px;
+          top: 10px;
         }
         .total {
           position: absolute;
