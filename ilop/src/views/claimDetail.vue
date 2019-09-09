@@ -140,6 +140,10 @@ export default {
         let response = await submitOrder(param);
         if (response.code === 200) {
           this.$toast.clear();
+          this.$dialog.alert({
+            title: '系统提示',
+            message: '已完成认领！\n感谢您的认领，每笔认领都会用于新家建设并载入LOP史册！'
+          })
           this.$router.push({
             path: '/home/myList'
           });

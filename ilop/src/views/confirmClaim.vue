@@ -132,7 +132,7 @@ export default {
         itemList: list
       }
       this.$toast({
-        message: '认领中...',
+        message: '提交中...',
         mask: true,
         loadingType: 'spinner',
         duration: 0,
