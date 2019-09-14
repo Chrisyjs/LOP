@@ -86,11 +86,14 @@ export default {
     Layout
   ],
   created() {
-    this._getClaimDetail();
-    this.$notify({
-      message: "如遇问题，可尝试用浏览器打开",
-      type: 'primary'
-    })
+    this._getClaimDetail()
+      .then(() => {
+        this.orderStatusIsOne &&
+        this.$notify({
+          message: "如遇问题，可尝试用浏览器打开",
+          type: 'primary'
+        })
+      })
   },
   mounted() {
     
