@@ -41,6 +41,12 @@ export default {
       isSending: false,
     };
   },
+  created() {
+    this.$notify({
+      message: "如遇问题，可尝试用浏览器打开",
+      type: 'primary'
+    })
+  },
   methods: {
     sendValidCode () {
       if (this.isSending) return;
@@ -75,11 +81,11 @@ export default {
     async submit () {
       this.checkPhone();
       this.checkValidCode();
-      // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
-      // this.$router.push({
-      //   path: '/home/waitingList'
-      // })
-      if (!this.phoneErrMsg && !this.validCodeErrMsg) {
+      this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
+      this.$router.push({
+        path: '/home/waitingList'
+      })
+      /* if (!this.phoneErrMsg && !this.validCodeErrMsg) {
         const { data, code } = await login({
           mobile: this.phone,
           code: this.validCode
@@ -90,7 +96,7 @@ export default {
             path: '/home/waitingList'
           })
         }
-      }
+      } */
     },
   }
 };
