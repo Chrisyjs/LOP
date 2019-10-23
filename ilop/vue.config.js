@@ -70,6 +70,7 @@ module.exports = {
       // config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
       config.plugins = config.plugins.concat([new LodashModuleReplacementPlugin()]);
     } 
+    config.devtool = 'source-map';
   },
   css: {
     loaderOptions: {
