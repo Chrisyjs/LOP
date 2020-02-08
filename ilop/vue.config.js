@@ -1,4 +1,5 @@
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
+const appConfig = require('./appConfig');
 // const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const cdn = {
@@ -10,7 +11,6 @@ const cdn = {
   ]
 };
 const isPro = process.env.NODE_ENV === 'production' ? true : false;
-
 module.exports = {
   lintOnSave: true,
   publicPath: './',
@@ -29,6 +29,7 @@ module.exports = {
   },
   productionSourceMap: isPro ? false : true,
   chainWebpack: config => {
+    config.resolve.symlinks(true);
     if (isPro) {
       config.plugin('prefetch').tap(options => {
         options[0].fileBlacklist = options[0].fileBlacklist || []
@@ -41,6 +42,12 @@ module.exports = {
         return args;
       })
     }
+    config
+    .plugin('define')  // appConfig 全局使用
+    .tap(args => { 
+        args[0].appConfig = JSON.stringify(appConfig[process.env.appName])
+        return args
+    })
   },
   configureWebpack: (config) => {
     if (isPro) {

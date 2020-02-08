@@ -67,8 +67,8 @@ export default {
     return {
       detail: {},
       id: this.$route.query.id,
-      iLopAlipay: "onemore6@163.com",
-      bankCard: "6236681540019117469",
+      iLopAlipay: appConfig.alipay,
+      bankCard: appConfig.bankCard,
       payVouchers: [],
       images: [],
       remark: ''
@@ -88,7 +88,7 @@ export default {
   created() {
     this._getClaimDetail()
       .then(() => {
-        this.orderStatusIsOne &&
+        this.orderStatusIsOne && this.isWeiXinEnv &&
         this.$notify({
           message: "如遇问题，可尝试用浏览器打开",
           type: 'primary'

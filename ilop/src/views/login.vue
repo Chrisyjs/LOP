@@ -42,6 +42,7 @@ export default {
     };
   },
   created() {
+    this.isWeiXinEnv &&
     this.$notify({
       message: "如遇问题，可尝试用浏览器打开",
       type: 'primary'
