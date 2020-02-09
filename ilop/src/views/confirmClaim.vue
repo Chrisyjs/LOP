@@ -17,7 +17,7 @@
         <span class="count font-size-12">共{{allAmount}}件商品</span>
         <span>
           <span class="font-size-12">合计：</span>
-          <span class="money">￥{{allPayMoney}}</span>
+          <span class="money">￥{{Number(allPayMoney).toFixed(1)}}</span>
         </span>
       </div>
       <div class="panel care-note-wrap">

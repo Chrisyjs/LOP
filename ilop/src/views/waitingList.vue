@@ -22,7 +22,7 @@
               <div flex="main:justify cross:strech">
                 <div class="title font-size-12">{{jtem.name}}</div>
                 <div :class="{'color-gray': !jtem.stockNum, 'color-red': jtem.stockNum, 'font-size-12': true}" style="min-width: 76px;">
-                  <div class="margin4">总计：{{jtem.payAmount}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
+                  <div class="margin4" style="margin-top: 0">总计：{{jtem.payAmount}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
                   <div class="margin4">剩余：{{jtem.stockNum}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
                 </div>
               </div>
