@@ -9,13 +9,15 @@
           v-clipboard:success="handleCopy"
         >一键复制</span>
       </div>
-      银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
-      <div flex="main:right">
-        <span
-              class="copy color-blue cursor-pointer"
-              v-clipboard:copy="bankCard"
-              v-clipboard:success="handleCopy"
-            >一键复制</span>
+      <div v-if="bankCard">
+        银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
+        <div flex="main:right">
+          <span
+                class="copy color-blue cursor-pointer"
+                v-clipboard:copy="bankCard"
+                v-clipboard:success="handleCopy"
+              >一键复制</span>
+        </div>
       </div>
     </div>
     <div v-if="myList.length">

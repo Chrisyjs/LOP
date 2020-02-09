@@ -48,6 +48,12 @@ module.exports = {
         args[0].appConfig = JSON.stringify(appConfig[process.env.appName])
         return args
     })
+    config.plugin('html')
+    .tap(args => {
+        args[0].appConfig = appConfig[process.env.appName]
+      return args;
+    })
+
   },
   configureWebpack: (config) => {
     if (isPro) {

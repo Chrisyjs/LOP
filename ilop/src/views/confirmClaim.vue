@@ -38,13 +38,15 @@
               v-clipboard:success="handleCopy"
             >一键复制</span>
           </div>
-          银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
-          <div flex="main:right">
-          <span
-                class="copy color-blue cursor-pointer"
-                v-clipboard:copy="bankCard"
-                v-clipboard:success="handleCopy"
-              >一键复制</span> 
+          <div v-if="bankCard">
+            银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
+            <div flex="main:right">
+            <span
+                  class="copy color-blue cursor-pointer"
+                  v-clipboard:copy="bankCard"
+                  v-clipboard:success="handleCopy"
+                >一键复制</span> 
+            </div>
           </div>
           转账备注：认领人姓名+物品名字
           </div>

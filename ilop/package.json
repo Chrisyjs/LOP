@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "serve-iLop": "cross-env appName=iLop vue-cli-service serve",
-    "serve-wuhan": "cross-env appName=wuhan vue-cli-service serve",
+    "serve-iMask": "cross-env appName=iMask vue-cli-service serve",
     "build-iLop": "cross-env appName=iLop vue-cli-service build",
-    "build-wuhan": "cross-env appName=wuhan vue-cli-service build",
+    "build-iMask": "cross-env appName=iMask vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

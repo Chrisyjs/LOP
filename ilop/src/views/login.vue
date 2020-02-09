@@ -2,7 +2,7 @@
   <div class="login">
     <div class="title text-center">
       <div class="small">感谢您加入【全员联名 为i认领】</div>
-      <div class="big">iLOP</div>
+      <div class="big">{{appName}}</div>
     </div>
     <div class="form">
       <van-cell-group>
@@ -39,6 +39,7 @@ export default {
       validCodeErrMsg: '',
       validText: '发送验证码',
       isSending: false,
+      appName: appConfig.appName
     };
   },
   created() {
@@ -53,6 +54,10 @@ export default {
       if (this.isSending) return;
       this.checkPhone();
       if (this.phoneErrMsg) return;
+      this.$toast({
+        message: "验证码已发送",
+        duration: 800
+      });
       this.isSending = true;
       this.validText = 60;
       getValidCode({mobile: this.phone});
