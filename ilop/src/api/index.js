@@ -2,7 +2,7 @@ import { axios } from '../api/interceptors';
 import qs from 'qs';
 
 // const domain = '';
-const domain = process.env.NODE_ENV === 'production' ? 'http://www.landofpromise.co:8080/lop_project' : '';
+const domain = process.env.NODE_ENV === 'production' ? `http://www.landofpromise.co:8080/${appConfig.apiPrefix}` : '';
 
 /* 登录 */
 // 获取验证码
