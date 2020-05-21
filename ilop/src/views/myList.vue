@@ -1,7 +1,7 @@
 <template>
   <div class="my-list overflow-scroll">
     <div class="panel">
-      支付宝账号：{{iLopAlipay}}（张晓红）<br>
+      支付宝账号：{{iLopAlipay}}（{{alipayName}}）<br>
       <div flex="main:right">
         <span
           class="copy color-blue cursor-pointer"
@@ -9,13 +9,15 @@
           v-clipboard:success="handleCopy"
         >一键复制</span>
       </div>
-      银行卡账号：{{bankCard}}（屠密迦）<br>
-      <div flex="main:right">
-        <span
-              class="copy color-blue cursor-pointer"
-              v-clipboard:copy="bankCard"
-              v-clipboard:success="handleCopy"
-            >一键复制</span>
+      <div v-if="bankCard">
+        银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
+        <div flex="main:right">
+          <span
+                class="copy color-blue cursor-pointer"
+                v-clipboard:copy="bankCard"
+                v-clipboard:success="handleCopy"
+              >一键复制</span>
+        </div>
       </div>
     </div>
     <div v-if="myList.length">
@@ -53,8 +55,10 @@ export default {
       myList: [],
       showDialog: false,
       cancelOrderId: 0,
-      iLopAlipay: 'onemore6@landofpromise.co',
-      bankCard: '6236681540019117469'
+      iLopAlipay: appConfig.alipay,
+      bankCard: appConfig.bankCard,
+      alipayName: appConfig.alipayName,
+      bankCardName: appConfig.bankCardName
     };
   },
   components: {

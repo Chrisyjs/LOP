@@ -25,6 +25,9 @@ $dark-red:#9a1a1a;
 .font-size-12 {
   font-size: 12px;
 }
+.font-size-13 {
+  font-size: 13px;
+}
 .font-size-14 {
   font-size: 14px;
 }
@@ -36,6 +39,15 @@ $dark-red:#9a1a1a;
 }
 .color-blue {
   color: $blue;
+}
+.color-dark-red {
+  color: $dark-red;
+}
+.padding4 {
+  padding: 4px 0;
+}
+.margin4 {
+  margin: 4px 0;
 }
 .input {
   border: 1px solid #dcdfe6;
@@ -67,6 +79,7 @@ $dark-red:#9a1a1a;
 .overflow-scroll {
   overflow-y: auto;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 .total-pay {
   text-align: right;

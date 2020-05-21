@@ -5,6 +5,7 @@
         <a class="side-bar-item" :href="`#${item.categoryId}`" @click="() => scrollTo(item)" :class="[item.active && 'active']" v-for="(item) in waitingListData" :key="item.categoryId">
           {{item.categoryName}}
           <span class="total text-center font-size-12" v-if="item.allChoosedAmount">{{item.allChoosedAmount < 99 ? item.allChoosedAmount : '99+'}}</span>
+          <span class="red-dot" v-if="item.hasStock && !item.allChoosedAmount"></span>
         </a>
       </div>
       <div class="list overflow-scroll" @scroll="handleScroll">
@@ -18,9 +19,12 @@
           >
             <div @click="() => setImagePreview([jtem.imageUrl])" class="image" :style="{'background-image': `url(${jtem.imageUrl})`}"></div>
             <div class="content">
-              <div flex="main:justify">
-                <div class="title">{{jtem.name}}</div>
-                <div :class="{'color-gray': !jtem.stockNum, 'color-red': jtem.stockNum, 'font-size-12': true}">剩余：{{jtem.stockNum}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
+              <div flex="main:justify cross:strech">
+                <div class="title font-size-12">{{jtem.name}}</div>
+                <div :class="{'color-gray': !jtem.stockNum, 'color-red': jtem.stockNum, 'font-size-12': true}" style="min-width: 76px;">
+                  <div class="margin4" style="margin-top: 0">总计：{{jtem.payAmount}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
+                  <div class="margin4">剩余：{{jtem.stockNum}}{{jtem.categoryType != 101 ? '份' : '股'}}</div>
+                </div>
               </div>
               <div flex="main:justify">
                 <span class="price color-red font-size-12">￥{{jtem.payPrice}}</span>
@@ -82,10 +86,10 @@ export default {
     },
     resetFromVuex(item, index) {
       let categoryItem = this.choosedList.find(i => i.categoryId === item.categoryId) || {};
-      return {
-        categoryId: item.categoryId,
-        categoryName: item.categoryName,
-        itemList: item.itemList.map(jtem => {
+      let hasStock = false;
+      let itemList = item.itemList.map(jtem => {
+          let stockNum = jtem.payAmount - jtem.amountClaimed;
+          if (stockNum) hasStock = true;
           let obj = categoryItem.itemList && categoryItem.itemList.find(i => i.id === jtem.id) || {};
           return Object.assign({}, {
             id: jtem.id,
@@ -96,9 +100,14 @@ export default {
             amountClaimed: jtem.amountClaimed,
             payAmount: jtem.payAmount,
             categoryType: jtem.categoryType,
-            stockNum: jtem.payAmount - jtem.amountClaimed
+            stockNum
           }, {choosedAmount: obj.choosedAmount || 0})
-        }),
+        })
+      return {
+        categoryId: item.categoryId,
+        categoryName: item.categoryName,
+        hasStock,
+        itemList,
         allChoosedAmount: categoryItem.allChoosedAmount || 0,
         allChoosedPayMoney: categoryItem.allChoosedPayMoney || 0,
         active: index === 0
@@ -164,8 +173,20 @@ export default {
         &.active {
           background-color: #fff;
         }
+        .red-dot {
+          position: absolute;
+          z-index: 10;
+          background-color: $red;
+          display: inline-block;
+          width: 4px;
+          height: 4px;
+          border-radius: 4px;
+          right: 10px;
+          top: 10px;
+        }
         .total {
           position: absolute;
+          z-index: 100;
           top: 2px;
           right: 2px;
           background-color: $blue;

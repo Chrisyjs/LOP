@@ -67,8 +67,8 @@ export default {
     return {
       detail: {},
       id: this.$route.query.id,
-      iLopAlipay: "onemore6@163.com",
-      bankCard: "6236681540019117469",
+      iLopAlipay: appConfig.alipay,
+      bankCard: appConfig.bankCard,
       payVouchers: [],
       images: [],
       remark: ''
@@ -86,7 +86,14 @@ export default {
     Layout
   ],
   created() {
-    this._getClaimDetail();
+    this._getClaimDetail()
+      .then(() => {
+        this.orderStatusIsOne && this.isWeiXinEnv &&
+        this.$notify({
+          message: "如遇问题，可尝试用浏览器打开",
+          type: 'primary'
+        })
+      })
   },
   mounted() {
     
@@ -140,6 +147,10 @@ export default {
         let response = await submitOrder(param);
         if (response.code === 200) {
           this.$toast.clear();
+          this.$dialog.alert({
+            title: '系统提示',
+            message: appConfig.claimSucText
+          })
           this.$router.push({
             path: '/home/myList'
           });

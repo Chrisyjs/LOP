@@ -2,7 +2,7 @@
   <div class="login">
     <div class="title text-center">
       <div class="small">感谢您加入【全员联名 为i认领】</div>
-      <div class="big">iLOP</div>
+      <div class="big">{{appName}}</div>
     </div>
     <div class="form">
       <van-cell-group>
@@ -39,13 +39,25 @@ export default {
       validCodeErrMsg: '',
       validText: '发送验证码',
       isSending: false,
+      appName: appConfig.appName
     };
+  },
+  created() {
+    this.isWeiXinEnv &&
+    this.$notify({
+      message: "如遇问题，可尝试用浏览器打开",
+      type: 'primary'
+    })
   },
   methods: {
     sendValidCode () {
       if (this.isSending) return;
       this.checkPhone();
       if (this.phoneErrMsg) return;
+      this.$toast({
+        message: "验证码已发送",
+        duration: 800
+      });
       this.isSending = true;
       this.validText = 60;
       getValidCode({mobile: this.phone});
@@ -75,22 +87,22 @@ export default {
     async submit () {
       this.checkPhone();
       this.checkValidCode();
-      this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
-      this.$router.push({
-        path: '/home/waitingList'
-      })
-      // if (!this.phoneErrMsg && !this.validCodeErrMsg) {
-      //   const { data, code } = await login({
-      //     mobile: this.phone,
-      //     code: this.validCode
-      //   })
-      //   if (code === 200) {
-      //     this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
-      //     this.$router.push({
-      //       path: '/home/waitingList'
-      //     })
-      //   }
-      // }
+      // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
+      // this.$router.push({
+      //   path: '/home/waitingList'
+      // })
+      if (!this.phoneErrMsg && !this.validCodeErrMsg) {
+        const { data, code } = await login({
+          mobile: this.phone,
+          code: this.validCode
+        })
+        if (code === 200) {
+          this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
+          this.$router.push({
+            path: '/home/waitingList'
+          })
+        }
+      }
     },
   }
 };

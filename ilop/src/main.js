@@ -51,6 +51,14 @@ Vue.use(Field)
 
 Vue.config.productionTip = false
 
+Vue.prototype.isWeiXinEnv = (() => {
+   var ua = navigator.userAgent.toLowerCase();
+   if (ua.match(/MicroMessenger/i) == "micromessenger") {
+       return true;
+   }
+   return false;
+})()
+
 new Vue({
   router,
   store,

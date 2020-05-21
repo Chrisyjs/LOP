@@ -17,7 +17,7 @@
         <span class="count font-size-12">共{{allAmount}}件商品</span>
         <span>
           <span class="font-size-12">合计：</span>
-          <span class="money">￥{{allPayMoney}}</span>
+          <span class="money">￥{{Number(allPayMoney).toFixed(1)}}</span>
         </span>
       </div>
       <div class="panel care-note-wrap">
@@ -30,7 +30,7 @@
           1）	认领：选择物品，确认提交认领<br>
           2）	支付方式：<br>
           <div class="item">
-            支付宝账号：{{iLopAlipay}}（张晓红）<br>
+            支付宝账号：{{iLopAlipay}}（{{alipayName}}）<br>
           <div flex="main:right"> 
             <span
               class="copy color-blue cursor-pointer"
@@ -38,20 +38,22 @@
               v-clipboard:success="handleCopy"
             >一键复制</span>
           </div>
-          银行卡账号：{{bankCard}}（屠密迦）<br>
-          <div flex="main:right">
-          <span
-                class="copy color-blue cursor-pointer"
-                v-clipboard:copy="bankCard"
-                v-clipboard:success="handleCopy"
-              >一键复制</span> 
+          <div v-if="bankCard">
+            银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
+            <div flex="main:right">
+            <span
+                  class="copy color-blue cursor-pointer"
+                  v-clipboard:copy="bankCard"
+                  v-clipboard:success="handleCopy"
+                >一键复制</span> 
+            </div>
           </div>
           转账备注：认领人姓名+物品名字
           </div>
           3）	上传：上传付款凭证（转账截图），确认提交联名认领需上传合成的付款凭证长图
         </div>
         <div style="overflow: hidden;">
-          <van-checkbox class="check-box font-size-12" flex="cross:baseline" icon-size="12px" v-model="hasRead"><span class="color-blue">已阅读注意事项</span></van-checkbox>
+          <van-checkbox class="check-box font-size-12" flex="cross:baseline" icon-size="12px" v-model="hasRead"><span class="color-blue" style="position: relative; bottom: 2px;">已阅读注意事项</span></van-checkbox>
         </div>
       </div>
     </div>
@@ -72,8 +74,10 @@ export default {
       allPayMoney: 0,
       hasRead: false,
       name: '',
-      iLopAlipay: 'onemore6@landofpromise.co',
-      bankCard: '6236681540019117469'
+      iLopAlipay: appConfig.alipay,
+      alipayName: appConfig.alipayName,
+      bankCard: appConfig.bankCard,
+      bankCardName: appConfig.bankCardName
     }
   },
   computed: {
@@ -132,15 +136,15 @@ export default {
         itemList: list
       }
       this.$toast({
-        message: '认领中...',
+        message: '提交中...',
         mask: true,
         loadingType: 'spinner',
         duration: 0,
         forbidClick: true
       })
       const { code, data } = await confirmClaim(param);
+      this.$toast.clear();
       if (code === 200) {
-        this.$toast.clear();
         this.resetChoosedList();
         this.$router.push({
           path: '/home/myList'
