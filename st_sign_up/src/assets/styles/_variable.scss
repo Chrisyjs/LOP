@@ -6,11 +6,8 @@ $dark-red:#9a1a1a;
 .inline-block {
   display: inline-block;
 }
-.panel {
-  border: 1px solid #dbdbdb;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 6px;
+.mb-10 {
+  margin-bottom: 10px;
 }
 .text-center {
   text-align: center;
@@ -37,44 +34,10 @@ $dark-red:#9a1a1a;
 .color-blue {
   color: $blue;
 }
-.input {
-  border: 1px solid #dcdfe6;
-  color: #606266;
-  border-radius: 4px;
-  padding: 3px 6px;
-  &:focus {
-    outline: none;
-    border-color: $blue;
-  }
-}
-.bottom-btn {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
 .form-required {
   &::before {
     content: "*";
     color: #f56c6c;
     margin-right: 4px;
-  }
-}
-.form-unrequired {
-  padding-left: 10px;
-  box-sizing: border-box;
-}
-.overflow-scroll {
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-.total-pay {
-  text-align: right;
-  padding: 6px 0;
-  .count {
-    margin-right: 10px;
-  }
-  .money {
-    color: $red;
   }
 }

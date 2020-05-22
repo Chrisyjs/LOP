@@ -12,6 +12,10 @@ import {
   Popup,
   Picker,
   Area,
+  Checkbox,
+  CheckboxGroup,
+  Button,
+  Toast
 } from 'vant';
 import './api/interceptors.js';
 
@@ -26,6 +30,10 @@ Vue
   .use(Popup)
   .use(Picker)
   .use(Area)
+  .use(Checkbox)
+  .use(CheckboxGroup)
+  .use(Button)
+  .use(Toast)
 
 
 Vue.config.productionTip = false
