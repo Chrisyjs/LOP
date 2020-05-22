@@ -55,6 +55,7 @@ export default {
      */
     onSubmitFailed(errorInfo) {
       const { values, errors } = errorInfo;
+      console.log(errorInfo)
       this.$toast({message: errors[0].message, position: 'middle'});
     },
     /**

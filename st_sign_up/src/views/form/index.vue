@@ -246,14 +246,17 @@
             </template>
           </van-field>
         </div>
-        <van-field :rules="[{ required: true, message: '请选择是否参加嘉年华' }]" required name="joinCarnival" label="参加嘉年华(09/05-09/06)">
-          <template #input>
-            <van-radio-group v-model="joinCarnival" direction="horizontal">
-              <van-radio name="1">是</van-radio>
-              <van-radio name="0">否</van-radio>
-            </van-radio-group>
-          </template>
-        </van-field>
+        <div class="item-wrap">
+          <div class="item-label form-required">参加嘉年华（09/05-09/06）</div>
+          <van-field class="border-bottom" :rules="[{ required: true, message: '请选择是否参加嘉年华' }]" name="joinCarnival">
+            <template #input>
+              <van-radio-group v-model="joinCarnival" direction="horizontal">
+                <van-radio name="1">是</van-radio>
+                <van-radio name="0">否</van-radio>
+              </van-radio-group>
+            </template>
+          </van-field>
+        </div>
         <van-field :rules="[{ required: true, message: '请选择是否参加过fishing' }]" required name="hasFished" label="参加过fishing">
           <template #input>
             <van-radio-group v-model="hasFished" direction="horizontal">
