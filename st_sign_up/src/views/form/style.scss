@@ -8,6 +8,11 @@
   }
   .form {
     margin-top: 12px;
+    .fishing-date-warning {
+      color: #ff976a;
+      font-size: 12px;
+      padding-left: 16px;
+    }
     .item-wrap {
       ::v-deep {
         .van-cell {

@@ -2,6 +2,7 @@ const UglifyPlugin = require('uglifyjs-webpack-plugin');
 // const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const path = require('path');
+const domain = `http://www.landofpromise.co:8080/lop`;
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -12,7 +13,7 @@ module.exports = {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
       '/api': {
-        target: 'http://www.landofpromise.co:8080/lop_project',   //代理接口
+        target: domain,   //代理接口
         // target: 'http://192.168.0.248:8080/lop',   //代理接口
         changeOrigin: true,
         pathRewrite: {

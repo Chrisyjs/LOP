@@ -3,13 +3,13 @@
   <div class="form-wrap">
     <div class="title">2020 ST 报名表</div>
     <div class="form">
-      <van-form @failed="onSubmitFailed" @submit="handleSubmit" :scroll-to-error="true" :show-error-message="false" label-width="120px">
+      <van-form ref="form" @failed="onSubmitFailed" @submit="handleSubmit" :scroll-to-error="true" :show-error-message="false" label-width="120px">
         <!-- 公共需填 -->
         <van-field required name="from" label="您来自哪里">
           <template #input>
-            <van-radio-group v-model="from" direction="horizontal">
-              <van-radio name="1">LOP</van-radio>
-              <van-radio name="2">家乡教会</van-radio>
+            <van-radio-group @change="handleChangeFrom" v-model="from" direction="horizontal">
+              <van-radio name="LOP">LOP</van-radio>
+              <van-radio name="家乡教会">家乡教会</van-radio>
             </van-radio-group>
           </template>
         </van-field>
@@ -26,8 +26,8 @@
         <van-field :rules="[{ required: true, message: '请选择性别' }]" required name="gender" label="性别">
           <template #input>
             <van-radio-group  v-model="gender" direction="horizontal">
-              <van-radio name="1">男</van-radio>
-              <van-radio name="2">女</van-radio>
+              <van-radio name="男">男</van-radio>
+              <van-radio name="女">女</van-radio>
             </van-radio-group>
           </template>
         </van-field>
@@ -45,14 +45,14 @@
         <van-popup v-model="showDatePicker" position="bottom">
           <van-datetime-picker
             type="date"
-            :min-date="new Date(1970, 10, 1)"
-            :max-date="new Date(2005, 1, 1)"
+            :min-date="new Date(1970, 0, 1)"
+            :max-date="new Date(2006, 11, 31)"
             @confirm="onDateConfirm"
             @cancel="showDatePicker = false"
           />
         </van-popup>
         <van-field
-          :rules="[{ required: true, message: '请输入联系方式' }]"
+          :rules="[{ required: true, message: '请输入联系方式' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
           type="tel"
           v-model="mobile"
           name="mobile"
@@ -66,8 +66,8 @@
         <van-field :rules="[{ required: true, message: '请选择身份' }]" required name="isStudent" label="学生或工作">
           <template #input>
             <van-radio-group v-model="isStudent" direction="horizontal">
-              <van-radio name="0">学生</van-radio>
-              <van-radio name="1">工作人士</van-radio>
+              <van-radio name="学生">学生</van-radio>
+              <van-radio name="工作">工作</van-radio>
             </van-radio-group>
           </template>
         </van-field>
@@ -91,7 +91,7 @@
           />
         </van-popup>
         <!-- LOP 需填 -->
-        <template v-if="from == 1">
+        <template v-if="from == 'LOP'">
           <van-field
             :rules="[{ required: true, message: '请选择牧区' }]"
             readonly
@@ -117,7 +117,7 @@
             clearable
           />
           <van-field
-            :rules="[{ required: true, message: '请输入组长电话' }]"
+            :rules="[{ required: true, message: '请输入组长电话' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
             type="tel"
             v-model="leaderMobile"
             name="leaderMobile"
@@ -131,14 +131,14 @@
           <van-field :rules="[{ required: true, message: '请选择是否报名大组长' }]" required name="dzz" label="报名大组长">
             <template #input>
               <van-radio-group v-model="dzz" direction="horizontal">
-                <van-radio name="1">是</van-radio>
-                <van-radio name="0">否</van-radio>
+                <van-radio name="是">是</van-radio>
+                <van-radio name="否">否</van-radio>
               </van-radio-group>
             </template>
           </van-field>
         </template>
         <!-- 家乡教会需填 -->
-        <template v-else-if="from == 2">
+        <template v-else-if="from == '家乡教会'">
           <van-field
             :rules="[{ required: true, message: '请选择省市区' }]"
             readonly
@@ -149,6 +149,16 @@
             label="家乡"
             placeholder="点击选择省市区"
             @click="showAddressPicker = true"
+          />
+          <van-field
+            :rules="[{ required: true, message: '请输入家乡教会名字' }]"
+            v-model="hometownChurch"
+            name="hometownChurch"
+            label="家乡教会名字"
+            placeholder="请输入"
+            required
+            border
+            clearable
           />
           <van-popup v-model="showAddressPicker" position="bottom">
             <van-area
@@ -182,7 +192,7 @@
             "
           />
           <van-field
-            :rules="[{ required: true, message: '请输入推荐人电话' }]"
+            :rules="[{ required: true, message: '请输入推荐人电话' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
             type="tel"
             v-model="referenceMobile"
             name="referenceMobile"
@@ -199,12 +209,12 @@
                 v-model="referenceIsLeader"
                 direction="horizontal"
               >
-                <van-radio name="1">是</van-radio>
-                <van-radio name="0">否</van-radio>
+                <van-radio name="是">是</van-radio>
+                <van-radio name="否">否</van-radio>
               </van-radio-group>
             </template>
           </van-field>
-          <template v-if="referenceIsLeader === '0'">
+          <template v-if="referenceIsLeader === '否'">
             <van-field
               :rules="[{ required: true, message: '请输入推荐人组长' }]"
               v-model="referenceLeader"
@@ -216,7 +226,7 @@
               clearable
             />
             <van-field
-              :rules="[{ required: true, message: '请输入推荐人组长电话' }]"
+              :rules="[{ required: true, message: '请输入推荐人组长电话' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
               type="tel"
               v-model="referenceLeaderMobile"
               name="referenceLeaderMobile"
@@ -231,10 +241,10 @@
         </template>
         <!-- 公共需填 -->
         <div class="item-wrap">
-          <div class="item-label form-required mb-10">fishing参加时间</div>
+          <div class="item-label form-required mb-10">fishing参加时间<span class="fishing-date-warning" v-if="fishingDateWarning">目前选择时间不连续哦（也可提交）</span></div>
           <van-field class="field-padding-none" name="fishingDate" :rules="[{ required: true, message: '请选择fishing参加时间' }]">
             <template #input>
-              <van-checkbox-group class="border-bottom" v-model="fishingDate" direction="horizontal">
+              <van-checkbox-group @change="handleChangeFishingDate" class="border-bottom" v-model="fishingDate" direction="horizontal">
                 <van-checkbox
                   v-for="(item, idx) in fishingDateOptions"
                   :key="idx"
@@ -251,8 +261,8 @@
           <van-field class="border-bottom" :rules="[{ required: true, message: '请选择是否参加嘉年华' }]" name="joinCarnival">
             <template #input>
               <van-radio-group v-model="joinCarnival" direction="horizontal">
-                <van-radio name="1">是</van-radio>
-                <van-radio name="0">否</van-radio>
+                <van-radio name="是">是</van-radio>
+                <van-radio name="否">否</van-radio>
               </van-radio-group>
             </template>
           </van-field>
@@ -260,12 +270,20 @@
         <van-field :rules="[{ required: true, message: '请选择是否参加过fishing' }]" required name="hasFished" label="参加过fishing">
           <template #input>
             <van-radio-group v-model="hasFished" direction="horizontal">
-              <van-radio name="1">是</van-radio>
-              <van-radio name="0">否</van-radio>
+              <van-radio name="是">是</van-radio>
+              <van-radio name="否">否</van-radio>
             </van-radio-group>
           </template>
         </van-field>
-        <div v-if="hasFished == '1'" class="item-wrap">
+        <van-field :rules="[{ required: true, message: '请选择是否参加过ST' }]" required name="hasJoinedST" label="参加过ST">
+          <template #input>
+            <van-radio-group v-model="hasJoinedST" direction="horizontal">
+              <van-radio name="是">是</van-radio>
+              <van-radio name="否">否</van-radio>
+            </van-radio-group>
+          </template>
+        </van-field>
+        <div v-if="hasJoinedST == '是'" class="item-wrap">
           <div class="item-label form-required">您准备为今年ST预备什么？</div>
           <van-field
             :rules="[{ required: true, message: '请输入相应内容' }]"
@@ -278,7 +296,7 @@
             placeholder="请输入"
           />
         </div>
-        <div v-if="hasFished == '1'" class="item-wrap">
+        <div v-if="hasJoinedST == '是'" class="item-wrap">
           <div class="item-label form-required">
             分享一下您ST的美好回忆和见证
           </div>
@@ -293,7 +311,7 @@
             placeholder="请输入"
           />
         </div>
-        <div v-if="hasFished == '0'" class="item-wrap">
+        <div v-if="hasJoinedST == '否'" class="item-wrap">
           <div class="item-label form-required">为什么报名ST？</div>
           <van-field
             :rules="[{ required: true, message: '请输入相应内容' }]"
@@ -319,7 +337,7 @@
             placeholder="请输入"
           />
         </div>
-        <div v-if="hasFished == '0'" class="item-wrap">
+        <div v-if="hasJoinedST == '否'" class="item-wrap">
           <div class="item-label form-required">个人见证分享</div>
           <van-field
             :rules="[{ required: true, message: '请输入相应内容' }]"

@@ -11,9 +11,6 @@ export default {
   components: {
   },
   mounted() {
-    window.onresize = () => {
-      this.setOverflowScrollHeight();
-    }
     // 禁止双指放大缩小
     window.onload = function() {
       document.addEventListener('touchstart', function(event) {
