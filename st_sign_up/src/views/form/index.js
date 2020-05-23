@@ -1,6 +1,7 @@
 import areaList from "@/lib/area";
 import { sizeOptions, mqOptions, fishingDateOptions } from "@/lib/options";
 import { checkNumberIsSerial } from "@/lib/utils";
+import { submitFormApi } from '@/api'
 export default {
   data() {
     return {
@@ -42,6 +43,8 @@ export default {
       reason: "",
       expectation: "",
       experience: "",
+      //
+      dialogVisible: false,
     };
   },
   created() {
@@ -72,40 +75,41 @@ export default {
      * 提交表单
      */
     async handleSubmit() {
+      const isLop = this.from === 'LOP';
+      const hasJoinedST = this.hasJoinedST === '是';
       const params = {
         churchType: this.from,
         name: this.username,
         gender: this.gender,
-        birthday: this.birthday.replace('/', '-'),
+        birthday: this.birthday.replace(/\//g, '-'),
         mobile: this.mobile,
         graduateFlag: this.isStudent,
         clothSizeType: this.size,
-        regionType: this.mq,
-        leaderName: this.leaderName,
-        leaderMobile: this.leaderMobile,
-        stLeaderFlag: this.dzz,
-        hometown: this.address,
-        hometownChurch: this.hometownChurch,
-        referrerName: this.reference,
-        referrerRegion: this.referenceMq,
-        referrerMobile: this.referenceMobile,
-        referrerLeader: this.referenceIsLeader === '是' ? this.referrerName : this.referenceLeader,
-        referrerLeaderMobile: this.referenceIsLeader === '是' ? this.referenceMobile : this.referenceLeaderMobile,
+        regionType: isLop ? this.mq : '',
+        leaderName: isLop ? this.leaderName : '',
+        leaderMobile: isLop ? this.leaderMobile : '',
+        stLeaderFlag: isLop ? this.dzz : '',
+        hometown: !isLop ? this.address : '',
+        hometownChurch: !isLop ? this.hometownChurch : '',
+        referrerName: !isLop ? this.reference : '',
+        referrerRegion: !isLop ? this.referenceMq : '',
+        referrerMobile: !isLop ? this.referenceMobile : '',
+        referrerLeader: !isLop ? (this.referenceIsLeader === '是' ? this.referrerName : this.referenceLeader) : '',
+        referrerLeaderMobile: !isLop ? (this.referenceIsLeader === '是' ? this.referenceMobile : this.referenceLeaderMobile) : '',
         stOutTime: this.fishingDate.join('-'),
         joinPartyTime: this.joinCarnival,
         joinedFishingFlag: this.hasFished,
-        joinStFlag: this.hasFished,
-        prepareStContent: this.prepare,
-        experienceContent: this.memory,
-        reasonToJoin: this.reason,
-        requestForSt: this.expectation,
-        personalExperienceContent: this.experience
+        joinStFlag: this.hasJoinedST,
+        prepareStContent: hasJoinedST ? this.prepare : '',
+        experienceContent: hasJoinedST ? this.memory : '',
+        reasonToJoin: !hasJoinedST ? this.reason : '',
+        requestForSt: !hasJoinedST ? this.expectation : '',
+        personalExperienceContent: !hasJoinedST ? this.experience : ''
       }
       console.log(params)
-      return;
       const { code, data, msg } = await submitFormApi(params);
       if (code === 200) {
-
+        this.dialogVisible = true;
       }
     },
     /**
@@ -121,8 +125,8 @@ export default {
      */
     onDateConfirm(date) {
       this.showDatePicker = false;
-      const d = date.toLocaleString() || "";
-      this.birthday = d.split(" ")[0];
+      const d = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+      this.birthday = d;
     },
     /**
      * 选择尺寸

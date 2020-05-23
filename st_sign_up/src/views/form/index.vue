@@ -365,6 +365,8 @@
           @cancel="showMqPicker = false"
         />
       </van-popup>
+      <!-- 提交成功弹框 -->
+      <van-dialog @confirm="$router.go(0)" v-model="dialogVisible" title="报名成功" :message="`感谢您报名 2020 ST，上帝纪念！`"></van-dialog>
     </div>
   </div>
 </template>

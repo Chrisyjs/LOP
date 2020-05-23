@@ -17,7 +17,7 @@ module.exports = {
         // target: 'http://192.168.0.248:8080/lop',   //代理接口
         changeOrigin: true,
         pathRewrite: {
-          // '^/api': '/'    //代理的路径
+          '^/api': ''    //代理的路径
         }
       }
     }
