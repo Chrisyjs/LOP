@@ -57,7 +57,7 @@ export default {
      * 修改来自哪里
      */
     handleChangeFrom() {
-      // this.$refs.form.resetValidation();
+      this.$refs.form.resetValidation();
     },
     /**
      * 验证手机号
@@ -118,7 +118,7 @@ export default {
      */
     onSubmitFailed(errorInfo) {
       const { values, errors } = errorInfo;
-      // console.log(errorInfo)
+      console.log(errorInfo)
       this.$toast({message: errors[0].message, position: 'middle'});
     },
     /**
