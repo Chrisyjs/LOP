@@ -1,13 +1,23 @@
-
 <template>
   <div class="form-wrap">
     <div class="title">2020 ST 报名表</div>
     <div class="form">
-      <van-form ref="form" @failed="onSubmitFailed" @submit="handleSubmit" :scroll-to-error="true" :show-error-message="false" label-width="120px">
+      <van-form
+        ref="form"
+        @failed="onSubmitFailed"
+        @submit="handleSubmit"
+        :scroll-to-error="true"
+        :show-error-message="false"
+        label-width="120px"
+      >
         <!-- 公共需填 -->
         <van-field required name="from" label="您来自哪里">
           <template #input>
-            <van-radio-group @change="handleChangeFrom" v-model="from" direction="horizontal">
+            <van-radio-group
+              @change="handleChangeFrom"
+              v-model="from"
+              direction="horizontal"
+            >
               <van-radio name="LOP">LOP</van-radio>
               <van-radio name="家乡教会">家乡教会</van-radio>
             </van-radio-group>
@@ -23,9 +33,14 @@
           clearable
           :rules="[{ required: true, message: '请输入姓名' }]"
         />
-        <van-field :rules="[{ required: true, message: '请选择性别' }]" required name="gender" label="性别">
+        <van-field
+          :rules="[{ required: true, message: '请选择性别' }]"
+          required
+          name="gender"
+          label="性别"
+        >
           <template #input>
-            <van-radio-group  v-model="gender" direction="horizontal">
+            <van-radio-group v-model="gender" direction="horizontal">
               <van-radio name="男">男</van-radio>
               <van-radio name="女">女</van-radio>
             </van-radio-group>
@@ -52,7 +67,10 @@
           />
         </van-popup>
         <van-field
-          :rules="[{ required: true, message: '请输入联系方式' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
+          :rules="[
+            { required: true, message: '请输入联系方式' },
+            { validator: checkPhone, message: '请输入正确的手机号' },
+          ]"
           type="tel"
           v-model="mobile"
           name="mobile"
@@ -63,7 +81,12 @@
           border
           clearable
         />
-        <van-field :rules="[{ required: true, message: '请选择身份' }]" required name="isStudent" label="学生或工作">
+        <van-field
+          :rules="[{ required: true, message: '请选择身份' }]"
+          required
+          name="isStudent"
+          label="学生或工作"
+        >
           <template #input>
             <van-radio-group v-model="isStudent" direction="horizontal">
               <van-radio name="学生">学生</van-radio>
@@ -117,7 +140,10 @@
             clearable
           />
           <van-field
-            :rules="[{ required: true, message: '请输入组长电话' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
+            :rules="[
+              { required: true, message: '请输入组长电话' },
+              { validator: checkPhone, message: '请输入正确的手机号' },
+            ]"
             type="tel"
             v-model="leaderMobile"
             name="leaderMobile"
@@ -128,7 +154,12 @@
             border
             clearable
           />
-          <van-field :rules="[{ required: true, message: '请选择是否报名大组长' }]" required name="dzz" label="报名大组长">
+          <van-field
+            :rules="[{ required: true, message: '请选择是否报名大组长' }]"
+            required
+            name="dzz"
+            label="报名大组长"
+          >
             <template #input>
               <van-radio-group v-model="dzz" direction="horizontal">
                 <van-radio name="是">是</van-radio>
@@ -192,7 +223,10 @@
             "
           />
           <van-field
-            :rules="[{ required: true, message: '请输入推荐人电话' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
+            :rules="[
+              { required: true, message: '请输入推荐人电话' },
+              { validator: checkPhone, message: '请输入正确的手机号' },
+            ]"
             type="tel"
             v-model="referenceMobile"
             name="referenceMobile"
@@ -203,7 +237,12 @@
             border
             clearable
           />
-          <van-field :rules="[{ required: true, message: '请选择推荐人身份' }]" required name="referenceIsLeader" label="推荐人是否组长">
+          <van-field
+            :rules="[{ required: true, message: '请选择推荐人身份' }]"
+            required
+            name="referenceIsLeader"
+            label="推荐人是否组长"
+          >
             <template #input>
               <van-radio-group
                 v-model="referenceIsLeader"
@@ -226,7 +265,10 @@
               clearable
             />
             <van-field
-              :rules="[{ required: true, message: '请输入推荐人组长电话' }, { validator: checkPhone, message: '请输入正确的手机号' }]"
+              :rules="[
+                { required: true, message: '请输入推荐人组长电话' },
+                { validator: checkPhone, message: '请输入正确的手机号' },
+              ]"
               type="tel"
               v-model="referenceLeaderMobile"
               name="referenceLeaderMobile"
@@ -241,10 +283,25 @@
         </template>
         <!-- 公共需填 -->
         <div class="item-wrap">
-          <div class="item-label form-required mb-10">fishing参加时间<span class="fishing-date-warning" v-if="fishingDateWarning">目前选择时间不连续哦（也可提交）</span></div>
-          <van-field class="field-padding-none" name="fishingDate" :rules="[{ required: true, message: '请选择fishing参加时间' }]">
+          <div class="item-label form-required mb-10">
+            fishing参加时间<span
+              class="fishing-date-warning"
+              v-if="fishingDateWarning"
+              >目前选择时间不连续哦（也可提交）</span
+            >
+          </div>
+          <van-field
+            class="field-padding-none"
+            name="fishingDate"
+            :rules="[{ required: true, message: '请选择fishing参加时间' }]"
+          >
             <template #input>
-              <van-checkbox-group @change="handleChangeFishingDate" class="border-bottom" v-model="fishingDate" direction="horizontal">
+              <van-checkbox-group
+                @change="handleChangeFishingDate"
+                class="border-bottom"
+                v-model="fishingDate"
+                direction="horizontal"
+              >
                 <van-checkbox
                   v-for="(item, idx) in fishingDateOptions"
                   :key="idx"
@@ -258,7 +315,11 @@
         </div>
         <div class="item-wrap">
           <div class="item-label form-required">参加嘉年华（09/05-09/06）</div>
-          <van-field class="border-bottom" :rules="[{ required: true, message: '请选择是否参加嘉年华' }]" name="joinCarnival">
+          <van-field
+            class="border-bottom"
+            :rules="[{ required: true, message: '请选择是否参加嘉年华' }]"
+            name="joinCarnival"
+          >
             <template #input>
               <van-radio-group v-model="joinCarnival" direction="horizontal">
                 <van-radio name="是">是</van-radio>
@@ -267,7 +328,12 @@
             </template>
           </van-field>
         </div>
-        <van-field :rules="[{ required: true, message: '请选择是否参加过fishing' }]" required name="hasFished" label="参加过fishing">
+        <van-field
+          :rules="[{ required: true, message: '请选择是否参加过fishing' }]"
+          required
+          name="hasFished"
+          label="参加过fishing"
+        >
           <template #input>
             <van-radio-group v-model="hasFished" direction="horizontal">
               <van-radio name="是">是</van-radio>
@@ -275,7 +341,12 @@
             </van-radio-group>
           </template>
         </van-field>
-        <van-field :rules="[{ required: true, message: '请选择是否参加过ST' }]" required name="hasJoinedST" label="参加过ST">
+        <van-field
+          :rules="[{ required: true, message: '请选择是否参加过ST' }]"
+          required
+          name="hasJoinedST"
+          label="参加过ST"
+        >
           <template #input>
             <van-radio-group v-model="hasJoinedST" direction="horizontal">
               <van-radio name="是">是</van-radio>
@@ -350,6 +421,21 @@
             placeholder="请输入"
           />
         </div>
+        <div class="need-know">
+          <div class="nk-title">报名须知：</div>
+          <div class="nk-content">
+            1、今年报名ST，报名费是50RMB，请转账至ST账户<br />
+            2、当您决定报名ST后，我们鼓励您为自己的ST筹备经费<br />
+            3、若您不知道ST账户或ST相关细节，请找您的组长或推荐人了解详情
+          </div>
+          <van-field name="hasRead" :rules="[{ required: true, message: '请阅读报名须知后打勾' }]">
+            <template #input>
+              <van-checkbox v-model="hasRead" shape="square">
+                我已理解报名条件，确认报名信息无误，愿意报名2020ST
+              </van-checkbox>
+            </template>
+          </van-field>
+        </div>
         <div style="margin: 16px;">
           <van-button round block type="info" native-type="submit">
             提交
@@ -366,7 +452,12 @@
         />
       </van-popup>
       <!-- 提交成功弹框 -->
-      <van-dialog @confirm="$router.go(0)" v-model="dialogVisible" title="报名成功" :message="`感谢您报名 2020 ST，上帝纪念！`"></van-dialog>
+      <van-dialog
+        @confirm="$router.go(0)"
+        v-model="dialogVisible"
+        title="报名成功"
+        :message="`感谢您报名2020ST，上帝纪念！`"
+      ></van-dialog>
     </div>
   </div>
 </template>

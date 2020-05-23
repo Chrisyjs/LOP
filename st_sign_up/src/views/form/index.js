@@ -44,6 +44,7 @@ export default {
       expectation: "",
       experience: "",
       //
+      hasRead: false,
       dialogVisible: false,
     };
   },

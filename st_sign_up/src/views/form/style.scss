@@ -41,4 +41,28 @@
       }
     }
   }
+  .need-know {
+    font-size: 14px;
+    .nk-title {
+      padding-bottom: 4px;
+    }
+    .nk-content {
+      line-height: 20px;
+    }
+    // line-height: 20px;
+    padding: 10px 16px;
+    ::v-deep {
+      .van-cell {
+        padding: 0;
+      }
+      .van-checkbox {
+        // align-items: flex-start;
+        margin-top: 8px;
+        font-size: 12px;
+        .van-checkbox__label {
+          line-height: 16px;
+        }
+      }
+    }
+  }
 }
