@@ -10,6 +10,7 @@ export default {
       gender: "",
       birthday: "",
       showDatePicker: false,
+      date: new Date(1995, 0, 1),
       mobile: "",
       isStudent: "",
       size: "",
@@ -54,9 +55,9 @@ export default {
   watch: {},
   methods: {
     /**
-     * 修改来自哪里
+     * 重置验证信息
      */
-    handleChangeFrom() {
+    resetValidation() {
       this.$refs.form.resetValidation();
     },
     /**
@@ -142,6 +143,7 @@ export default {
     onMqConfirm(val) {
       this.showMqPicker = false;
       this.whoseMq === "user" ? (this.mq = val) : (this.referenceMq = val);
+      console.log(this.referenceMq)
     },
     /**
      * 选择地址
