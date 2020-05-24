@@ -8,7 +8,7 @@ export default new VueRouter({
   routes: [
     {
       path: '/form',
-      component:() => import(/* webpackChunkName: "Login" */ '../views/form/index.vue'),
+      component:() => import(/* webpackChunkName: "Form" */ '../views/form/index.vue'),
     },
     {
       path: '*',

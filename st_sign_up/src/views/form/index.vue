@@ -454,9 +454,9 @@
         <div class="need-know">
           <div class="nk-title">报名须知：</div>
           <div class="nk-content">
-            1、今年报名ST，报名费是50RMB，请转账至ST账户<br />
-            2、当您决定报名ST后，我们鼓励您为自己的ST筹备经费<br />
-            3、若您不知道ST账户或ST相关细节，请找您的组长或推荐人了解详情
+            1.今年ST报名费为50RMB，请在报名时一并上交报名费；<br />
+            2.当您决定报名后，鼓励您开始为ST筹款，今年基础自筹费为900RMB；<br />
+            3.若您不知道ST账户或ST相关细节，请找您的组长或推荐人了解详情；
           </div>
           <van-field :key="28" name="hasRead" :rules="[{ required: true, message: '请阅读报名须知后打勾' }]">
             <template #input>

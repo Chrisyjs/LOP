@@ -3,6 +3,7 @@ const UglifyPlugin = require('uglifyjs-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const path = require('path');
 const domain = `http://www.landofpromise.co:8080/lop`;
+const Timestamp = new Date().getTime();
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -30,6 +31,8 @@ module.exports = {
     })
     config.resolve.alias
       .set('@', resolve('src'))
+    config.output.filename(`[name].[hash]${Timestamp}.js`).end();
+    config.output.chunkFilename(`[name].[hash]${Timestamp}.js`).end();
   },
   configureWebpack: (config) => {
     let externals = {
