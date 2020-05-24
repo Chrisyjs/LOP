@@ -1,6 +1,7 @@
 <template>
   <div class="form-wrap">
     <div class="title">2020 ST 报名表</div>
+    <div class="tip">(建议使用浏览器打开该网页)</div>
     <div class="form">
       <van-form
         :validate-first="true"
@@ -308,7 +309,7 @@
             fishing参加时间<span
               class="fishing-date-warning"
               v-if="fishingDateWarning"
-              >目前选择时间不连续哦（也可提交）</span
+              >目前选择时间不连续哦(也可提交)</span
             >
           </div>
           <van-field
@@ -336,7 +337,7 @@
           </van-field>
         </div>
         <div class="item-wrap">
-          <div class="item-label form-required">参加嘉年华（09/05-09/06）</div>
+          <div class="item-label form-required">参加嘉年华(09/05-09/06)</div>
           <van-field
             :key="20"
             class="border-bottom"
