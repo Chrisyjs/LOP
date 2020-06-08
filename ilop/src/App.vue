@@ -1,11 +1,18 @@
 <template>
   <div id="app">
-    <div v-if="$utils.getCookie('mobile')" class="user cursor-pointer" flex="main:center cross:center" @click="handleLogout">
+    <!-- <div v-if="$utils.getCookie('mobile')" class="user cursor-pointer" flex="main:center cross:center" @click="handleLogout">
       <van-icon name="user-circle-o"></van-icon>
       <span class="account">{{$utils.getCookie('mobile')}}</span>
-    </div>
+    </div> -->
     <router-view></router-view>
     <van-image-preview v-model="showImagePreview" :images="imagePreview"></van-image-preview>
+    <!-- tabBar -->
+    <van-tabbar v-model="active">
+      <van-tabbar-item icon="phone">预约</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart">认领</van-tabbar-item>
+      <van-tabbar-item icon="fire">ST</van-tabbar-item>
+      <van-tabbar-item icon="setting">我的</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
@@ -17,6 +24,11 @@ import Layout from './mixins/layout';
 export default {
   name: 'app',
   components: {
+  },
+  data() {
+    return {
+      active: 0
+    }
   },
   computed: {
     showImagePreview: {

@@ -3,12 +3,12 @@ import App from './App.vue'
 import router from './router/index'
 import store from './vuex';
 import './utils'
-import { 
-  Field, 
-  CellGroup, 
-  Row, 
-  Col, 
-  Button, 
+import {
+  Field,
+  CellGroup,
+  Row,
+  Col,
+  Button,
   Stepper,
   NavBar,
   Card,
@@ -21,7 +21,9 @@ import {
   Icon,
   Checkbox,
   Loading,
-  Overlay
+  Overlay,
+  Tabbar,
+  TabbarItem,
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
@@ -46,8 +48,9 @@ Vue.use(Field)
   .use(Checkbox)
   .use(Loading)
   .use(Overlay)
-
   .use(VueClipboard)
+  .use(Tabbar)
+  .use(TabbarItem)
 
 Vue.config.productionTip = false
 

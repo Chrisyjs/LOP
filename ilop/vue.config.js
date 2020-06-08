@@ -47,7 +47,7 @@ module.exports = {
     }
     config
     .plugin('define')  // appConfig 全局使用
-    .tap(args => { 
+    .tap(args => {
         args[0].appConfig = JSON.stringify(appConfig[appName])
         return args
     })
@@ -85,12 +85,13 @@ module.exports = {
       })
       // config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
       config.plugins = config.plugins.concat([new LodashModuleReplacementPlugin()]);
-    } 
+    }
     config.devtool = 'source-map';
   },
   css: {
     loaderOptions: {
       sass: {
+        implementation: require('sass'),
         data: `
           @import "@/assets/styles/_variable.scss";
         `

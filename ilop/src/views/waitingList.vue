@@ -68,6 +68,8 @@ export default {
   methods: {
     ...mapMutations(['setChoosedList']),
     async _getWaitingListData() {
+      // TODO:
+      return;
       this.$toast({
         message: '加载中...',
         mask: true,
@@ -210,14 +212,14 @@ export default {
         }
       }
     }
-    /deep/ .van-sidebar-item {
+    ::v-deep .van-sidebar-item {
       padding-top: 16px;
       padding-bottom: 16px;
     }
     .card {
       padding: 8px 0;
       .active {
-        /deep/ .van-stepper__input {
+        ::v-deep .van-stepper__input {
           color: #fff;
           background-color: $blue;
         }

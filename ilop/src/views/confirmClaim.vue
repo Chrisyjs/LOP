@@ -31,7 +31,7 @@
           2）	支付方式：<br>
           <div class="item">
             支付宝账号：{{iLopAlipay}}（{{alipayName}}）<br>
-          <div flex="main:right"> 
+          <div flex="main:right">
             <span
               class="copy color-blue cursor-pointer"
               v-clipboard:copy="iLopAlipay"
@@ -45,7 +45,7 @@
                   class="copy color-blue cursor-pointer"
                   v-clipboard:copy="bankCard"
                   v-clipboard:success="handleCopy"
-                >一键复制</span> 
+                >一键复制</span>
             </div>
           </div>
           转账备注：认领人姓名+物品名字
@@ -119,7 +119,7 @@ export default {
           type: 'warning'
         })
         return;
-      } 
+      }
       let list = [];
       this.choosedList.forEach(item => {
         let arr = item.itemList.map(jtem => {
@@ -163,7 +163,7 @@ export default {
   .check-box {
     padding-top: 4px;
     float: right;
-    /deep/ .van-checkbox__icon .van-icon {
+    ::v-deep .van-checkbox__icon .van-icon {
       border-color: $blue;
     }
   }

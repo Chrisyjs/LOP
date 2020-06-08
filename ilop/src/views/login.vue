@@ -85,12 +85,13 @@ export default {
       this.validCodeErrMsg = this.validCode ? '' : '验证码错误';
     },
     async submit () {
-      this.checkPhone();
-      this.checkValidCode();
-      // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
-      // this.$router.push({
-      //   path: '/home/waitingList'
-      // })
+      // this.checkPhone();
+      // this.checkValidCode();
+      this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
+      this.$router.push({
+        path: '/home/waitingList'
+      })
+      return;
       if (!this.phoneErrMsg && !this.validCodeErrMsg) {
         const { data, code } = await login({
           mobile: this.phone,
@@ -129,7 +130,7 @@ export default {
       margin-top: 30px;
     }
   }
-  /deep/ .van-cell--center {
+  ::v-deep .van-cell--center {
     align-items: baseline;
   }
 }
