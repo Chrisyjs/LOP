@@ -2,6 +2,11 @@ const UglifyPlugin = require('uglifyjs-webpack-plugin');
 const appConfig = require('./appConfig');
 // const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const path = require('path')
+function resolve (dir) {
+  return path.join(__dirname, '.', dir) // 这里采用一个点，因为vue.config.js文件和package.json文件都在同一个目录下，即根目录下
+}
+
 const cdn = {
   js: [
     'https://cdn.bootcss.com/vue/2.6.10/vue.min.js',
@@ -45,6 +50,14 @@ module.exports = {
         return args;
       })
     }
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('assets', resolve('src/assets'))
+      .set('components', resolve('src/components'))
+      .set('mixins', resolve('src/mixins'))
+      .set('utils', resolve('src/utils'))
+      .set('api', resolve('src/api'))
+      .set('views', resolve('src/views'))
     config
     .plugin('define')  // appConfig 全局使用
     .tap(args => {

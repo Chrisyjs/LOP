@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { getValidCode, login } from '../api';
+import { getValidCode, login } from 'api';
 export default {
   data() {
     return {
@@ -89,7 +89,7 @@ export default {
       // this.checkValidCode();
       this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
       this.$router.push({
-        path: '/home/waitingList'
+        path: '/claim/waitingList'
       })
       return;
       if (!this.phoneErrMsg && !this.validCodeErrMsg) {
@@ -100,7 +100,7 @@ export default {
         if (code === 200) {
           this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
           this.$router.push({
-            path: '/home/waitingList'
+            path: '/claim/waitingList'
           })
         }
       }

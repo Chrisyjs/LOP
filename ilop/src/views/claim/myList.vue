@@ -45,9 +45,9 @@
 </template>
 
 <script>
-import { getMyListData, cancelOrder } from "../api";
-import OrderPanel from '../components/orderPanel';
-import Layout from '../mixins/layout';
+import { getMyListData, cancelOrder } from "api";
+import OrderPanel from 'components/orderPanel';
+import Layout from 'mixins/layout';
 
 export default {
   data() {
@@ -90,7 +90,7 @@ export default {
     goClaimDetail(id) {
       this.$router.push({
         name: 'claimDetail',
-        path: '/claimDetail',
+        path: '/claim/claimDetail',
         query: {
           id
         }

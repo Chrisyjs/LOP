@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import { getWaitingListData } from "../api/index.js";
+import { getWaitingListData } from "api/index.js";
 import { debounce } from 'lodash';
 import { mapGetters, mapState, mapMutations } from 'vuex'
-import Layout from '../mixins/layout';
+import Layout from 'mixins/layout';
 
 export default {
   data() {
@@ -152,7 +152,7 @@ export default {
         return;
       }
       this.$router.push({
-        path: '/confirmClaim'
+        path: '/claim/confirmClaim'
       });
     }
   }

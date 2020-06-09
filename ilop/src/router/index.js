@@ -8,36 +8,46 @@ export default new VueRouter({
   routes: [
     {
       path: '/login',
-      component:() => import(/* webpackChunkName: "Login" */ '../views/login.vue'),
+      component:() => import(/* webpackChunkName: "login" */ 'views/login.vue'),
     },
     {
-      path: '/home',
-      redirect: '/home/waitingList',
-      component:() => import(/* webpackChunkName: "MainPage" */ '../views/mainPage.vue'),
+      path: '/claim',
+      redirect: '/claim/waitingList',
+      component:() => import(/* webpackChunkName: "claim_mainPage" */ 'views/claim/mainPage.vue'),
       children: [
         {
-          path: '/home/waitingList',
-          component:() => import(/* webpackChunkName: "WaitingList" */ '../views/waitingList.vue'),
-
+          path: 'waitingList',
+          component:() => import(/* webpackChunkName: "claim_waitingList" */ 'views/claim/waitingList.vue'),
         },
         {
-          path: '/home/myList',
-          component:() => import(/* webpackChunkName: "MyList" */ '../views/myList.vue'),
-        }
+          path: 'myList',
+          component:() => import(/* webpackChunkName: "claim_myList" */ 'views/claim/myList.vue'),
+        },
+        {
+          path: 'confirmClaim',
+          component:() => import(/* webpackChunkName: "claim_confirmClaim" */ 'views/claim/confirmClaim.vue'),
+        },
+        {
+          path: 'claimDetail',
+          component:() => import(/* webpackChunkName: "claim_claimDetail" */ 'views/claim/claimDetail.vue'),
+        },
       ]
     },
     {
-      path: '/confirmClaim',
-      component:() => import(/* webpackChunkName: "ConfirmClaim" */ '../views/confirmClaim.vue'),
+      path: '/appointment',
+      component:() => import(/* webpackChunkName: "appointment_index" */ 'views/appointment/index.vue'),
     },
     {
-      name: 'claimDetail',
-      path: '/claimDetail',
-      component:() => import(/* webpackChunkName: "ClaimDetail" */ '../views/claimDetail.vue'),
+      path: '/st',
+      component:() => import(/* webpackChunkName: "st_index" */ 'views/st/index.vue'),
+    },
+    {
+      path: '/myself',
+      component:() => import(/* webpackChunkName: "myself_index" */ 'views/myself/index.vue'),
     },
     {
       path: '*',
-      redirect: '/home'
+      redirect: '/appointment'
     }
   ]
 })

@@ -58,9 +58,9 @@
 </template>
 
 <script>
-import OrderPanel from "../components/orderPanel";
-import Layout from '../mixins/layout';
-import { getClaimDetail, uploadImage, submitOrder } from "../api";
+import OrderPanel from "components/orderPanel";
+import Layout from 'mixins/layout';
+import { getClaimDetail, uploadImage, submitOrder } from "api";
 
 export default {
   data() {
@@ -96,7 +96,7 @@ export default {
       })
   },
   mounted() {
-    
+
   },
   methods: {
     async _getClaimDetail() {
@@ -106,7 +106,7 @@ export default {
     },
     handleClickLeft() {
       this.$router.push({
-        path: "/home/myList"
+        path: "/claim/myList"
       });
     },
     checkSubmitInfo() {
@@ -152,10 +152,10 @@ export default {
             message: appConfig.claimSucText
           })
           this.$router.push({
-            path: '/home/myList'
+            path: '/claim/myList'
           });
         }
-      }      
+      }
     }
   }
 };

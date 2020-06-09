@@ -63,9 +63,9 @@
 
 <script>
 import { mapGetters, mapState, mapMutations } from 'vuex'
-import OrderPanel from "../components/orderPanel";
-import Layout from '../mixins/layout';
-import { confirmClaim } from '../api';
+import OrderPanel from "components/orderPanel";
+import Layout from 'mixins/layout';
+import { confirmClaim } from 'api';
 
 export default {
   data () {
@@ -147,7 +147,7 @@ export default {
       if (code === 200) {
         this.resetChoosedList();
         this.$router.push({
-          path: '/home/myList'
+          path: '/claim/myList'
         });
       }
     }
