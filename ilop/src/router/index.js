@@ -39,7 +39,7 @@ export default new VueRouter({
     },
     {
       path: '/st',
-      component:() => import(/* webpackChunkName: "st_index" */ 'views/st/index.vue'),
+      component:() => import(/* webpackChunkName: "st_index" */ 'views/st/signUp/index.vue'),
     },
     {
       path: '/myself',

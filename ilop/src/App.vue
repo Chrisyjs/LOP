@@ -4,7 +4,9 @@
       <van-icon name="user-circle-o"></van-icon>
       <span class="account">{{$utils.getCookie('mobile')}}</span>
     </div> -->
-    <router-view></router-view>
+    <div style="margin-bottom: 50px;">
+      <router-view></router-view>
+    </div>
     <van-image-preview v-if="$route.path.indexOf('login') === -1" v-model="showImagePreview" :images="imagePreview"></van-image-preview>
     <!-- tabBar -->
     <van-tabbar v-if="$route.path.indexOf('login') === -1" v-model="active" @change="handleChangeActive">
@@ -27,28 +29,19 @@ export default {
   },
   data() {
     return {
-      // active: 'appointment'
+      active: ''
     }
   },
   watch: {
-    /* '$route': {
-      handler(n) {
-        console.log(n)
-        this.active = this.getActiveByRoute(n.path)
+    '$route': {
+      handler(toRouter) {
+        // console.log(toRouter) //打开的新路由
+        this.active = this.getActiveByRoute(toRouter.path);
       },
-      immediate: true,
-      deep: true
-    } */
+      immediate: true
+    }
   },
   computed: {
-    active: {
-      get() {
-        return this.tabActive;
-      },
-      set(n) {
-        this.setTabActive(n);
-      }
-    },
     showImagePreview: {
       get() {
         return this.$store.state.showImagePreview;
@@ -57,7 +50,7 @@ export default {
         this.setShowImagePreview(n);
       }
     },
-    ...mapState(['showLoading', 'imagePreview', 'tabActive'])
+    ...mapState(['showLoading', 'imagePreview'])
   },
   mixins: [Layout],
   mounted() {
@@ -77,21 +70,21 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['resetChoosedList', 'setShowImagePreview', 'setTabActive']),
+    ...mapMutations(['resetChoosedList', 'setShowImagePreview']),
     handleChangeActive(index) {
       this.$router.push(`/${index}`)
     },
     getActiveByRoute(path) {
-      if (path.indexOf('/appointment/') > -1) {
+      if (path.indexOf('/appointment') > -1) {
         return 'appointment';
       }
-      if (path.indexOf('/claim/') > -1) {
+      if (path.indexOf('/claim') > -1) {
         return 'claim';
       }
-      if (path.indexOf('/st/') > -1) {
+      if (path.indexOf('/st') > -1) {
         return 'st';
       }
-      if (path.indexOf('/myself/') > -1) {
+      if (path.indexOf('/myself') > -1) {
         return 'myself';
       }
       return 'appointment'

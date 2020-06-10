@@ -1,0 +1,21 @@
+.appointment-wrap {
+  padding: 16px 0;
+  .form {
+    padding: 16px;
+  }
+  .part-title {
+    font-size: 14px;
+    padding-left: 6px;
+  }
+  .panel {
+    position: relative;
+  }
+  .close-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 100;
+  }
+  ::v-deep {
+  }
+}

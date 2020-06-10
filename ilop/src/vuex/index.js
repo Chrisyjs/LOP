@@ -9,7 +9,6 @@ const state = {
   waitingListData: [],
   imagePreview: [],
   showImagePreview: false,
-  tabActive: 'appointment',
 }
 
 const mutations = {
@@ -31,24 +30,7 @@ const mutations = {
   setShowImagePreview(state, showImagePreview) {
     state.showImagePreview = showImagePreview;
   },
-  setTabActive(state, n) {
-    state.tabActive = n;
-  }
 }
-
-function getActiveByRoute(path) {
-  console.log(path)
-  if (path.indexOf('/appointment/') > -1) {
-    return 0;
-  }
-  if (path.indexOf('/claim/') > -1) {
-    return 1;
-  }
-  if (path.indexOf('/st/') > -1) {
-    return 2;
-  }
-  return 3;
-};
 
 const getters = {
   choosedList (state) {

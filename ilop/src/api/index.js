@@ -1,4 +1,4 @@
-import { axios } from '../api/interceptors';
+import { axios } from '@/api/interceptors';
 import qs from 'qs';
 
 // const domain = '';
@@ -41,4 +41,9 @@ export function submitOrder(param) {
 // 取消订单
 export function cancelOrder(id) {
   return axios.post(`${domain}/api/crowdfunding/order/cancel/${id}`, );
+}
+
+// 提交表单
+export function submitFormApi(param) {
+  return axios.post(`${domain}/app/memberstnew/add`, param)
 }

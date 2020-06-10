@@ -1,17 +1,149 @@
 <template>
-  <div>
-
+  <div class="appointment-wrap">
+    <div class="title text-center">线上预约</div>
+    <div class="form">
+      <van-form
+        :validate-first="true"
+        ref="form"
+        @failed="onSubmitFailed"
+        @submit="handleSubmit"
+        :scroll-to-error="true"
+        :show-error-message="false"
+        label-width="120px"
+      >
+        <div class="panel">
+          <div class="part-title border-bottom">主日聚会</div>
+          <van-field :key="0" readonly required :value="date" label="日期" />
+          <van-field
+            :key="1"
+            :rules="[{ required: true, message: '请选择第几堂' }]"
+            readonly
+            clickable
+            required
+            name="hall"
+            :value="hall"
+            label="第几堂"
+            placeholder="请选择"
+            @click="showHallPicker = true"
+          />
+        </div>
+        <div style="margin-top: 16px;" class="panel">
+          <div class="part-title border-bottom">预约人员</div>
+          <van-field :key="2" name="hasSelf" label="是否包含您自己">
+            <template #input>
+              <van-checkbox
+                @click="handleClickHasSelf"
+                :value="hasSelf"
+                shape="square"
+                >包含自己</van-checkbox
+              >
+            </template>
+          </van-field>
+          <div
+            class="panel"
+            :key="`personItem${idx}`"
+            v-for="(item, idx) in personList"
+          >
+            <van-icon
+              @click="() => handleDeletePerson(idx)"
+              v-if="!item.isSelf"
+              color="#1989fa"
+              size="20"
+              class="close-btn"
+              name="close"
+            />
+            <van-field
+              :key="`3${idx}`"
+              v-model="item.name"
+              name="name"
+              label="姓名"
+              placeholder="请输入"
+              required
+              border
+              clearable
+              :rules="[{ required: true, message: '请输入姓名' }]"
+            />
+            <van-field
+              :key="`4${idx}`"
+              :rules="[
+                { required: true, message: '请输入手机号' },
+                { validator: $utils.checkPhone, message: '请输入正确的手机号' },
+              ]"
+              :readonly="!!item.isSelf"
+              type="tel"
+              v-model="item.mobile"
+              name="mobile"
+              label="手机号"
+              placeholder="请输入"
+              maxlength="11"
+              required
+              border
+              clearable
+            />
+            <van-field
+              v-if="!item.isSelf"
+              :key="`5${idx}`"
+              :rules="[{ required: true, message: '请选择你们的关系' }]"
+              readonly
+              clickable
+              required
+              name="relationship"
+              :value="item.relationship"
+              label="关系"
+              placeholder="请选择"
+              @click="
+                currentIdx = idx;
+                showRelationshipPicker = true;
+              "
+            />
+          </div>
+          <van-button
+            @click="handleAddPerson"
+            v-if="personList.length < 3"
+            size="small"
+            block
+            plain
+            round
+            type="info"
+            >+ 添加人员</van-button
+          >
+        </div>
+        <div class="panel">
+          <van-field
+            :key="6"
+            v-model="remark"
+            rows="3"
+            :autosize="{ maxHeight: 100 }"
+            type="textarea"
+            name="remark"
+            label="备注"
+            placeholder="如有小孩前往聚会，请在此输入姓名和人数"
+          />
+        </div>
+        <van-button round block type="info" native-type="submit">
+          提交
+        </van-button>
+      </van-form>
+      <!-- 选择第几堂 -->
+      <van-popup v-model="showHallPicker" position="bottom">
+        <van-picker
+          show-toolbar
+          :columns="hallOptions"
+          @confirm="onHallConfirm"
+          @cancel="showHallPicker = false"
+        />
+      </van-popup>
+      <!-- 选择关系 -->
+      <van-popup v-model="showRelationshipPicker" position="bottom">
+        <van-picker
+          show-toolbar
+          :columns="relationshipOptions"
+          @confirm="onRelationshipConfirm"
+          @cancel="showRelationshipPicker = false"
+        />
+      </van-popup>
+    </div>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-
-    }
-  },
-}
-</script>
-<style lang="scss" scoped>
-
-</style>
+<script src="./index.js"></script>
+<style lang="scss" scoped src="./index.scss"></style>

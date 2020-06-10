@@ -24,6 +24,14 @@ import {
   Overlay,
   Tabbar,
   TabbarItem,
+  Form,
+  RadioGroup,
+  Radio,
+  DatetimePicker,
+  Popup,
+  Picker,
+  Area,
+  CheckboxGroup,
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
@@ -51,6 +59,14 @@ Vue.use(Field)
   .use(VueClipboard)
   .use(Tabbar)
   .use(TabbarItem)
+  .use(Form)
+  .use(RadioGroup)
+  .use(Radio)
+  .use(DatetimePicker)
+  .use(Popup)
+  .use(Picker)
+  .use(Area)
+  .use(CheckboxGroup)
 
 Vue.config.productionTip = false
 

@@ -58,6 +58,7 @@ module.exports = {
       .set('utils', resolve('src/utils'))
       .set('api', resolve('src/api'))
       .set('views', resolve('src/views'))
+      .set('lib', resolve('src/lib'))
     config
     .plugin('define')  // appConfig 全局使用
     .tap(args => {
