@@ -4,14 +4,14 @@
     <div class="claim-detail overflow-scroll">
       <order-panel :item="detail">
         <template v-slot:header>
-          <div class="title" flex="main:justify cross:center">
+          <div class="part-title font-size-12" flex="main:justify cross:center">
             <div>认领编号：{{detail.orderCode}}</div>
             <div>订单状态：{{detail.orderStatusName}}</div>
           </div>
         </template>
       </order-panel>
       <div class="order-info panel">
-        <div class="title font-size-14">订单信息</div>
+        <div class="part-title font-size-12">订单信息</div>
         <div class="content font-size-12">
           <div class="item">订单创建时间：{{detail.timeSubmit}}</div>
           <div class="item" v-if="detail.timePay">订单付款时间：{{detail.timePay}}</div>
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="form-info panel">
-        <div class="title font-size-14">提交信息</div>
+        <div class="part-title font-size-12">提交信息</div>
         <div class="content font-size-12">
           <div class="item" flex="main:left cross:center">
           </div>
@@ -105,9 +105,7 @@ export default {
       this.setOverflowScrollHeight();
     },
     handleClickLeft() {
-      this.$router.push({
-        path: "/claim/myList"
-      });
+      this.$router.back(-1);
     },
     checkSubmitInfo() {
       let warnMsg = "";
@@ -165,6 +163,9 @@ export default {
 .claim-detail {
   padding: 10px;
   padding-bottom: 0;
+  &.overflow-scroll {
+    height: calc(100vh - 144px);
+  }
   .item {
     margin: 6px 0;
   }

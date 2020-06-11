@@ -2,7 +2,7 @@
   <div class="form-wrap">
     <div class="title">2020 ST 报名表</div>
     <div class="tip">(建议使用手机浏览器打开该网页)</div>
-    <div class="form">
+    <div class="overflow-scroll form">
       <van-form
         :validate-first="true"
         ref="form"
@@ -467,9 +467,9 @@
             </template>
           </van-field>
         </div>
-        <div class="tip">(如手机无法提交，请尝试用电脑提交)</div>
-        <div style="margin: 16px;">
-          <van-button round block type="info" native-type="submit">
+        <div style="backgroundColor: #FFF;" class="bottom-btn">
+          <div style="margin-bottom: 8px;" class="tip">(如手机无法提交，请尝试用电脑提交)</div>
+          <van-button block type="info" native-type="submit">
             提交
           </van-button>
         </div>

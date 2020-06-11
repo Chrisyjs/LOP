@@ -5,7 +5,11 @@
     text-align: center;
     padding-top: 10px;
   }
-  padding: 16px 12px;
+  .overflow-scroll {
+    padding: 0 10px;
+    height: calc(100vh - 200px);
+  }
+  padding: 16px 0px;
   .title {
     text-align: center;
     font-size: 18px;

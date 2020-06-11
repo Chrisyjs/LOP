@@ -1,53 +1,79 @@
 <template>
-  <div class="my-list overflow-scroll">
-    <div class="panel">
-      支付宝账号：{{iLopAlipay}}（{{alipayName}}）<br>
-      <div flex="main:right">
-        <span
-          class="copy color-blue cursor-pointer"
-          v-clipboard:copy="iLopAlipay"
-          v-clipboard:success="handleCopy"
-        >一键复制</span>
-      </div>
-      <div v-if="bankCard">
-        银行卡账号：{{bankCard}}（{{bankCardName}}）<br>
+  <div>
+    <Header></Header>
+    <div class="my-list">
+      <div style="margin-bottom: 10px;" class="panel">
+        支付宝账号：{{ iLopAlipay }}（{{ alipayName }}）<br />
         <div flex="main:right">
           <span
-                class="copy color-blue cursor-pointer"
-                v-clipboard:copy="bankCard"
-                v-clipboard:success="handleCopy"
-              >一键复制</span>
+            class="copy color-blue cursor-pointer"
+            v-clipboard:copy="iLopAlipay"
+            v-clipboard:success="handleCopy"
+            >一键复制</span
+          >
+        </div>
+        <div v-if="bankCard">
+          银行卡账号：{{ bankCard }}（{{ bankCardName }}）<br />
+          <div flex="main:right">
+            <span
+              class="copy color-blue cursor-pointer"
+              v-clipboard:copy="bankCard"
+              v-clipboard:success="handleCopy"
+              >一键复制</span
+            >
+          </div>
         </div>
       </div>
+      <div class="overflow-scroll" v-if="myList.length">
+        <order-panel
+          :item="item"
+          @click.native="() => goClaimDetail(item.orderId)"
+          v-for="item in myList"
+          :key="item.orderId"
+        >
+          <template v-slot:header>
+            <div class="order-title" flex="main:justify cross:center">
+              <div>认领编号：{{ item.orderCode }}</div>
+              <div>订单状态：{{ item.orderStatusName }}</div>
+            </div>
+          </template>
+          <template v-slot:footer>
+            <div flex="main:justify cross:center">
+              <van-button
+                plain
+                type="info"
+                size="small"
+                v-if="item.orderStatus === 1"
+                @click.stop="() => showCancelOrderDialog(item.orderId)"
+                >取消订单</van-button
+              >
+              <van-button type="info" size="small" v-if="item.orderStatus === 1"
+                >上传付款凭证</van-button
+              >
+            </div>
+          </template>
+        </order-panel>
+      </div>
+      <div v-else class="panel no-data-tip text-center font-size-14">
+        暂无认领，赶快去认领吧！
+      </div>
+      <!-- 确认弹框 -->
+      <van-dialog
+        v-model="showDialog"
+        title="系统提示"
+        message="确认删除订单？"
+        @confirm="handleComfirmCancel"
+        :showCancelButton="true"
+      ></van-dialog>
     </div>
-    <div v-if="myList.length">
-      <order-panel :item="item" @click.native="() => goClaimDetail(item.orderId)" v-for="item in myList" :key="item.orderId">
-        <template v-slot:header>
-          <div class="title" flex="main:justify cross:center">
-            <div>认领编号：{{item.orderCode}}</div>
-            <div>订单状态：{{item.orderStatusName}}</div>
-          </div>
-        </template>
-        <template v-slot:footer>
-          <div flex="main:justify cross:center">
-            <van-button plain type="info" size="small" v-if="item.orderStatus === 1" @click.stop="() => showCancelOrderDialog(item.orderId)">取消订单</van-button>
-            <van-button type="info" size="small" v-if="item.orderStatus === 1">上传付款凭证</van-button>
-          </div>
-        </template>
-      </order-panel>
-    </div>
-    <div v-else class="panel no-data-tip text-center font-size-14">
-      暂无认领，赶快去认领吧！
-    </div>
-    <!-- 确认弹框 -->
-    <van-dialog v-model="showDialog" title="系统提示" message="确认删除订单？" @confirm="handleComfirmCancel" :showCancelButton="true"></van-dialog>
   </div>
 </template>
 
 <script>
 import { getMyListData, cancelOrder } from "api";
-import OrderPanel from 'components/orderPanel';
-import Layout from 'mixins/layout';
+import OrderPanel from "components/orderPanel";
+import Layout from "mixins/layout";
+import Header from "./header";
 
 export default {
   data() {
@@ -58,11 +84,12 @@ export default {
       iLopAlipay: appConfig.alipay,
       bankCard: appConfig.bankCard,
       alipayName: appConfig.alipayName,
-      bankCardName: appConfig.bankCardName
+      bankCardName: appConfig.bankCardName,
     };
   },
   components: {
-    OrderPanel
+    OrderPanel,
+    Header,
   },
   mixins: [Layout],
   created() {
@@ -71,15 +98,15 @@ export default {
   methods: {
     async _getMyListData() {
       this.$toast({
-        message: '加载中...',
+        message: "加载中...",
         mask: true,
-        loadingType: 'spinner',
+        loadingType: "spinner",
         duration: 0,
-        forbidClick: true
-      })
+        forbidClick: true,
+      });
       let param = {
-        mobile: this.$utils.getCookie('mobile')
-      }
+        mobile: this.$utils.getCookie("mobile"),
+      };
       const { code, data } = await getMyListData(param);
       if (code === 200) {
         this.$toast.clear();
@@ -89,12 +116,11 @@ export default {
     },
     goClaimDetail(id) {
       this.$router.push({
-        name: 'claimDetail',
-        path: '/claim/claimDetail',
+        path: "/claim/claimDetail",
         query: {
-          id
-        }
-      })
+          id,
+        },
+      });
     },
     showCancelOrderDialog(id) {
       this.showDialog = true;
@@ -103,7 +129,7 @@ export default {
     handleCopy() {
       this.$toast({
         message: "复制成功",
-        duration: 800
+        duration: 800,
       });
     },
     async handleComfirmCancel() {
@@ -111,15 +137,19 @@ export default {
       if (code === 200) {
         this._getMyListData();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .my-list {
-  padding: 10px;
-  padding-top: 0;
+  .panel {
+    margin: 0 10px;
+  }
+  .overflow-scroll {
+    height: calc(100vh - 200px);
+  }
   .no-data-tip {
   }
 }

@@ -1,4 +1,5 @@
 import { hallOptions, relationshipOptions } from "lib/options";
+import Attention from "./attention";
 const defaultPerson = {
   name: "",
   mobile: "",
@@ -7,6 +8,8 @@ const defaultPerson = {
 export default {
   data() {
     return {
+      dialogVisible: false,
+      step: 0,
       currentIdx: 0,
       date: "2020-06-10 主日",
       showHallPicker: false,
@@ -20,10 +23,19 @@ export default {
       remark: "",
     };
   },
+  components: {
+    Attention
+  },
   mounted() {
     this.getPersonList();
   },
   methods: {
+    /**
+     * 提交预约
+     */
+    handleSubmit() {
+      this.dialogVisible = true;
+    },
     /**
      * 获取人员列表
      */
@@ -63,8 +75,20 @@ export default {
     handleDeletePerson(idx) {
       this.personList.splice(idx, 1);
     },
-    onSubmitFailed() {},
-    handleSubmit() {},
+    /**
+     * 提交失败
+     */
+    onSubmitFailed(errorInfo) {
+      const { values, errors } = errorInfo;
+      console.log(errorInfo)
+      this.$toast({message: errors[0].message, position: 'middle'});
+    },
+    /**
+     * 下一步
+     */
+    handleNext() {
+      this.step = 1;
+    },
     /**
      * 选择第几堂
      */

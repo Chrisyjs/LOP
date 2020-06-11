@@ -1,7 +1,7 @@
 $blue: #1989fa;
 $red: rgb(255, 68, 68);
 $gray: #999999;
-$dark-red:#9a1a1a;
+$dark-red: #9a1a1a;
 
 .inline-block {
   display: inline-block;
@@ -9,6 +9,11 @@ $dark-red:#9a1a1a;
 .border-bottom {
   border-bottom: 1px solid rgba($color: #dbdbdb, $alpha: 0.21);
   padding-bottom: 10px;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 .panel {
   border: 1px solid #dbdbdb;
@@ -41,6 +46,12 @@ $dark-red:#9a1a1a;
 .font-size-14 {
   font-size: 14px;
 }
+.font-size-15 {
+  font-size: 15px;
+}
+.font-size-16 {
+  font-size: 16px;
+}
 .color-gray {
   color: $gray;
 }
@@ -71,7 +82,7 @@ $dark-red:#9a1a1a;
 }
 .bottom-btn {
   position: fixed;
-  bottom: 0;
+  bottom: 50px;
   left: 0;
   width: 100%;
 }

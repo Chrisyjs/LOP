@@ -7,7 +7,8 @@ module.exports = {
     bankCardName: '屠密迦',
     claimSucText: '已完成认领！\n感谢您的认领，每笔认领都会用于新家建设并载入LOP史册！',
     output: 'dist_house',
-    apiPrefix: 'lop_project_house'
+    // apiPrefix: 'lop_project_house'
+    apiPrefix: 'lop_project'
   },
   iMask: {
     appName: 'iMask',

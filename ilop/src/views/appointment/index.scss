@@ -1,11 +1,16 @@
 .appointment-wrap {
-  padding: 16px 0;
   .form {
     padding: 16px;
+  }
+  .overflow-scroll {
+    height: calc(100vh - 134px);
   }
   .part-title {
     font-size: 14px;
     padding-left: 6px;
+  }
+  .bottom-btn {
+    bottom: 50px;
   }
   .panel {
     position: relative;
@@ -16,6 +21,10 @@
     right: 4px;
     z-index: 100;
   }
-  ::v-deep {
+  .content-part {
+    padding: 0 12px;
+    .part-title {
+      padding-left: 0;
+    }
   }
 }
