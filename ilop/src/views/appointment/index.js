@@ -15,6 +15,8 @@ export default {
       showHallPicker: false,
       hallOptions,
       hall: "",
+      userName: "",
+      userMobile: "",
       hasSelf: false,
       personList: [{ ...defaultPerson }],
       selfInfo: {},
@@ -29,6 +31,17 @@ export default {
   mounted() {
     this.getPersonList();
   },
+  computed: {
+    personCount: function () {
+      return this.personList.length + this.hasSelf
+    },
+    countLimit: function () {
+      let t = this.remainCount <= 3 ? this.remainCount : 3;
+      t = t - Number(this.hasSelf) - this.personList.length;
+      console.log(t)
+      return t;
+    },
+  },
   methods: {
     /**
      * 提交预约
@@ -41,25 +54,19 @@ export default {
      */
     getPersonList() {
       this.selfInfo = {
-        name: "yjs",
-        mobile: 15700084697,
-        isSelf: true,
+        name: "ttt",
+        mobile: 18766666666,
       };
       this.personList = [{ ...this.selfInfo }];
-      this.hasSelf = true;
+      this.remainCount = 1;
     },
     /**
      * 勾选自己
      */
     handleClickHasSelf() {
-      if (!this.hasSelf && this.personList.length >= 3) {
-        this.$toast("预约人数最多三人");
+      if (!this.hasSelf && !this.countLimit) {
+        this.$toast(this.remainCount >= 3 ? "一个账号最多预约3人" : `目前预约名额仅剩${this.remainCount}名`);
         return;
-      }
-      if (this.hasSelf) {
-        this.personList = this.personList.splice(1);
-      } else {
-        this.personList.unshift({ ...this.selfInfo });
       }
       this.hasSelf = !this.hasSelf;
     },
@@ -67,6 +74,10 @@ export default {
      * 添加人员
      */
     handleAddPerson() {
+      if (!this.countLimit) {
+        this.$toast(this.remainCount >= 3 ? "一个账号最多预约3人" : `目前预约名额仅剩${this.remainCount}名`);
+        return;
+      }
       this.personList.push({ ...defaultPerson });
     },
     /**

@@ -32,6 +32,7 @@ import {
   Picker,
   Area,
   CheckboxGroup,
+  Empty
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
@@ -67,6 +68,7 @@ Vue.use(Field)
   .use(Picker)
   .use(Area)
   .use(CheckboxGroup)
+  .use(Empty)
 
 Vue.config.productionTip = false
 

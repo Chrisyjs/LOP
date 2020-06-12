@@ -43,7 +43,7 @@ export default new VueRouter({
     },
     {
       path: '/myself',
-      component:() => import(/* webpackChunkName: "myself_index" */ 'views/myself/index.vue'),
+      component:() => import(/* webpackChunkName: "myself_index" */ 'views/myself/appointmentList/index.vue'),
     },
     {
       path: '*',

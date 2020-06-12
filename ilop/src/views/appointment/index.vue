@@ -1,9 +1,10 @@
 <template>
   <div class="appointment-wrap">
+    <!-- 提交弹框 -->
     <van-dialog v-model="dialogVisible" title="提交确认" show-cancel-button>
       <div class="panel">
         <div class="content-part">
-          <div class="part-title border-bottom">主日聚会</div>
+          <div class="part-title border-bottom">主日信息</div>
           <div style="margin: 8px 0;">{{ date }} - {{ hall }}</div>
         </div>
         <div style="margin-top: 16px;" class="content-part">
@@ -27,11 +28,13 @@
         </div>
       </div>
     </van-dialog>
+    <!-- 预约须知 -->
     <Attention
       :handleSubmit="handleSubmit"
       :step.sync="step"
       v-if="step === 1"
     ></Attention>
+    <!-- 预约信息填写 -->
     <div style="padding: 16px 0;" v-if="step === 0">
       <div class="title text-center">线上预约</div>
       <div class="tip">(预约可取消或修改)</div>
@@ -46,7 +49,7 @@
           label-width="120px"
         >
           <div class="panel">
-            <div class="part-title border-bottom">主日聚会</div>
+            <div class="part-title border-bottom">主日信息</div>
             <van-field :key="0" readonly required :value="date" label="日期" />
             <van-field
               :key="1"
@@ -59,6 +62,32 @@
               label="第几堂"
               placeholder="请选择"
               @click="showHallPicker = true"
+            />
+          </div>
+          <div class="panel">
+            <div class="part-title border-bottom">您的信息</div>
+            <van-field
+              key="userName"
+              v-model="userName"
+              name="userName"
+              label="您的姓名"
+              placeholder="请输入"
+              required
+              border
+              clearable
+              :rules="[{ required: true, message: '请输入您的姓名' }]"
+            />
+            <van-field
+              key="userMobile"
+              type="tel"
+              v-model="userMobile"
+              name="userMobile"
+              label="您的手机号"
+              placeholder="请输入"
+              maxlength="11"
+              readonly
+              required
+              border
             />
           </div>
           <div style="margin-top: 16px;" class="panel">
@@ -80,7 +109,6 @@
             >
               <van-icon
                 @click="() => handleDeletePerson(idx)"
-                v-if="!item.isSelf"
                 color="#1989fa"
                 size="20"
                 class="close-btn"
@@ -106,7 +134,6 @@
                     message: '请输入正确的手机号',
                   },
                 ]"
-                :readonly="!!item.isSelf"
                 type="tel"
                 v-model="item.mobile"
                 :name="`4${idx}mobile`"
@@ -118,7 +145,6 @@
                 clearable
               />
               <van-field
-                v-if="!item.isSelf"
                 :key="`5${idx}`"
                 :rules="[{ required: true, message: '请选择你们的关系' }]"
                 readonly
@@ -135,8 +161,8 @@
               />
             </div>
             <van-button
+              native-type="button"
               @click="handleAddPerson"
-              v-if="personList.length < 3"
               size="small"
               block
               plain
