@@ -34,6 +34,7 @@
     ></Attention>
     <div style="padding: 16px 0;" v-if="step === 0">
       <div class="title text-center">线上预约</div>
+      <div class="tip">(预约可取消或修改)</div>
       <div class="form overflow-scroll">
         <van-form
           :validate-first="true"
@@ -88,7 +89,7 @@
               <van-field
                 :key="`3${idx}`"
                 v-model="item.name"
-                name="name"
+                :name="`3${idx}name`"
                 label="姓名"
                 placeholder="请输入"
                 required
@@ -108,7 +109,7 @@
                 :readonly="!!item.isSelf"
                 type="tel"
                 v-model="item.mobile"
-                name="mobile"
+                :name="`4${idx}mobile`"
                 label="手机号"
                 placeholder="请输入"
                 maxlength="11"
@@ -150,7 +151,7 @@
               v-model="remark"
               rows="3"
               maxLength="100"
-              :autosize="{ maxHeight: 100 }"
+              autosize
               type="textarea"
               name="remark"
               label="备注"

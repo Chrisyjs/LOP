@@ -125,16 +125,9 @@ export default {
   methods: {
     ...mapMutations(["setChoosedList"]),
     async _getWaitingListData() {
-      this.$toast({
-        message: "加载中...",
-        mask: true,
-        loadingType: "spinner",
-        duration: 0,
-        forbidClick: true,
-      });
+      this.$utils.toast();
       const { code, data } = await getWaitingListData();
       if (code === 200) {
-        this.$toast.clear();
         this.waitingListData = data.map((item, index) => {
           return this.resetFromVuex(item, index);
         });

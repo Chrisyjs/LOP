@@ -97,13 +97,7 @@ export default {
   },
   methods: {
     async _getMyListData() {
-      this.$toast({
-        message: "加载中...",
-        mask: true,
-        loadingType: "spinner",
-        duration: 0,
-        forbidClick: true,
-      });
+      this.$utils.toast();
       let param = {
         mobile: this.$utils.getCookie("mobile"),
       };

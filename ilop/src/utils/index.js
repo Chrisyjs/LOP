@@ -15,6 +15,17 @@ const utils = {
     }
     return "";
   },
+  toast(config) {
+    Vue.prototype.$toast(
+      Object.assign({
+        message: "加载中...",
+        mask: true,
+        loadingType: "spinner",
+        duration: 0,
+        forbidClick: true,
+      }, config)
+    );
+  },
   delCookie(name) {
     var exp = new Date();
     exp.setTime(exp.getTime() - 1);
