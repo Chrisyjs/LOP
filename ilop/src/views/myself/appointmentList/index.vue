@@ -6,9 +6,9 @@
     <van-empty v-if="!listData.length" description="暂无预约信息"></van-empty>
     <div v-else class="list overflow-scroll">
       <div class="panel" v-for="(item, idx) in listData" :key="idx">
-        <div>
-          <div class="part-title border-bottom">主日信息</div>
-          <div class="content text-center" style="padding-left: 8%">
+        <div class="part">
+          <div class="part-title border-bottom font-size-15">主日信息</div>
+          <div class="content" style="padding-left: 10px;">
             <div class="item" flex="main:left cross:center">
               <div class="label">主 题：</div>
               <div style="margin-left: -7px;">《{{ item.topic }}》</div>
@@ -34,9 +34,9 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="part-title border-bottom">预约信息</div>
-          <table class="content table text-center">
+        <div class="part">
+          <div class="part-title border-bottom font-size-15">预约信息</div>
+          <table class="content table">
             <thead>
               <th>姓名</th>
               <th>手机号</th>
@@ -47,7 +47,7 @@
               <tr v-for="(jtem, jdx) in item.appointmentlist" :key="jdx">
                 <td>{{ jtem.name }}</td>
                 <td>{{ jtem.mobile }}</td>
-                <td>{{ jtem.relation ? jtem.relation : '自己' }}</td>
+                <td>{{ jtem.relationship ? jtem.relationship : '自己' }}</td>
                 <td v-if="!idx">
                   <van-button
                     @click="() => handleCancel(jtem)"
@@ -82,6 +82,7 @@ export default {
      * 获取列表数据
      */
     async getListData() {
+      this.$utils.loading();
       const { code, data } = await getMyAppointmentList(this.$utils.getCookie('mobile'));
       if (code === 200) {
         this.listData = data;
@@ -126,13 +127,19 @@ export default {
   }
   .part-title {
     padding-left: 10px;
+    padding-bottom: 4px;
   }
   .table {
+    text-align: left;
     width: 100%;
   }
   .content {
-    padding: 8px;
+    padding: 4px 8px;
+    padding-bottom: 0;
     line-height: 22px;
+  }
+  .part + .part {
+    margin-top: 8px;
   }
 }
 </style>

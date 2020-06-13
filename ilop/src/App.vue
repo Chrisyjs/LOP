@@ -11,8 +11,8 @@
     <!-- tabBar -->
     <van-tabbar v-if="$route.path.indexOf('login') === -1" v-model="active" @change="handleChangeActive">
       <van-tabbar-item name="appointment" icon="phone">预约</van-tabbar-item>
-      <van-tabbar-item name="st" icon="fire">ST</van-tabbar-item>
-      <van-tabbar-item name="claim" icon="shopping-cart">认领</van-tabbar-item>
+      <!-- <van-tabbar-item name="st" icon="fire">ST</van-tabbar-item>
+      <van-tabbar-item name="claim" icon="shopping-cart">认领</van-tabbar-item> -->
       <van-tabbar-item name="myself" icon="setting">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -35,7 +35,7 @@ export default {
   watch: {
     '$route': {
       handler(toRouter) {
-        // console.log(toRouter) //打开的新路由
+        console.log(toRouter) //打开的新路由
         this.active = this.getActiveByRoute(toRouter.path);
       },
       immediate: true
@@ -87,7 +87,6 @@ export default {
       if (path.indexOf('/myself') > -1) {
         return 'myself';
       }
-      return 'appointment'
     },
     handleLogout() {
       this.$dialog.confirm({

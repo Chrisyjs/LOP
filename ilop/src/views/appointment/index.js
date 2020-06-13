@@ -65,6 +65,7 @@ export default {
           scripture,
           appointmentTime,
           speakerName,
+          loginName,
         } = data;
         this.zrInfo = {
           id,
@@ -76,7 +77,7 @@ export default {
           speaker: speakerName
         };
         let obj = appointmentlist.find(item => item.mobile === this.userMobile);
-        this.userName = 'yjs';
+        this.userName = loginName;
         this.hasSelf = !!obj;
         this.personList = appointmentlist.filter(item => item.mobile !== this.userMobile);
         this.remainCount = peopleAmount;
@@ -133,7 +134,7 @@ export default {
       })
       if (code === 200) {
         this.$toast('预约成功！');
-        this.$router.push('/mySelf');
+        this.$router.push('/myself');
       }
     },
     /**

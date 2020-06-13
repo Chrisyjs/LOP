@@ -9,7 +9,7 @@
         </div>
         <div style="margin-top: 16px;" class="content-part">
           <div class="part-title border-bottom">预约人员</div>
-          <div v-if="hasSelf">
+          <div style="margin: 8px 0;" v-if="hasSelf">
             {{ userName }} - {{ userMobile }} - 自己
           </div>
           <div
