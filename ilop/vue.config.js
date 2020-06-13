@@ -73,6 +73,7 @@ module.exports = {
       .plugin("define") // appConfig 全局使用
       .tap((args) => {
         args[0].appConfig = JSON.stringify(appConfig[appName]);
+        args[0].isPro = isPro;
         return args;
       });
     config.plugin("html").tap((args) => {
