@@ -86,13 +86,13 @@ export default {
       this.validCodeErrMsg = this.validCode ? '' : '验证码错误';
     },
     async submit () {
-      // this.checkPhone();
-      // this.checkValidCode();
-      this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
+      this.checkPhone();
+      this.checkValidCode();
+      /* this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
       this.$router.push({
         path: '/claim/waitingList'
       })
-      return;
+      return; */
       if (!this.phoneErrMsg && !this.validCodeErrMsg) {
         const { data, code } = await login({
           mobile: this.phone,
