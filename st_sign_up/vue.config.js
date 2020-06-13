@@ -33,6 +33,12 @@ module.exports = {
       .set('@', resolve('src'))
     config.output.filename(`[name].[hash]${Timestamp}.js`).end();
     config.output.chunkFilename(`[name].[hash]${Timestamp}.js`).end();
+    config.plugin("extract-css").tap((args) => [
+      {
+        filename: `css/[name][hash]${Timestamp}.css`,
+        chunkFilename: `css/[name][hash]${Timestamp}.css`,
+      },
+    ]);
   },
   configureWebpack: (config) => {
     let externals = {
