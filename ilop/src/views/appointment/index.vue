@@ -1,7 +1,12 @@
 <template>
   <div class="appointment-wrap">
     <!-- 提交弹框 -->
-    <van-dialog @confirm="handleConfirmSubmit" v-model="dialogVisible" title="提交确认" show-cancel-button>
+    <van-dialog
+      @confirm="handleConfirmSubmit"
+      v-model="dialogVisible"
+      title="提交确认"
+      show-cancel-button
+    >
       <div class="panel">
         <div class="content-part">
           <div class="part-title border-bottom">预约时间</div>
@@ -54,7 +59,9 @@
           <div class="panel">
             <div class="border-bottom" flex="cross:center main:justify">
               <div class="part-title">主日信息</div>
-              <div class="tip" style="padding: 0;">（剩余可预约{{remainCount}}名）</div>
+              <div class="tip" style="padding: 0;">
+                （剩余可预约{{ remainCount }}名）
+              </div>
             </div>
             <van-field readonly required :value="zrInfo.topic" label="主题" />
             <van-field readonly required :value="zrInfo.speaker" label="讲员" />
@@ -99,7 +106,7 @@
               border
             />
           </div>
-          <div style="margin-top: 16px;" class="panel">
+          <div class="panel">
             <div class="part-title border-bottom">预约人员</div>
             <van-field :key="2" name="hasSelf" label="是否包含您自己">
               <template #input>
@@ -169,16 +176,18 @@
                 "
               />
             </div>
-            <van-button
-              native-type="button"
-              @click="handleAddPerson"
-              size="small"
-              block
-              plain
-              round
-              type="info"
-              >+ 添加其他人员（除自己外）</van-button
-            >
+            <div style="margin-top: 12px;">
+              <van-button
+                native-type="button"
+                @click="handleAddPerson"
+                size="small"
+                block
+                plain
+                round
+                type="info"
+                >+ 添加其他人员（除自己外）</van-button
+              >
+            </div>
           </div>
           <div class="panel">
             <van-field

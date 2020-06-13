@@ -139,7 +139,8 @@ export default {
 <style lang="scss" scoped>
 .my-list {
   .panel {
-    margin: 0 10px;
+    margin-right: 12px;
+    margin-left: 12px;
   }
   .overflow-scroll {
     height: calc(100vh - 200px);
