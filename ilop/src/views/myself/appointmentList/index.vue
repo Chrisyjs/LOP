@@ -1,67 +1,138 @@
 <template>
   <div class="appointmentList-wrap">
-    <div class="title text-center border-bottom" style="borderColor: #dbdbdb">我的预约</div>
+    <div class="title text-center border-bottom" style="borderColor: #dbdbdb">
+      我的预约
+    </div>
     <van-empty v-if="!listData.length" description="暂无预约信息"></van-empty>
     <div v-else class="list overflow-scroll">
       <div class="panel" v-for="(item, idx) in listData" :key="idx">
         <div>
           <div class="part-title border-bottom">主日信息</div>
-          <div class="content">
+          <div class="content text-center" style="padding-left: 8%">
             <div class="item" flex="main:left cross:center">
-              <div>日期:</div>
-              <div>{{item.date}}</div>
+              <div class="label">主 题：</div>
+              <div style="margin-left: -7px;">《{{ item.topic }}》</div>
             </div>
             <div class="item" flex="main:left cross:center">
-              <div>场次:</div>
-              <div>{{item.hall}}</div>
+              <div class="label">讲 员：</div>
+              <div>{{ item.speakerName }}</div>
             </div>
             <div class="item" flex="main:left cross:center">
-              <div>时间:</div>
-              <div>{{item.hall === '第一堂' ? '09:00-10:00' : '10:30-11:30'}}</div>
+              <div class="label">经 文：</div>
+              <div>{{ item.scripture }}</div>
+            </div>
+            <div class="item" flex="main:left cross:center">
+              <div class="label">时 间：</div>
+              <div>
+                {{
+                  item.appointmentTime.split("-")[0] == currentYear
+                    ? item.appointmentTime.slice(5)
+                    : item.appointmentTime
+                }}
+                09:30-10:30
+              </div>
             </div>
           </div>
         </div>
         <div>
           <div class="part-title border-bottom">预约信息</div>
-          <div class="content" v-for="(jtem, jdx) in item.personList" :key="jdx">
-
-          </div>
+          <table class="content table text-center">
+            <thead>
+              <th>姓名</th>
+              <th>手机号</th>
+              <th>关系</th>
+              <th v-if="!idx">操作</th>
+            </thead>
+            <tbody>
+              <tr v-for="(jtem, jdx) in item.appointmentlist" :key="jdx">
+                <td>{{ jtem.name }}</td>
+                <td>{{ jtem.mobile }}</td>
+                <td>{{ jtem.relation ? jtem.relation : '自己' }}</td>
+                <td v-if="!idx">
+                  <van-button
+                    @click="() => handleCancel(jtem)"
+                    type="info"
+                    plain
+                    size="mini"
+                    >取消预约</van-button
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { getMyAppointmentList, cancelAppointment } from "@/api";
 export default {
   data() {
     return {
-      listData: [
-        {
-          date: "2020-06-12",
-          speaker: "yjs",
-          topic: "测试",
-          hall: "第一堂",
-          personList: [
-            {
-              name: "hh",
-              mobile: "15798887654",
-            },
-            {
-              name: "xx",
-              mobile: "17876543466",
-            },
-          ],
-        },
-      ],
+      currentYear: new Date().getFullYear(),
+      listData: [],
     };
+  },
+  created() {
+    this.getListData();
+  },
+  methods: {
+    /**
+     * 获取列表数据
+     */
+    async getListData() {
+      const { code, data } = await getMyAppointmentList(this.$utils.getCookie('mobile'));
+      if (code === 200) {
+        this.listData = data;
+      }
+    },
+    /**
+     * 取消预约
+     */
+    handleCancel(item) {
+      this.$dialog
+        .confirm({
+          title: "系统提示",
+          message: "确定要取消预约吗？",
+        })
+        .then(() => {
+          cancelAppointment(item.id).then(data => {
+            if (data.code === 200) {
+              this.$toast('取消成功');
+              this.getListData();
+            }
+          })
+        })
+        .catch(() => {});
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 .appointmentList-wrap {
-  padding: 16px 0px;
+  font-size: 14px;
+  padding-top: 16px;
+  .overflow-scroll {
+    height: calc(100vh - 132px);
+  }
   .list {
-    padding: 16px;
+    padding: 0 16px;
+    margin: 16px 0;
+    .label {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+  }
+  .part-title {
+    padding-left: 10px;
+  }
+  .table {
+    width: 100%;
+  }
+  .content {
+    padding: 8px;
+    line-height: 22px;
   }
 }
 </style>

@@ -25,7 +25,9 @@ $dark-red: #9a1a1a;
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   padding: 10px;
-  margin-bottom: 6px;
+}
+.panel + .panel {
+  margin-top: 6px;
 }
 .text-center {
   text-align: center;

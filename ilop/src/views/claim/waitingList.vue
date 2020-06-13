@@ -125,7 +125,7 @@ export default {
   methods: {
     ...mapMutations(["setChoosedList"]),
     async _getWaitingListData() {
-      this.$utils.toast();
+      this.$utils.loading();
       const { code, data } = await getWaitingListData();
       if (code === 200) {
         this.waitingListData = data.map((item, index) => {

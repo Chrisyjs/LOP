@@ -11,19 +11,25 @@ const utils = {
     var ca = document.cookie.split(";");
     for (var i = 0; i < ca.length; i++) {
       var c = ca[i].trim();
-      if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+      if (c.indexOf(name) == 0) {
+        var t = c.substring(name.length, c.length);
+        return t;
+      }
     }
     return "";
   },
-  toast(config) {
+  loading(config) {
     Vue.prototype.$toast(
-      Object.assign({
-        message: "加载中...",
-        mask: true,
-        loadingType: "spinner",
-        duration: 0,
-        forbidClick: true,
-      }, config)
+      Object.assign(
+        {
+          message: "加载中...",
+          mask: true,
+          loadingType: "spinner",
+          duration: 0,
+          forbidClick: true,
+        },
+        config
+      )
     );
   },
   delCookie(name) {

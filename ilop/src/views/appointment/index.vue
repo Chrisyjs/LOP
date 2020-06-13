@@ -1,14 +1,17 @@
 <template>
   <div class="appointment-wrap">
     <!-- 提交弹框 -->
-    <van-dialog v-model="dialogVisible" title="提交确认" show-cancel-button>
+    <van-dialog @confirm="handleConfirmSubmit" v-model="dialogVisible" title="提交确认" show-cancel-button>
       <div class="panel">
         <div class="content-part">
-          <div class="part-title border-bottom">主日信息</div>
-          <div style="margin: 8px 0;">{{ date }} - {{ hall }}</div>
+          <div class="part-title border-bottom">预约时间</div>
+          <div style="margin: 8px 0;">{{ zrInfo.date }}</div>
         </div>
         <div style="margin-top: 16px;" class="content-part">
           <div class="part-title border-bottom">预约人员</div>
+          <div v-if="hasSelf">
+            {{ userName }} - {{ userMobile }} - 自己
+          </div>
           <div
             style="margin: 8px 0;"
             v-for="(item, idx) in personList"
@@ -16,7 +19,7 @@
           >
             <div>
               {{ item.name }} - {{ item.mobile }} -
-              {{ item.relationship ? item.relationship : "自己" }}
+              {{ item.relationship }}
             </div>
           </div>
         </div>
@@ -50,8 +53,11 @@
         >
           <div class="panel">
             <div class="part-title border-bottom">主日信息</div>
-            <van-field :key="0" readonly required :value="date" label="日期" />
-            <van-field
+            <van-field readonly required :value="zrInfo.topic" label="主题" />
+            <van-field readonly required :value="zrInfo.speaker" label="讲员" />
+            <van-field readonly required :value="zrInfo.bible" label="经文" />
+            <van-field readonly required :value="zrInfo.date" label="日期" />
+            <!-- <van-field
               :key="1"
               :rules="[{ required: true, message: '请选择第几堂' }]"
               readonly
@@ -62,7 +68,7 @@
               label="第几堂"
               placeholder="请选择"
               @click="showHallPicker = true"
-            />
+            /> -->
           </div>
           <div class="panel">
             <div class="part-title border-bottom">您的信息</div>
@@ -168,7 +174,7 @@
               plain
               round
               type="info"
-              >+ 添加人员</van-button
+              >+ 添加其他人员（除自己外）</van-button
             >
           </div>
           <div class="panel">
@@ -181,7 +187,7 @@
               type="textarea"
               name="remark"
               label="备注"
-              placeholder="如有小孩前往聚会，请在此输入姓名和人数"
+              placeholder="不建议带小孩前往聚会，如有小孩前往聚会，请在此输入姓名和人数"
             />
           </div>
           <van-button class="bottom-btn" block type="info" native-type="submit">

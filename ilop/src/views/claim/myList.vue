@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     async _getMyListData() {
-      this.$utils.toast();
+      this.$utils.loading();
       let param = {
         mobile: this.$utils.getCookie("mobile"),
       };
