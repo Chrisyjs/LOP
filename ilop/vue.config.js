@@ -6,6 +6,7 @@ const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, '.', dir) // 这里采用一个点，因为vue.config.js文件和package.json文件都在同一个目录下，即根目录下
 }
+const Timestamp = new Date().getTime();
 
 const cdn = {
   js: [
@@ -49,6 +50,8 @@ module.exports = {
           args[0].cdn = cdn;
         return args;
       })
+      config.output.filename(`[name].[hash]${Timestamp}.js`).end();
+      config.output.chunkFilename(`[name].[hash]${Timestamp}.js`).end();
     }
     config.resolve.alias
       .set('@', resolve('src'))
