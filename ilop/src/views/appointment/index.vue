@@ -39,7 +39,7 @@
     ></Attention>
     <!-- 预约信息填写 -->
     <div style="padding: 16px 0;" v-if="step === 0">
-      <div class="title text-center">线上预约</div>
+      <div class="title text-center">主日预约</div>
       <div class="tip">(预约可取消或修改)</div>
       <div class="form overflow-scroll">
         <van-form

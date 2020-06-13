@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="title text-center">
-      <div class="small">感谢您加入【全员联名 为i认领】</div>
+      <div class="small">{{appGreet}}</div>
       <div class="big">{{appName}}</div>
     </div>
     <div class="form">
@@ -39,7 +39,8 @@ export default {
       validCodeErrMsg: '',
       validText: '发送验证码',
       isSending: false,
-      appName: appConfig.appName
+      appName: appConfig.appName,
+      appGreet: appConfig.appGreet,
     };
   },
   created() {
@@ -85,13 +86,13 @@ export default {
       this.validCodeErrMsg = this.validCode ? '' : '验证码错误';
     },
     async submit () {
-      // this.checkPhone();
-      // this.checkValidCode();
-      this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
+      this.checkPhone();
+      this.checkValidCode();
+      /* this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
       this.$router.push({
         path: '/claim/waitingList'
       })
-      return;
+      return; */
       if (!this.phoneErrMsg && !this.validCodeErrMsg) {
         const { data, code } = await login({
           mobile: this.phone,

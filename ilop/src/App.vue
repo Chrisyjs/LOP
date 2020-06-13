@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <!-- <div v-if="$utils.getCookie('mobile')" class="user cursor-pointer" flex="main:center cross:center" @click="handleLogout">
+    <div v-if="$utils.getCookie('mobile')" class="user cursor-pointer" flex="main:center cross:center" @click="handleLogout">
       <van-icon name="user-circle-o"></van-icon>
       <span class="account">{{$utils.getCookie('mobile')}}</span>
-    </div> -->
+    </div>
     <div style="margin-bottom: 50px;">
       <router-view></router-view>
     </div>
@@ -112,8 +112,10 @@ export default {
     font-size: 12px;
     // color: $blue;
     position: fixed;
-    top: 15px;
-    right: 14px;
+    // top: 15px;
+    top: 20px;
+    // right: 14px;
+    right: 36px;
     z-index: 2000;
     .account {
       // text-decoration: underline;
