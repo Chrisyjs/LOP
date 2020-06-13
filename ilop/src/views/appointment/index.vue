@@ -52,7 +52,10 @@
           label-width="120px"
         >
           <div class="panel">
-            <div class="part-title border-bottom">主日信息</div>
+            <div class="border-bottom" flex="cross:center main:justify">
+              <div class="part-title">主日信息</div>
+              <div class="tip" style="padding: 0;">（剩余可预约{{remainCount}}名）</div>
+            </div>
             <van-field readonly required :value="zrInfo.topic" label="主题" />
             <van-field readonly required :value="zrInfo.speaker" label="讲员" />
             <van-field readonly required :value="zrInfo.bible" label="经文" />

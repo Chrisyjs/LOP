@@ -80,7 +80,7 @@ export default {
         this.userName = loginName;
         this.hasSelf = !!obj;
         this.personList = appointmentlist.filter(item => item.mobile !== this.userMobile);
-        this.remainCount = peopleAmount;
+        this.remainCount = peopleAmount - peopleAppliedAmount;
       }
     },
     /**
