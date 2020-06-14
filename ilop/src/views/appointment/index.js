@@ -66,6 +66,7 @@ export default {
           appointmentTime,
           speakerName,
           loginName,
+          remark
         } = data;
         this.zrInfo = {
           id,
@@ -81,6 +82,7 @@ export default {
         this.hasSelf = !!obj;
         this.personList = appointmentlist.filter(item => item.mobile !== this.userMobile);
         this.remainCount = peopleAmount - peopleAppliedAmount;
+        this.remark = remark;
       }
     },
     /**
