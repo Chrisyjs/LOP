@@ -306,7 +306,7 @@
         <!-- 公共需填 -->
         <div class="item-wrap">
           <div class="item-label form-required mb-10">
-            fishing参加时间<span
+            fishing参加时间(09/02-09/05)<span
               class="fishing-date-warning"
               v-if="fishingDateWarning"
               >目前选择时间不连续哦(也可提交)</span
@@ -337,7 +337,7 @@
           </van-field>
         </div>
         <div class="item-wrap">
-          <div class="item-label form-required">参加嘉年华(09/05-09/06)</div>
+          <div class="item-label form-required">参加嘉年华(09/05晚-09/06晚)</div>
           <van-field
             :key="20"
             class="border-bottom"

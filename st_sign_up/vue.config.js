@@ -4,6 +4,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const path = require('path');
 const domain = `http://www.landofpromise.co:8080/lop`;
 const Timestamp = new Date().getTime();
+const isPro = process.env.NODE_ENV === "production" ? true : false;
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -24,21 +25,23 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.plugin('prefetch').tap(options => {
-      options[0].fileBlacklist = options[0].fileBlacklist || []
-      options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/)
-      return options
-    })
+    if (isPro) {
+      config.plugin('prefetch').tap(options => {
+        options[0].fileBlacklist = options[0].fileBlacklist || []
+        options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/)
+        return options
+      })
+      config.output.filename(`[name].[hash]${Timestamp}.js`).end();
+      config.output.chunkFilename(`[name].[hash]${Timestamp}.js`).end();
+      config.plugin("extract-css").tap((args) => [
+        {
+          filename: `css/[name][hash]${Timestamp}.css`,
+          chunkFilename: `css/[name][hash]${Timestamp}.css`,
+        },
+      ]);
+    }
     config.resolve.alias
       .set('@', resolve('src'))
-    config.output.filename(`[name].[hash]${Timestamp}.js`).end();
-    config.output.chunkFilename(`[name].[hash]${Timestamp}.js`).end();
-    config.plugin("extract-css").tap((args) => [
-      {
-        filename: `css/[name][hash]${Timestamp}.css`,
-        chunkFilename: `css/[name][hash]${Timestamp}.css`,
-      },
-    ]);
   },
   configureWebpack: (config) => {
     let externals = {
