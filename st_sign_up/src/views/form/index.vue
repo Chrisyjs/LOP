@@ -306,11 +306,10 @@
         <!-- 公共需填 -->
         <div class="item-wrap">
           <div class="item-label form-required mb-10">
-            fishing参加时间<span
-              class="fishing-date-warning"
-              v-if="fishingDateWarning"
-              >目前选择时间不连续哦(也可提交)</span
-            >
+            fishing参加时间(09/02-09/05)
+            <div class="fishing-date-warning" v-if="fishingDateWarning">
+              目前选择时间不连续哦(也可提交)
+            </div>
           </div>
           <van-field
             :key="19"
@@ -337,7 +336,9 @@
           </van-field>
         </div>
         <div class="item-wrap">
-          <div class="item-label form-required">参加嘉年华(09/05-09/06)</div>
+          <div class="item-label form-required">
+            参加嘉年华(09/05晚-09/06晚)
+          </div>
           <van-field
             :key="20"
             class="border-bottom"
@@ -374,7 +375,11 @@
           label="参加过ST"
         >
           <template #input>
-            <van-radio-group @change="resetValidation" v-model="hasJoinedST" direction="horizontal">
+            <van-radio-group
+              @change="resetValidation"
+              v-model="hasJoinedST"
+              direction="horizontal"
+            >
               <van-radio name="是">是</van-radio>
               <van-radio name="否">否</van-radio>
             </van-radio-group>
@@ -459,7 +464,11 @@
             2.当您决定报名后，鼓励您开始为ST筹款，今年基础自筹费为900RMB；<br />
             3.若您不知道ST账户或ST相关细节，请找您的组长或推荐人了解详情；
           </div>
-          <van-field :key="28" name="hasRead" :rules="[{ required: true, message: '请阅读报名须知后打勾' }]">
+          <van-field
+            :key="28"
+            name="hasRead"
+            :rules="[{ required: true, message: '请阅读报名须知后打勾' }]"
+          >
             <template #input>
               <van-checkbox v-model="hasRead" shape="square">
                 我已理解报名条件，确认报名信息无误，愿意报名2020ST
