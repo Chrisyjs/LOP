@@ -19,7 +19,7 @@ export default {
       userMobile: this.$utils.getCookie("mobile"),
       hasSelf: false,
       remainCount: 3,
-      personList: [{ ...defaultPerson }],
+      personList: [],
       relationshipOptions,
       showRelationshipPicker: false,
       remark: "",
