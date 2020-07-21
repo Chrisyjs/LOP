@@ -199,7 +199,7 @@
               type="textarea"
               name="remark"
               label="备注"
-              placeholder="为了小孩子的健康着想，目前不建议带小孩前来聚会"
+              placeholder="目前暂时不建议带小朋友前来聚会"
             />
           </div>
           <van-button class="bottom-btn" block type="info" native-type="submit">

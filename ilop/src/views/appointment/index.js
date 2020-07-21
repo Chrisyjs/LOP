@@ -74,7 +74,7 @@ export default {
           peopleAppliedAmount,
           topic,
           bible: scripture,
-          date: appointmentTime,
+          date: `${appointmentTime} 09:30-10:30`,
           speaker: speakerName
         };
         let obj = appointmentlist.find(item => item.mobile === this.userMobile);
