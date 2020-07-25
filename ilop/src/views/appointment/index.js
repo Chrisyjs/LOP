@@ -151,6 +151,10 @@ export default {
      * 下一步
      */
     handleNext() {
+      if (this.countLimit <= 0) {
+        this.$toast(`目前预约名额仅剩${this.remainCount}名`)
+        return;
+      }
       if (!this.personCount) {
         this.$toast("请输入预约人员信息");
         return;
