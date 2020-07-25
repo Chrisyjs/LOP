@@ -89,7 +89,7 @@ export default {
      * 勾选自己
      */
     handleClickHasSelf() {
-      if (!this.hasSelf && !this.countLimit) {
+      if (!this.hasSelf && this.countLimit <= 0) {
         this.$toast(
           this.remainCount >= 3
             ? "一个账号最多预约3人"
@@ -103,7 +103,7 @@ export default {
      * 添加人员
      */
     handleAddPerson() {
-      if (!this.countLimit) {
+      if (this.countLimit <= 0) {
         this.$toast(
           this.remainCount >= 3
             ? "一个账号最多预约3人"
