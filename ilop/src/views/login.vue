@@ -87,8 +87,8 @@ export default {
     },
     async submit () {
       if (!isPro) {
-        this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
-        // this.$utils.setCookie('mobile', '15990154742', 1000 * 30 * 60);
+        // this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
+        this.$utils.setCookie('mobile', '15990154742', 1000 * 30 * 60);
         this.$router.push({
           path: '/appointment'
         })

@@ -85,7 +85,7 @@ export default {
       this.$utils.loading();
       const { code, data } = await getMyAppointmentList(this.$utils.getCookie('mobile'));
       if (code === 200) {
-        data.length && (data[0].canCancel = new Date().valueOf() < new Date(`${data[0].appointmentTime} 00:00:00`).valueOf());
+        data.length && (data[0].canCancel = new Date().valueOf() < new Date(`${data[0].appointmentTime.replace(/-/g, '/')} 00:00:00`).valueOf());
         this.listData = data;
       }
     },
