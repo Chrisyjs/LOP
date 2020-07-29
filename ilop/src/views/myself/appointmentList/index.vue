@@ -41,14 +41,14 @@
               <th>姓名</th>
               <th>手机号</th>
               <th>关系</th>
-              <th v-if="!idx">操作</th>
+              <th v-if="item.canCancel">操作</th>
             </thead>
             <tbody>
               <tr v-for="(jtem, jdx) in item.appointmentlist" :key="jdx">
                 <td>{{ jtem.name }}</td>
                 <td>{{ jtem.mobile }}</td>
                 <td>{{ jtem.relationship ? jtem.relationship : '自己' }}</td>
-                <td v-if="!idx">
+                <td v-if="item.canCancel">
                   <van-button
                     @click="() => handleCancel(jtem)"
                     type="info"
@@ -85,6 +85,7 @@ export default {
       this.$utils.loading();
       const { code, data } = await getMyAppointmentList(this.$utils.getCookie('mobile'));
       if (code === 200) {
+        data[0].canCancel = new Date().valueOf() < new Date(`${data[0].appointmentTime} 00:00:00`).valueOf();
         this.listData = data;
       }
     },

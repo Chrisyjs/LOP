@@ -107,7 +107,12 @@
             />
           </div>
           <div class="panel">
-            <div class="part-title border-bottom">预约人员</div>
+            <div class="border-bottom" flex="cross:center main:justify">
+              <div class="part-title">预约人员</div>
+              <div class="tip" style="padding: 0;">
+                （预约时间在每周三20:00- 周六24:00）
+              </div>
+            </div>
             <van-field :key="2" name="hasSelf" label="是否包含您自己">
               <template #input>
                 <van-checkbox
