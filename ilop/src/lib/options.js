@@ -20,8 +20,8 @@ export const fishingDateOptions = [
  * 第几堂选项
  */
 export const hallOptions = [
-  "第一堂",
-  "第二堂"
+  "第一堂 08:30-10:00",
+  "第二堂 10:30-12:00"
 ]
 /**
  * 关系

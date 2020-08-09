@@ -10,26 +10,27 @@
           <div class="part-title border-bottom font-size-15">主日信息</div>
           <div class="content" style="padding-left: 10px;">
             <div class="item" flex="main:left cross:center">
-              <div class="label">主 题：</div>
+              <div class="label">主&nbsp;&nbsp;&nbsp;&nbsp;题：</div>
               <div style="margin-left: -7px;">《{{ item.topic }}》</div>
             </div>
             <div class="item" flex="main:left cross:center">
-              <div class="label">讲 员：</div>
+              <div class="label">讲&nbsp;&nbsp;&nbsp;&nbsp;员：</div>
               <div>{{ item.speakerName }}</div>
             </div>
             <div class="item" flex="main:left cross:center">
-              <div class="label">经 文：</div>
+              <div class="label">经&nbsp;&nbsp;&nbsp;&nbsp;文：</div>
               <div>{{ item.scripture }}</div>
             </div>
             <div class="item" flex="main:left cross:center">
-              <div class="label">时 间：</div>
+              <div class="label">日&nbsp;&nbsp;&nbsp;&nbsp;期：</div>
               <div>
-                {{
-                  item.appointmentTime.split("-")[0] == currentYear
-                    ? item.appointmentTime.slice(5)
-                    : item.appointmentTime
-                }}
-                09:30-10:30
+                {{item.appointmentTime}}
+              </div>
+            </div>
+            <div class="item" flex="main:left cross:center">
+              <div class="label">第几堂：</div>
+              <div>
+                {{hallOptions[item.appointmentlist[0].sessionType - 1]}}
               </div>
             </div>
           </div>
@@ -67,11 +68,13 @@
 </template>
 <script>
 import { getMyAppointmentList, cancelAppointment } from "@/api";
+import { hallOptions } from 'lib/options';
 export default {
   data() {
     return {
       currentYear: new Date().getFullYear(),
       listData: [],
+      hallOptions,
     };
   },
   created() {

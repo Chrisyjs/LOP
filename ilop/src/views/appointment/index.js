@@ -14,12 +14,14 @@ export default {
       currentIdx: 0,
       zrInfo: {},
       showHallPicker: false,
+      hall: "",
       hallOptions,
       userName: "",
       userMobile: this.$utils.getCookie("mobile"),
       hasSelf: false,
       remainCount: 3,
       personList: [],
+      hallInfoList: [],
       relationshipOptions,
       showRelationshipPicker: false,
       remark: "",
@@ -42,6 +44,18 @@ export default {
       return t;
     },
   },
+  watch: {
+    hall(newVal) {
+      let idx = this.hallOptions.findIndex(item => item === this.hall);
+      let hallInfo = this.hallInfoList.find(item => item.sessionNum === idx + 1);
+      const { appointmentlist, remark, peopleAmount, peopleAppliedAmount } = hallInfo;
+      let obj = appointmentlist.find(item => item.mobile === this.userMobile);
+      this.hasSelf = !!obj;
+      this.personList = appointmentlist.filter(item => item.mobile !== this.userMobile);
+      this.remainCount = peopleAmount - peopleAppliedAmount;
+      this.remark = remark;
+    }
+  },
   methods: {
     /**
      * 提交预约
@@ -58,9 +72,7 @@ export default {
       if (code === 200) {
         const {
           id,
-          appointmentlist,
-          peopleAmount,
-          peopleAppliedAmount,
+          partySessionInfoList,
           topic,
           scripture,
           appointmentTime,
@@ -70,19 +82,16 @@ export default {
         } = data;
         this.zrInfo = {
           id,
-          peopleAmount,
-          peopleAppliedAmount,
           topic,
           bible: scripture,
-          date: `${appointmentTime} 09:30-10:30`,
-          speaker: speakerName
+          date: `${appointmentTime}`,
+          speaker: speakerName,
+          remarkPlaceholder: remark || "目前暂时不建议带小朋友前来聚会",
         };
-        let obj = appointmentlist.find(item => item.mobile === this.userMobile);
+        this.hallInfoList = partySessionInfoList;
+        let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {sessionNum: 1};
+        this.hall = this.hallOptions[obj.sessionNum - 1];
         this.userName = loginName;
-        this.hasSelf = !!obj;
-        this.personList = appointmentlist.filter(item => item.mobile !== this.userMobile);
-        this.remainCount = peopleAmount - peopleAppliedAmount;
-        this.remark = remark;
       }
     },
     /**
@@ -131,6 +140,7 @@ export default {
           mobile: this.userMobile,
           name: this.userName
         }] : []),
+        "sessionType": this.hall.indexOf('第一堂') ? 1 : 2,
         "partyId": this.zrInfo.id,
         "remark": this.remark
       })

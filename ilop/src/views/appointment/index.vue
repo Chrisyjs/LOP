@@ -10,7 +10,7 @@
       <div class="panel">
         <div class="content-part">
           <div class="part-title border-bottom">预约时间</div>
-          <div style="margin: 8px 0;">{{ zrInfo.date }}</div>
+          <div style="margin: 8px 0;">{{ zrInfo.date }} {{hall}}</div>
         </div>
         <div style="margin-top: 16px;" class="content-part">
           <div class="part-title border-bottom">预约人员</div>
@@ -59,7 +59,7 @@
           <div class="panel">
             <div class="border-bottom" flex="cross:center main:justify">
               <div class="part-title">主日信息</div>
-              <div class="tip" style="padding: 0;">
+              <div v-if="hall" class="tip" style="padding: 0;">
                 （剩余可预约{{ remainCount }}名）
               </div>
             </div>
@@ -67,7 +67,7 @@
             <van-field readonly required :value="zrInfo.speaker" label="讲员" />
             <van-field readonly required :value="zrInfo.bible" label="经文" />
             <van-field readonly required :value="zrInfo.date" label="日期" />
-            <!-- <van-field
+            <van-field
               :key="1"
               :rules="[{ required: true, message: '请选择第几堂' }]"
               readonly
@@ -78,10 +78,15 @@
               label="第几堂"
               placeholder="请选择"
               @click="showHallPicker = true"
-            /> -->
+            />
           </div>
           <div class="panel">
-            <div class="part-title border-bottom">您的信息</div>
+            <div class="border-bottom" flex="cross:center main:justify">
+              <div class="part-title">您的信息</div>
+              <!-- <div class="tip" style="padding: 0;">
+                （请注意上方分堂信息）
+              </div> -->
+            </div>
             <van-field
               key="userName"
               v-model="userName"
@@ -204,7 +209,7 @@
               type="textarea"
               name="remark"
               label="备注"
-              placeholder="目前暂时不建议带小朋友前来聚会"
+              :placeholder="zrInfo.remarkPlaceholder"
             />
           </div>
           <van-button class="bottom-btn" block type="info" native-type="submit">
