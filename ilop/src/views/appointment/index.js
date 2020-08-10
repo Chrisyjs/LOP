@@ -86,8 +86,7 @@ export default {
           bible: scripture,
           date: `${appointmentTime}`,
           speaker: speakerName,
-          // remarkPlaceholder: remark || "目前暂时不建议带小朋友前来聚会",
-          remarkPlaceholder: "其他信息",
+          remarkPlaceholder: "如带小朋友前来聚会，请填写小朋友的人数和年龄",
         };
         this.hallInfoList = partySessionInfoList;
         let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {};

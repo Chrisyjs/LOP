@@ -31,6 +31,9 @@
           <div>
             4、预约后<span class="color-red">未能如期参加</span>聚会，请<span class="color-red">及时取消</span>预定<span class="color-red">(周六12:00前)</span>，把名额让给其他弟兄姊妹，珍惜预约机会，切勿浪费名额。
           </div>
+          <div>
+            5、考虑到<span class="color-red">母婴室暂时没开放</span>，我们对孩子年龄限制在<span class="color-red">3岁及以上</span>(能独立于家长一堂时间即可)，我们会安排老师陪伴孩子；另外，<span class="color-red">当前大堂不允许出现未成年人</span>。
+          </div>
         </div>
         <div class="part-title text-center font-size-15">
           愿神赐福弟兄姊妹！以马内利！
