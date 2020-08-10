@@ -83,9 +83,9 @@
           <div class="panel">
             <div class="border-bottom" flex="cross:center main:justify">
               <div class="part-title">您的信息</div>
-              <!-- <div class="tip" style="padding: 0;">
-                （请注意上方分堂信息）
-              </div> -->
+              <div class="tip" style="padding: 0;">
+                （请注意上方第几堂选项选择）
+              </div>
             </div>
             <van-field
               key="userName"

@@ -86,11 +86,12 @@ export default {
           bible: scripture,
           date: `${appointmentTime}`,
           speaker: speakerName,
-          remarkPlaceholder: remark || "目前暂时不建议带小朋友前来聚会",
+          // remarkPlaceholder: remark || "目前暂时不建议带小朋友前来聚会",
+          remarkPlaceholder: "其他信息",
         };
         this.hallInfoList = partySessionInfoList;
-        let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {sessionNum: 1};
-        this.hall = this.hallOptions[obj.sessionNum - 1];
+        let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {};
+        this.hall = obj.sessionNum  ? this.hallOptions[obj.sessionNum - 1] : '';
         this.userName = loginName;
       }
     },
