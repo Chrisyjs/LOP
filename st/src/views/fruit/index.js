@@ -15,6 +15,7 @@ export default {
       fruitCityOptions,
       address: "",
       contact: "",
+      remark: "",
       //
       dialogVisible: false,
     };

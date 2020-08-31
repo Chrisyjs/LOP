@@ -13,7 +13,6 @@
         label-width="120px"
       >
         <van-field
-          :key="1"
           v-model="username"
           name="username"
           label="您的姓名"
@@ -21,10 +20,9 @@
           required
           border
           clearable
-          :rules="[{ required: true, message: '请输入姓名' }]"
+          :rules="[{ required: true, message: '请输入您的姓名' }]"
         />
         <van-field
-          :key="2"
           :rules="[{ required: true, message: '请选择果子性别' }]"
           required
           name="gender"
@@ -38,7 +36,6 @@
           </template>
         </van-field>
         <van-field
-          :key="3"
           :rules="[{ required: true, message: '请选择果子年龄' }]"
           required
           name="age"
@@ -53,7 +50,6 @@
           </template>
         </van-field>
         <van-field
-          :key="5"
           :rules="[{ required: true, message: '请选择果子身份' }]"
           required
           name="identity"
@@ -68,7 +64,6 @@
           </template>
         </van-field>
         <van-field
-          :key="6"
           :rules="[{ required: true, message: '请选择果子类型' }]"
           readonly
           clickable
@@ -88,7 +83,6 @@
           />
         </van-popup>
         <van-field
-          :key="7"
           :rules="[{ required: true, message: '请选择禾场' }]"
           readonly
           clickable
@@ -108,7 +102,6 @@
           />
         </van-popup>
         <van-field
-          :key="8"
           v-model="address"
           name="address"
           label="具体地址"
@@ -121,9 +114,8 @@
         <div class="item-wrap">
           <div class="item-label form-required">果子联系方式</div>
           <van-field
-            :key="9"
             :rules="[
-              { required: true, message: '请输入至少一种果子有效联系方式' },
+              { required: true, message: '请至少输入一种果子有效联系方式' },
             ]"
             class="border-bottom"
             v-model="contact"
@@ -132,6 +124,18 @@
             type="textarea"
             name="contact"
             placeholder="样式一：手机号 xxx；样式二：微信号 xxx；样式三：qq号 xxx；样式四：邮箱号 xxx；等"
+          />
+        </div>
+        <div class="item-wrap">
+          <div class="item-label form-unRequired">备注</div>
+          <van-field
+            class="border-bottom"
+            v-model="remark"
+            rows="2"
+            :autosize="{ maxHeight: 100 }"
+            type="textarea"
+            name="remark"
+            placeholder="果子其他信息"
           />
         </div>
         <div class="tip">(如手机无法提交，请尝试用电脑提交)</div>

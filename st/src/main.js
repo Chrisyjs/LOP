@@ -16,7 +16,8 @@ import {
   CheckboxGroup,
   Button,
   Toast,
-  Dialog
+  Dialog,
+  Notify
 } from 'vant';
 import './api/interceptors.js';
 
@@ -36,6 +37,7 @@ Vue
   .use(Button)
   .use(Toast)
   .use(Dialog)
+  .use(Notify)
 
 
 Vue.config.productionTip = false

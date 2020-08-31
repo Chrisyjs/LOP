@@ -34,6 +34,9 @@ $dark-red:#9a1a1a;
 .color-blue {
   color: $blue;
 }
+.form-unRequired {
+  margin-left: 9px;
+}
 .form-required {
   &::before {
     content: "*";
