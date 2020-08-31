@@ -16,6 +16,7 @@ export default {
       showHallPicker: false,
       hall: "",
       hallOptions: [],
+      hallTip: "",
       userName: "",
       userMobile: this.$utils.getCookie("mobile"),
       hasSelf: false,
@@ -80,6 +81,7 @@ export default {
           loginName,
           remark
         } = data;
+        // partySessionInfoList = [partySessionInfoList[0]]
         this.zrInfo = {
           id,
           topic,
@@ -93,7 +95,9 @@ export default {
         this.hallInfoList = partySessionInfoList;
         if (this.hallOptions.length === 1) {
           this.hall = this.hallOptions[0];
+          this.hallTip = "请注意本周主日仅一堂";
         } else {
+          this.hallTip = "请注意上方第几堂选项选择";
           let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {};
           this.hall = obj.sessionNum  ? obj.time : '';
         }
