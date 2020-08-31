@@ -36,20 +36,6 @@
           </template>
         </van-field>
         <van-field
-          :rules="[{ required: true, message: '请选择果子年龄' }]"
-          required
-          name="age"
-          label="果子年龄"
-        >
-          <template #input>
-            <van-radio-group v-model="age">
-              <van-radio name="青年">青年</van-radio>
-              <van-radio name="中年">中年</van-radio>
-              <van-radio name="老年">老年</van-radio>
-            </van-radio-group>
-          </template>
-        </van-field>
-        <van-field
           :rules="[{ required: true, message: '请选择果子身份' }]"
           required
           name="identity"
@@ -105,7 +91,7 @@
           v-model="address"
           name="address"
           label="具体地址"
-          placeholder="请输入"
+          placeholder="请输入遇到果子的具体地址"
           required
           border
           clearable

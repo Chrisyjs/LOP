@@ -5,7 +5,6 @@ export default {
     return {
       username: "",
       gender: "",
-      age: "",
       identity: "",
       type: "",
       showTypePicker: false,
