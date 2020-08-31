@@ -10,7 +10,7 @@
         @submit="handleSubmit"
         :scroll-to-error="true"
         :show-error-message="false"
-        label-width="120px"
+        label-width="80px"
       >
         <van-field
           v-model="username"
@@ -42,7 +42,7 @@
           label="果子身份"
         >
           <template #input>
-            <van-radio-group v-model="identity">
+            <van-radio-group v-model="identity" direction="horizontal">
               <van-radio name="学生">学生</van-radio>
               <van-radio name="工作">工作</van-radio>
               <van-radio name="未知">未知</van-radio>
