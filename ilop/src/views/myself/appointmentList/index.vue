@@ -30,7 +30,7 @@
             <div class="item" flex="main:left cross:center">
               <div class="label">第几堂：</div>
               <div>
-                {{hallOptions[item.appointmentlist[0].sessionType - 1]}}
+                {{item.sessionInfo}}
               </div>
             </div>
           </div>
@@ -68,13 +68,11 @@
 </template>
 <script>
 import { getMyAppointmentList, cancelAppointment } from "@/api";
-import { hallOptions } from 'lib/options';
 export default {
   data() {
     return {
       currentYear: new Date().getFullYear(),
       listData: [],
-      hallOptions,
     };
   },
   created() {

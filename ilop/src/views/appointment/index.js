@@ -1,4 +1,4 @@
-import { hallOptions, relationshipOptions } from "lib/options";
+import { relationshipOptions } from "lib/options";
 import Attention from "./attention";
 import { getAppointmentInfo, submitAppointmentInfo } from "@/api";
 const defaultPerson = {
@@ -15,7 +15,7 @@ export default {
       zrInfo: {},
       showHallPicker: false,
       hall: "",
-      hallOptions,
+      hallOptions: [],
       userName: "",
       userMobile: this.$utils.getCookie("mobile"),
       hasSelf: false,
@@ -88,10 +88,15 @@ export default {
           speaker: speakerName,
           remarkPlaceholder: "如带小朋友前来聚会，请填写小朋友的人数和年龄",
         };
-        this.hallInfoList = partySessionInfoList;
-        let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {};
-        this.hall = obj.sessionNum  ? this.hallOptions[obj.sessionNum - 1] : '';
         this.userName = loginName;
+        this.hallOptions = partySessionInfoList.map(item => item.time);
+        this.hallInfoList = partySessionInfoList;
+        if (this.hallOptions.length === 1) {
+          this.hall = this.hallOptions[0];
+        } else {
+          let obj = partySessionInfoList.find(item => item.appointmentlist.length) || {};
+          this.hall = obj.sessionNum  ? obj.time : '';
+        }
       }
     },
     /**
