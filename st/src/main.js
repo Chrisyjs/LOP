@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
 // import router from './router/index'
 import {
   Form,
@@ -17,32 +17,46 @@ import {
   Button,
   Toast,
   Dialog,
-  Notify
-} from 'vant';
-import './api/interceptors.js';
+  Notify,
+} from "vant";
+import "./api/interceptors.js";
 
-Vue
-  .use(Form)
-  .use(Row)
-  .use(Col)
-  .use(RadioGroup)
-  .use(Radio)
-  .use(Field)
-  .use(DatetimePicker)
-  .use(Popup)
-  .use(Picker)
-  .use(Area)
-  .use(Checkbox)
-  .use(CheckboxGroup)
-  .use(Button)
-  .use(Toast)
-  .use(Dialog)
-  .use(Notify)
+if (pageConfig.pageName === "signUp") {
+  Vue.use(Form)
+    .use(Row)
+    .use(Col)
+    .use(RadioGroup)
+    .use(Radio)
+    .use(Field)
+    .use(DatetimePicker)
+    .use(Popup)
+    .use(Picker)
+    .use(Area)
+    .use(Checkbox)
+    .use(CheckboxGroup)
+    .use(Button)
+    .use(Toast)
+    .use(Dialog)
+    .use(Notify);
+} else if (pageConfig.pageName === "fruit") {
+  Vue.use(Form)
+    .use(Row)
+    .use(Col)
+    .use(RadioGroup)
+    .use(Radio)
+    .use(Field)
+    .use(Popup)
+    .use(Picker)
+    .use(Button)
+    .use(Toast)
+    .use(Dialog)
+    .use(Notify);
+}
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   // router,
-  render: h => h(App),
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
