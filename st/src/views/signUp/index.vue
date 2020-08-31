@@ -494,7 +494,7 @@
       </van-popup>
       <!-- 提交成功弹框 -->
       <van-dialog
-        @confirm="$router.go(0)"
+        @confirm="onReload"
         v-model="dialogVisible"
         title="报名成功"
         :message="`感谢您报名2020ST，上帝纪念！`"

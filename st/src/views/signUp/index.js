@@ -1,7 +1,8 @@
 import areaList from "@/lib/area";
 import { sizeOptions, mqOptions, fishingDateOptions } from "@/lib/options";
 import { checkNumberIsSerial } from "@/lib/utils";
-import { submitFormApi } from '@/api'
+import { submitSignUpApi } from '@/api'
+import myMixins from '@/mixins';
 export default {
   data() {
     return {
@@ -52,6 +53,7 @@ export default {
   created() {
     // console.log(this.areaList);
   },
+  mixins: [myMixins],
   watch: {},
   methods: {
     /**
@@ -109,7 +111,7 @@ export default {
         personalExperienceContent: !hasJoinedST ? this.experience : ''
       }
       console.log(params)
-      const { code, data, msg } = await submitFormApi(params);
+      const { code, data, msg } = await submitSignUpApi(params);
       if (code === 200) {
         this.dialogVisible = true;
       }

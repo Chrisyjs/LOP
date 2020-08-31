@@ -1,9 +1,11 @@
 import { fruitTypeOptions, fruitCityOptions } from "@/lib/options";
-import { submitFormApi } from '@/api'
+import { submitFruitApi } from '@/api'
+import myMixins from '@/mixins';
 export default {
   data() {
     return {
       username: "",
+      fruitName: "",
       gender: "",
       identity: "",
       type: "",
@@ -22,6 +24,7 @@ export default {
   created() {
     // console.log(this.areaList);
   },
+  mixins: [myMixins],
   watch: {},
   methods: {
     /**
@@ -41,9 +44,18 @@ export default {
      */
     async handleSubmit() {
       const params = {
+        recorderName: this.username,
+        sheepName: this.fruitName,
+        sheepGender: this.gender,
+        sheepRole: this.identity,
+        sheepType: this.type,
+        place: this.city,
+        placeDetail: this.address,
+        sheepContact: this.contact,
+        remark: this.remark
       }
       console.log(params)
-      const { code, data, msg } = await submitFormApi(params);
+      const { code, data, msg } = await submitFruitApi(params);
       if (code === 200) {
         this.dialogVisible = true;
       }

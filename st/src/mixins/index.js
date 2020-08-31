@@ -3,6 +3,9 @@ export default {
     this.zoomForbid();
   },
   methods: {
+    onReload() {
+      window.location.reload();
+    },
     zoomForbid() {
       // 禁止双指放大缩小
       window.onload = function() {

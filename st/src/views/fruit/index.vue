@@ -23,6 +23,16 @@
           :rules="[{ required: true, message: '请输入您的姓名' }]"
         />
         <van-field
+          v-model="fruitName"
+          name="fruitName"
+          label="果子姓名"
+          placeholder="请输入"
+          required
+          border
+          clearable
+          :rules="[{ required: true, message: '请输入果子姓名' }]"
+        />
+        <van-field
           :rules="[{ required: true, message: '请选择果子性别' }]"
           required
           name="gender"
@@ -133,7 +143,7 @@
       </van-form>
       <!-- 提交成功弹框 -->
       <van-dialog
-        @confirm="$router.go(0)"
+        @confirm="onReload"
         v-model="dialogVisible"
         title="录入成功"
         :message="`感谢您的摆上，上帝纪念！`"

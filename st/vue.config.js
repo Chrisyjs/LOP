@@ -1,11 +1,12 @@
+const { domainConfig } = require('./src/lib/config.js')
 const UglifyPlugin = require("uglifyjs-webpack-plugin");
 // const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const path = require("path");
-const domain = `http://www.landofpromise.co:8080/lop`;
 const Timestamp = new Date().getTime();
 const isPro = process.env.NODE_ENV === "production" ? true : false;
 const pageName = process.env.pageName;
+const domain = domainConfig[pageName];
 const cdn = {
   js: [
     "https://cdn.bootcss.com/vue/2.6.10/vue.min.js",
@@ -80,7 +81,8 @@ module.exports = {
       .plugin("define") // pageName 全局使用
       .tap((args) => {
         args[0].pageConfig = JSON.stringify({
-          pageName
+          pageName,
+          domain: domainConfig[pageName]
         });
         return args;
       });
