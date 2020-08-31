@@ -41,3 +41,9 @@ $dark-red:#9a1a1a;
     margin-right: 4px;
   }
 }
+.van-radio {
+  margin-bottom: 8px;
+  &.van-radio--horizontal {
+    margin-bottom: 0;
+  }
+}
