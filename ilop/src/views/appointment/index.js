@@ -149,7 +149,7 @@ export default {
           mobile: this.userMobile,
           name: this.userName
         }] : []),
-        "sessionType": this.hall.indexOf('第一堂') > -1 ? 1 : 2,
+        "sessionType": this.hall.indexOf('第一堂') > -1 || this.hallOptions.length === 1 ? 1 : 2,
         "partyId": this.zrInfo.id,
         "remark": this.remark
       })
