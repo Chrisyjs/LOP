@@ -19,6 +19,15 @@ export const fishingDateOptions = [
 
 // fruit
 /**
+ * 果子年龄
+ */
+export const fruitAgeOptions = [
+  '少年',
+  '青年',
+  '中年',
+  '老年'
+]
+/**
  * 果子类型选项
  */
 export const fruitTypeOptions = [

@@ -1,4 +1,4 @@
-import { fruitTypeOptions, fruitCityOptions } from "@/lib/options";
+import { fruitTypeOptions, fruitCityOptions, fruitAgeOptions } from "@/lib/options";
 import { submitFruitApi } from '@/api'
 import myMixins from '@/mixins';
 export default {
@@ -7,6 +7,9 @@ export default {
       username: "",
       fruitName: "",
       gender: "",
+      age: "",
+      showAgePicker: false,
+      fruitAgeOptions,
       identity: "",
       type: "",
       showTypePicker: false,
@@ -47,6 +50,7 @@ export default {
         recorderName: this.username,
         sheepName: this.fruitName,
         sheepGender: this.gender,
+        sheepAge: this.age,
         sheepRole: this.identity,
         sheepType: this.type,
         place: this.city,
@@ -81,6 +85,13 @@ export default {
     onCityConfirm(val) {
       this.showCityPicker = false;
       this.city = val;
+    },
+    /**
+     * 选择年龄
+     */
+    onAgeConfirm(val) {
+      this.showAgePicker = false;
+      this.age = val;
     },
   },
 };

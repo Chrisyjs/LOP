@@ -46,6 +46,25 @@
           </template>
         </van-field>
         <van-field
+          :rules="[{ required: true, message: '请选择果子年龄' }]"
+          readonly
+          clickable
+          required
+          name="age"
+          :value="age"
+          label="果子年龄"
+          placeholder="请选择"
+          @click="showAgePicker = true"
+        />
+        <van-popup v-model="showAgePicker" position="bottom">
+          <van-picker
+            show-toolbar
+            :columns="fruitAgeOptions"
+            @confirm="onAgeConfirm"
+            @cancel="showAgePicker = false"
+          />
+        </van-popup>
+        <van-field
           :rules="[{ required: true, message: '请选择果子身份' }]"
           required
           name="identity"
