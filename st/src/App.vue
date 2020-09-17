@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <SignUp v-if="pageName === 'signUp'"></SignUp>
+    <SignUp2021 v-else-if="pageName === 'signUp2021'"></SignUp2021>
     <Fruit v-else></Fruit>
     <!-- <router-view></router-view> -->
   </div>
@@ -8,6 +9,7 @@
 <script>
 
 import SignUp from "@/views/signUp/index.vue";
+import SignUp2021 from "@/views/signUp2021/index.vue";
 import Fruit from '@/views/fruit/index.vue';
 import MyMixin from '@/mixins/index.js';
 export default {
@@ -19,7 +21,8 @@ export default {
   },
   components: {
     SignUp,
-    Fruit
+    Fruit,
+    SignUp2021
   },
   mounted() {
     // console.log(this.pageName)

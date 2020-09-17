@@ -21,7 +21,7 @@ import {
 } from "vant";
 import "./api/interceptors.js";
 
-if (pageConfig.pageName === "signUp") {
+if (pageConfig.pageName.indexOf('signUp') > -1) {
   Vue.use(Form)
     .use(Row)
     .use(Col)

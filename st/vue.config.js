@@ -31,6 +31,18 @@ pageName === "signUp" &&
     title: "ST 报名",
     chunks: ["chunk-vendors", "chunk-common", "signUp"],
   });
+  pageName === "signUp2021" &&
+  (pages.signUp2021 = {
+    // 入口文件
+    entry: "./src/main.js" /*这个是根入口文件*/,
+    // 模板文件
+    template: "public/index.html",
+    // 输出文件
+    filename: "signUp2021.html",
+    // 页面title
+    title: "ST 报名",
+    chunks: ["chunk-vendors", "chunk-common", "signUp2021"],
+  });
   pageName === "fruit" &&
   (pages.fruit = {
     // 入口文件
