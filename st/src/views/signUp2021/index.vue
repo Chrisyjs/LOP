@@ -304,9 +304,9 @@
           </d>
         </div>
         <!-- 公共需填 -->
-        <div class="item-wrap">
+        <!-- <div class="item-wrap">
           <div class="item-label form-required mb-10">
-            fishing参加时间(09/02-09/05)
+            fishing参加时间
             <div class="fishing-date-warning" v-if="fishingDateWarning">
               目前选择时间不连续哦(也可提交)
             </div>
@@ -337,7 +337,7 @@
         </div>
         <div class="item-wrap">
           <div class="item-label form-required">
-            参加嘉年华(09/05晚-09/06晚)
+            参加嘉年华
           </div>
           <van-field
             :key="20"
@@ -352,7 +352,7 @@
               </van-radio-group>
             </template>
           </van-field>
-        </div>
+        </div> -->
         <van-field
           :key="21"
           :rules="[{ required: true, message: '请选择是否参加过fishing' }]"
@@ -385,7 +385,7 @@
             </van-radio-group>
           </template>
         </van-field>
-        <div v-if="hasJoinedST == '是'" class="item-wrap">
+        <!-- <div v-if="hasJoinedST == '是'" class="item-wrap">
           <div class="item-label form-required">您准备为今年ST预备什么？</div>
           <van-field
             :key="23"
@@ -430,7 +430,7 @@
           />
         </div>
         <div class="item-wrap">
-          <div class="item-label form-required">您对2020ST的期待</div>
+          <div class="item-label form-required">您对2021ST的期待</div>
           <van-field
             :key="26"
             :rules="[{ required: true, message: '请输入相应内容' }]"
@@ -456,8 +456,8 @@
             name="experience"
             placeholder="请输入"
           />
-        </div>
-        <div class="need-know">
+        </div> -->
+        <!-- <div class="need-know">
           <div class="nk-title">报名须知：</div>
           <div class="nk-content">
             1.今年ST报名费为50RMB，请在报名时一并上交报名费；<br />
@@ -471,11 +471,11 @@
           >
             <template #input>
               <van-checkbox v-model="hasRead" shape="square">
-                我已理解报名条件，确认报名信息无误，愿意报名2020ST
+                我已理解报名条件，确认报名信息无误，愿意报名2021ST
               </van-checkbox>
             </template>
           </van-field>
-        </div>
+        </div> -->
         <div class="tip">(如手机无法提交，请尝试用电脑提交)</div>
         <div style="margin: 16px;">
           <van-button round block type="info" native-type="submit">
@@ -497,7 +497,7 @@
         @confirm="onReload"
         v-model="dialogVisible"
         title="报名成功"
-        :message="`感谢您报名2020ST，上帝纪念！`"
+        :message="`感谢您报名2021ST，上帝纪念！`"
       ></van-dialog>
     </div>
   </div>
