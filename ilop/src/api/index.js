@@ -1,5 +1,4 @@
 import { axios } from "@/api/interceptors";
-import qs from "qs";
 
 // const domain = '';
 const domain =

@@ -27,9 +27,8 @@ module.exports = {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
       "/api": {
-        target: `http://www.landofpromise.co:8080/${
-          appConfig[appName].apiPrefix
-        }/api`, //代理接口
+        target: `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix
+          }/api`, //代理接口
         // target: `http://192.168.0.100:8080/api`,   //代理接口
         changeOrigin: true,
         pathRewrite: {
@@ -109,9 +108,6 @@ module.exports = {
         optimization,
       });
       // config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
-      config.plugins = config.plugins.concat([
-        new LodashModuleReplacementPlugin(),
-      ]);
     }
     config.devtool = "source-map";
   },
