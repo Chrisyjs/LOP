@@ -8,7 +8,7 @@ const state = {
   choosedList: [],
   waitingListData: [],
   imagePreview: [],
-  showImagePreview: false
+  showImagePreview: false,
 }
 
 const mutations = {
@@ -29,7 +29,7 @@ const mutations = {
   },
   setShowImagePreview(state, showImagePreview) {
     state.showImagePreview = showImagePreview;
-  }
+  },
 }
 
 const getters = {
@@ -55,7 +55,7 @@ const actions = {
   //             progressPercent: jtem.progressPercent,
   //             payAmount: jtem.payAmount,
   //             amountClaimed: jtem.amountClaimed,
-  //             choosedAmount: 0 
+  //             choosedAmount: 0
   //           }
   //         }),
   //         allChoosedAmount: 0,

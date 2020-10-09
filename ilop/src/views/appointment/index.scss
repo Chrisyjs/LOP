@@ -1,0 +1,39 @@
+.appointment-wrap {
+  ::v-deep {
+    .van-dialog__header {
+      padding: 10px 0;
+    }
+  }
+  .tip {
+    padding-bottom: 8px;
+  }
+  .form {
+    padding: 16px;
+    padding-top: 0;
+  }
+  .overflow-scroll {
+    height: calc(100vh - 164px);
+  }
+  .part-title {
+    font-size: 14px;
+    padding-left: 6px;
+  }
+  .bottom-btn {
+    bottom: 50px;
+  }
+  .panel {
+    position: relative;
+  }
+  .close-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 100;
+  }
+  .content-part {
+    padding: 0 12px;
+    .part-title {
+      padding-left: 0;
+    }
+  }
+}

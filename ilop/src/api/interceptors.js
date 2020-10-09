@@ -4,7 +4,7 @@ import Vue from 'vue';
 const http = axios.create();
 
 http.interceptors.request.use(
-  
+
 )
 
 http.interceptors.response.use(
@@ -14,9 +14,11 @@ http.interceptors.response.use(
     //   window.location.href = '';
     // }
     if (data.code === 200) {
+      Vue.prototype.$toast.clear();
       return data;
-    } 
+    }
     else {
+      Vue.prototype.$toast.clear();
       Vue.prototype.$notify({
         message: `${data.msg}`,
         type: 'warning'
@@ -25,6 +27,7 @@ http.interceptors.response.use(
     }
   },
   error => {
+    Vue.prototype.$toast.clear();
     return Promise.reject(error);
   }
 )

@@ -1,0 +1,72 @@
+.form-wrap {
+  .overflow-scroll {
+    padding: 0 10px;
+    height: calc(100vh - 200px);
+  }
+  padding: 16px 0px;
+  .title {
+    text-align: center;
+    font-size: 18px;
+    color: #1989fa;
+    font-weight: bold;
+  }
+  .form {
+    margin-top: 12px;
+    .fishing-date-warning {
+      color: #ff976a;
+      font-size: 12px;
+      padding-left: 16px;
+    }
+    .item-wrap {
+      ::v-deep {
+        .van-cell {
+          padding-bottom: 0;
+        }
+        .border-bottom {
+          border-bottom: 1px solid rgba($color: #dbdbdb, $alpha: 0.21);
+          padding-bottom: 10px;
+        }
+      }
+      .field-padding-none {
+        padding: 0;
+      }
+      .item-label {
+        padding-top: 10px;
+        padding-left: 8px;
+        color: #323233;
+        font-size: 14px;
+        line-height: 24px;
+      }
+      // padding-bottom: 10px;
+      ::v-deep {
+        .van-checkbox-group {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+  .need-know {
+    font-size: 14px;
+    .nk-title {
+      padding-bottom: 4px;
+    }
+    .nk-content {
+      line-height: 20px;
+    }
+    // line-height: 20px;
+    padding: 10px 16px;
+    ::v-deep {
+      .van-cell {
+        padding: 0;
+      }
+      .van-checkbox {
+        // align-items: flex-start;
+        margin-top: 8px;
+        font-size: 12px;
+        .van-checkbox__label {
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}

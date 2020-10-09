@@ -1,0 +1,52 @@
+$blue: #1989fa;
+$red: rgb(255, 68, 68);
+$gray: #999999;
+$dark-red:#9a1a1a;
+
+.inline-block {
+  display: inline-block;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.part-title {
+  color: $dark-red;
+  font-weight: 700;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.font-size-12 {
+  font-size: 12px;
+}
+.font-size-14 {
+  font-size: 14px;
+}
+.color-gray {
+  color: $gray;
+}
+.color-red {
+  color: $red;
+}
+.color-blue {
+  color: $blue;
+}
+.form-unRequired {
+  margin-left: 9px;
+}
+.form-required {
+  &::before {
+    content: "*";
+    color: #f56c6c;
+    margin-right: 4px;
+  }
+}
+.van-radio {
+  margin-bottom: 8px;
+  &.van-radio--horizontal {
+    margin-bottom: 0;
+  }
+}

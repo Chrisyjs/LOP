@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="title text-center">
-      <div class="small">感谢您加入【全员联名 为i认领】</div>
+      <div class="small">{{appGreet}}</div>
       <div class="big">{{appName}}</div>
     </div>
     <div class="form">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { getValidCode, login } from '../api';
+import { getValidCode, login } from 'api';
 export default {
   data() {
     return {
@@ -39,7 +39,8 @@ export default {
       validCodeErrMsg: '',
       validText: '发送验证码',
       isSending: false,
-      appName: appConfig.appName
+      appName: appConfig.appName,
+      appGreet: appConfig.appGreet,
     };
   },
   created() {
@@ -85,12 +86,17 @@ export default {
       this.validCodeErrMsg = this.validCode ? '' : '验证码错误';
     },
     async submit () {
+      if (!isPro) {
+        this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
+        // this.$utils.setCookie('mobile', '15990154742', 1000 * 30 * 60);
+        // this.$utils.setCookie('mobile', '15757190962', 1000 * 30 * 60);
+        this.$router.push({
+          path: '/appointment'
+        })
+        return;
+      }
       this.checkPhone();
       this.checkValidCode();
-      // this.$utils.setCookie('mobile', '15068865038', 1000 * 30 * 60);
-      // this.$router.push({
-      //   path: '/home/waitingList'
-      // })
       if (!this.phoneErrMsg && !this.validCodeErrMsg) {
         const { data, code } = await login({
           mobile: this.phone,
@@ -99,7 +105,7 @@ export default {
         if (code === 200) {
           this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
           this.$router.push({
-            path: '/home/waitingList'
+            path: '/claim/waitingList'
           })
         }
       }
@@ -129,7 +135,7 @@ export default {
       margin-top: 30px;
     }
   }
-  /deep/ .van-cell--center {
+  ::v-deep .van-cell--center {
     align-items: baseline;
   }
 }
