@@ -32,12 +32,15 @@ import {
   Picker,
   Area,
   CheckboxGroup,
-  Empty
+  Empty,
+  Grid,
+  GridItem
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
 import './api/interceptors.js';
 import './router/permission';
+import Goback from './components/goback.vue';
 
 Vue.use(Field)
   .use(CellGroup)
@@ -69,7 +72,10 @@ Vue.use(Field)
   .use(Area)
   .use(CheckboxGroup)
   .use(Empty)
+  .use(Grid)
+  .use(GridItem)
 
+Vue.component('goback', Goback)
 Vue.config.productionTip = false
 
 Vue.prototype.isWeiXinEnv = (() => {

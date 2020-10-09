@@ -11,9 +11,13 @@ export default new VueRouter({
       component:() => import(/* webpackChunkName: "login" */ 'views/login.vue'),
     },
     {
+      path: '/home',
+      component:() => import(/* webpackChunkName: "home" */ 'views/home.vue'),
+    },
+    {
       path: '/claim',
       redirect: '/claim/waitingList',
-      component:() => import(/* webpackChunkName: "claim_mainPage" */ 'views/claim/mainPage.vue'),
+      component:() => import(/* webpackChunkName: "claim_routerView" */ 'views/routerView.vue'),
       children: [
         {
           path: 'waitingList',
@@ -38,16 +42,23 @@ export default new VueRouter({
       component:() => import(/* webpackChunkName: "st_index" */ 'views/st/signUp/index.vue'),
     },
     {
-      path: '/appointment/process',
-      component:() => import(/* webpackChunkName: "appointment_process" */ 'views/appointment/process/index.vue'),
-    },
-    {
-      path: '/appointment/list',
-      component:() => import(/* webpackChunkName: "appointment_list" */ 'views/appointment/list/index.vue'),
+      path: '/appointment',
+      redirect: '/appointment/process',
+      component:() => import(/* webpackChunkName: "appointment_index */ 'views/appointment/index.vue'),
+      children: [
+        {
+          path: 'process',
+          component:() => import(/* webpackChunkName: "appointment_process" */ 'views/appointment/process/index.vue'),
+        },
+        {
+          path: 'list',
+          component:() => import(/* webpackChunkName: "appointment_list" */ 'views/appointment/list/index.vue'),
+        },
+      ]
     },
     {
       path: '*',
-      redirect: '/appointment/process'
+      redirect: '/home'
     }
   ]
 })

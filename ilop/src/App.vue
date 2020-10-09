@@ -4,17 +4,8 @@
       <van-icon name="user-circle-o"></van-icon>
       <span class="account">{{$utils.getCookie('mobile')}}</span>
     </div>
-    <div style="margin-bottom: 50px;">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
     <van-image-preview v-if="$route.path.indexOf('login') === -1" v-model="showImagePreview" :images="imagePreview"></van-image-preview>
-    <!-- tabBar -->
-    <van-tabbar v-if="$route.path.indexOf('login') === -1" v-model="active" @change="handleChangeActive">
-      <van-tabbar-item name="appointment" icon="phone">预约</van-tabbar-item>
-      <van-tabbar-item name="st" icon="fire">ST</van-tabbar-item>
-      <van-tabbar-item name="claim" icon="shopping-cart">认领</van-tabbar-item>
-      <van-tabbar-item name="myself" icon="setting">我的</van-tabbar-item>
-    </van-tabbar>
   </div>
 </template>
 
@@ -33,13 +24,6 @@ export default {
     }
   },
   watch: {
-    '$route': {
-      handler(toRouter) {
-        console.log(toRouter) //打开的新路由
-        this.active = this.getActiveByRoute(toRouter.path);
-      },
-      immediate: true
-    }
   },
   computed: {
     showImagePreview: {
@@ -54,40 +38,9 @@ export default {
   },
   mixins: [Layout],
   mounted() {
-    window.onresize = () => {
-      this.setOverflowScrollHeight();
-    }
-    // 禁止双指放大缩小
-    window.onload = function() {
-      document.addEventListener('touchstart', function(event) {
-        if (event.touches.length > 1) {
-          event.preventDefault()
-        }
-      })
-      document.addEventListener('gesturestart', function(event) {
-        event.preventDefault()
-      })
-    }
   },
   methods: {
     ...mapMutations(['resetChoosedList', 'setShowImagePreview']),
-    handleChangeActive(index) {
-      this.$router.push(`/${index}`)
-    },
-    getActiveByRoute(path) {
-      if (path.indexOf('/appointment') > -1) {
-        return 'appointment';
-      }
-      if (path.indexOf('/claim') > -1) {
-        return 'claim';
-      }
-      if (path.indexOf('/st') > -1) {
-        return 'st';
-      }
-      if (path.indexOf('/myself') > -1) {
-        return 'myself';
-      }
-    },
     handleLogout() {
       this.$dialog.confirm({
         title: '系统提示',
@@ -117,9 +70,6 @@ export default {
     // right: 14px;
     right: 36px;
     z-index: 2000;
-    .account {
-      // text-decoration: underline;
-    }
   }
 }
 </style>

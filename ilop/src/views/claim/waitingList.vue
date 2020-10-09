@@ -88,7 +88,7 @@
         <van-button
           type="info"
           @click="handleGotoClaim"
-          class="bottom-btn fixed-bottom"
+          class="fixed-bottom"
           >去认领</van-button
         >
       </div>
@@ -219,7 +219,7 @@ export default {
 .claim-list {
   .is-waitingList-wrap {
     .overflow-scroll {
-      height: calc(100vh - 160px);
+      height: calc(100vh - 94px);
     }
     .side-bar {
       height: 100%;

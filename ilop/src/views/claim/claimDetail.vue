@@ -164,7 +164,7 @@ export default {
   padding: 10px;
   padding-bottom: 0;
   &.overflow-scroll {
-    height: calc(100vh - 144px);
+    height: calc(100vh - 94px);
   }
   .item {
     margin: 6px 0;

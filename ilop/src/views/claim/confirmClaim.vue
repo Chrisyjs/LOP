@@ -76,7 +76,7 @@
     </div>
     <van-button
       type="info"
-      class="bottom-btn fixed-bottom"
+      class="fixed-bottom"
       @click="handleConfirm"
       >确认认领</van-button
     >
@@ -179,7 +179,7 @@ export default {
     padding: 10px;
   }
   .overflow-scroll {
-    height: calc(100vh - 146px);
+    height: calc(100vh - 96px);
   }
   .check-box {
     padding-top: 4px;

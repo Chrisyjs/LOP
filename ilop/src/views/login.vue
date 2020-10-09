@@ -91,7 +91,7 @@ export default {
         // this.$utils.setCookie('mobile', '15990154742', 1000 * 30 * 60);
         // this.$utils.setCookie('mobile', '15757190962', 1000 * 30 * 60);
         this.$router.push({
-          path: '/appointment'
+          path: '/home'
         })
         return;
       }
@@ -105,7 +105,7 @@ export default {
         if (code === 200) {
           this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
           this.$router.push({
-            path: '/claim/waitingList'
+            path: '/home'
           })
         }
       }

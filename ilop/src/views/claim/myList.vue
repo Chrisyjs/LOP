@@ -143,9 +143,7 @@ export default {
     margin-left: 12px;
   }
   .overflow-scroll {
-    height: calc(100vh - 200px);
-  }
-  .no-data-tip {
+    height: calc(100vh - 158px);
   }
 }
 </style>

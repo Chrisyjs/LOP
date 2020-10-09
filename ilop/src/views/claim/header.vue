@@ -1,5 +1,6 @@
 <template>
   <div class="top-btn-group text-center fixed-header">
+    <goback :styleObj="{top: '18px'}" @callback="$router.replace('/home')"></goback>
     <van-button
       class="left-btn"
       type="info"
