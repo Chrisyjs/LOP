@@ -8,14 +8,12 @@ module.exports = {
     bankCardName: '屠密迦',
     claimSucText: '已完成认领！\n感谢您的认领，每笔认领都会用于新家建设并载入LOP史册！',
     output: 'dist_house',
-    // apiPrefix: 'lop_project_house'
     apiPrefix: 'lop_project'
   },
   iAppointment: {
-    appGreet: '主日预约',
+    appGreet: '预约系统',
     appName: 'iLop',
     output: 'dist_appointment',
-    // apiPrefix: 'lop_project_house'
     apiPrefix: 'lop_project'
   },
   iMask: {

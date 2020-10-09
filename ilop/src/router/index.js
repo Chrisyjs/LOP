@@ -37,22 +37,37 @@ export default new VueRouter({
         },
       ]
     },
+    // {
+    //   path: '/st',
+    //   component:() => import(/* webpackChunkName: "st_index" */ 'views/st/signUp/index.vue'),
+    // },
     {
-      path: '/st',
-      component:() => import(/* webpackChunkName: "st_index" */ 'views/st/signUp/index.vue'),
-    },
-    {
-      path: '/appointment',
-      redirect: '/appointment/process',
-      component:() => import(/* webpackChunkName: "appointment_index */ 'views/appointment/index.vue'),
+      path: '/sundayAppoint',
+      redirect: '/sundayAppoint/process',
+      component:() => import(/* webpackChunkName: "sundayAppoint_index */ 'views/sundayAppoint/index.vue'),
       children: [
         {
           path: 'process',
-          component:() => import(/* webpackChunkName: "appointment_process" */ 'views/appointment/process/index.vue'),
+          component:() => import(/* webpackChunkName: "sundayAppoint_process" */ 'views/sundayAppoint/process/index.vue'),
         },
         {
           path: 'list',
-          component:() => import(/* webpackChunkName: "appointment_list" */ 'views/appointment/list/index.vue'),
+          component:() => import(/* webpackChunkName: "sundayAppoint_list" */ 'views/sundayAppoint/list/index.vue'),
+        },
+      ]
+    },
+    {
+      path: '/placeAppoint',
+      redirect: '/placeAppoint/process',
+      component:() => import(/* webpackChunkName: "placeAppoint_index */ 'views/placeAppoint/index.vue'),
+      children: [
+        {
+          path: 'process',
+          component:() => import(/* webpackChunkName: "placeAppoint_process" */ 'views/placeAppoint/process/index.vue'),
+        },
+        {
+          path: 'list',
+          component:() => import(/* webpackChunkName: "placeAppoint_list" */ 'views/placeAppoint/list/index.vue'),
         },
       ]
     },

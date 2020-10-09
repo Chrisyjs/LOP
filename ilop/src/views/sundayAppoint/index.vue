@@ -6,8 +6,8 @@
     </div>
     <!-- tabBar -->
     <van-tabbar v-model="active" @change="handleChangeActive">
-      <van-tabbar-item name="/appointment/process" icon="phone">预约</van-tabbar-item>
-      <van-tabbar-item name="/appointment/list" icon="setting">我的</van-tabbar-item>
+      <van-tabbar-item name="/sundayAppoint/process" icon="phone">预约</van-tabbar-item>
+      <van-tabbar-item name="/sundayAppoint/list" icon="setting">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -45,11 +45,11 @@ export default {
       this.$router.push(`${index}`)
     },
     getActiveByRoute(path) {
-      if (path.indexOf('/appointment/process') > -1) {
-        return '/appointment/process';
+      if (path.indexOf('/sundayAppoint/process') > -1) {
+        return '/sundayAppoint/process';
       }
-      if (path.indexOf('/appointment/list') > -1) {
-        return '/appointment/list';
+      if (path.indexOf('/sundayAppoint/list') > -1) {
+        return '/sundayAppoint/list';
       }
     },
   },
