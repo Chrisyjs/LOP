@@ -178,8 +178,6 @@ export default {
       width: calc(100% - 108px);
     }
   }
-  .thanks-info {
-  }
 }
 .submit-btn {
   width: 100%;
