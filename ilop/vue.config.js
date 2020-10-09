@@ -1,5 +1,4 @@
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
-const appConfig = require('./appConfig');
 // const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const cdn = {
@@ -11,17 +10,15 @@ const cdn = {
   ]
 };
 const isPro = process.env.NODE_ENV === 'production' ? true : false;
-const appName = process.env.appName;
-const output = appConfig[process.env.appName].output;
+
 module.exports = {
   lintOnSave: true,
   publicPath: './',
-  outputDir: output,
   devServer: {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
       '/api': {
-        target: `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix}`,   //代理接口
+        target: 'http://www.landofpromise.co:8080/lop_project',   //代理接口
         // target: 'http://192.168.0.248:8080/lop',   //代理接口
         changeOrigin: true,
         pathRewrite: {
@@ -32,7 +29,6 @@ module.exports = {
   },
   productionSourceMap: isPro ? false : true,
   chainWebpack: config => {
-    config.resolve.symlinks(true);
     if (isPro) {
       config.plugin('prefetch').tap(options => {
         options[0].fileBlacklist = options[0].fileBlacklist || []
@@ -45,18 +41,6 @@ module.exports = {
         return args;
       })
     }
-    config
-    .plugin('define')  // appConfig 全局使用
-    .tap(args => { 
-        args[0].appConfig = JSON.stringify(appConfig[appName])
-        return args
-    })
-    config.plugin('html')
-    .tap(args => {
-        args[0].appConfig = appConfig[appName]
-      return args;
-    })
-
   },
   configureWebpack: (config) => {
     if (isPro) {
@@ -86,7 +70,6 @@ module.exports = {
       // config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
       config.plugins = config.plugins.concat([new LodashModuleReplacementPlugin()]);
     } 
-    config.devtool = 'source-map';
   },
   css: {
     loaderOptions: {
