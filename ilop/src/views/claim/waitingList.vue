@@ -100,7 +100,6 @@
 import { getWaitingListData } from "api/index.js";
 import { debounce } from "lodash";
 import { mapGetters, mapState, mapMutations } from "vuex";
-import Layout from "mixins/layout";
 import Header from "./header";
 
 export default {
@@ -119,7 +118,6 @@ export default {
   created() {
     this._getWaitingListData();
   },
-  mixins: [Layout],
   mounted() {},
   watch: {},
   methods: {

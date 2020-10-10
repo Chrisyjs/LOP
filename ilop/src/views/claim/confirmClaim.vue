@@ -86,7 +86,6 @@
 <script>
 import { mapGetters, mapState, mapMutations } from "vuex";
 import OrderPanel from "components/orderPanel";
-import Layout from "mixins/layout";
 import { confirmClaim } from "api";
 
 export default {
@@ -108,7 +107,6 @@ export default {
   components: {
     OrderPanel,
   },
-  mixins: [Layout],
   mounted() {
     this.choosedList.forEach((item) => {
       this.allAmount += item.allChoosedAmount;

@@ -12,7 +12,6 @@
 <script>
 
 import { mapMutations, mapState } from 'vuex';
-import Layout from 'mixins/layout';
 
 export default {
   name: 'app',
@@ -36,7 +35,6 @@ export default {
     },
     ...mapState(['showLoading', 'imagePreview'])
   },
-  mixins: [Layout],
   mounted() {
   },
   methods: {

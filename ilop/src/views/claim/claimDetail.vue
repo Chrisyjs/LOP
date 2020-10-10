@@ -59,7 +59,6 @@
 
 <script>
 import OrderPanel from "components/orderPanel";
-import Layout from 'mixins/layout';
 import { getClaimDetail, uploadImage, submitOrder } from "api";
 
 export default {
@@ -83,7 +82,6 @@ export default {
     OrderPanel
   },
   mixins: [
-    Layout
   ],
   created() {
     this._getClaimDetail()

@@ -6,7 +6,7 @@
     </div>
     <!-- tabBar -->
     <van-tabbar v-model="active" @change="handleChangeActive">
-      <van-tabbar-item name="/placeAppoint/process" icon="phone">预约</van-tabbar-item>
+      <van-tabbar-item name="/placeAppoint/process" icon="phone">申请</van-tabbar-item>
       <van-tabbar-item name="/placeAppoint/list" icon="setting">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -15,7 +15,6 @@
 <script>
 
 import { mapMutations, mapState } from 'vuex';
-import Layout from 'mixins/layout';
 
 export default {
   components: {
@@ -36,7 +35,6 @@ export default {
   },
   computed: {
   },
-  mixins: [Layout],
   methods: {
     goback() {
       this.$router.replace('/home')

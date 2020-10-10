@@ -15,7 +15,6 @@ export const fishingDateOptions = [
   new Date(2020, 9, 3),
   new Date(2020, 9, 4),
 ]
-
 /**
  * 关系
  */
@@ -25,4 +24,12 @@ export const relationshipOptions = [
   "朋友",
   "同事",
   "同学"
+]
+/**
+ * 场地
+ */
+export const placeOptions = [
+  "402-大堂",
+  "404-主日学",
+  "405-母婴室"
 ]

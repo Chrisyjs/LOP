@@ -15,7 +15,6 @@
 <script>
 
 import { mapMutations, mapState } from 'vuex';
-import Layout from 'mixins/layout';
 
 export default {
   components: {
@@ -36,7 +35,6 @@ export default {
   },
   computed: {
   },
-  mixins: [Layout],
   methods: {
     goback() {
       this.$router.replace('/home')

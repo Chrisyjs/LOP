@@ -72,7 +72,6 @@
 <script>
 import { getMyListData, cancelOrder } from "api";
 import OrderPanel from "components/orderPanel";
-import Layout from "mixins/layout";
 import Header from "./header";
 
 export default {
@@ -91,7 +90,6 @@ export default {
     OrderPanel,
     Header,
   },
-  mixins: [Layout],
   created() {
     this._getMyListData();
   },
