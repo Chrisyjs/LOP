@@ -103,7 +103,6 @@ export default {
       if (code === 200) {
         this.$toast.clear();
         this.myList = data;
-        this.setOverflowScrollHeight();
       }
     },
     goClaimDetail(id) {

@@ -1,7 +1,7 @@
 <template>
   <div class="appointmentList-wrap">
     <div class="title text-center border-bottom" style="borderColor: #dbdbdb">
-      我的预约
+      我的申请
     </div>
     <van-empty v-if="!listData.length" description="暂无预约信息"></van-empty>
     <div v-else class="list overflow-scroll">

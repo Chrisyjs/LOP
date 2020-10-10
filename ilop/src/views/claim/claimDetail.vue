@@ -100,7 +100,6 @@ export default {
     async _getClaimDetail() {
       const { code, data } = await getClaimDetail(this.id);
       this.detail = data;
-      this.setOverflowScrollHeight();
     },
     handleClickLeft() {
       this.$router.back(-1);

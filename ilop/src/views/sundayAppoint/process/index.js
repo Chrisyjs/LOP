@@ -1,5 +1,5 @@
 import { relationshipOptions } from "lib/options";
-import Attention from "./attention";
+import Attention from "@/components/attention";
 import { getAppointmentInfo, submitAppointmentInfo } from "@/api";
 const defaultPerson = {
   name: "",

@@ -112,7 +112,6 @@ export default {
       this.allAmount += item.allChoosedAmount;
       this.allPayMoney += item.allChoosedPayMoney;
     });
-    this.setOverflowScrollHeight();
   },
   methods: {
     ...mapMutations(["resetChoosedList"]),

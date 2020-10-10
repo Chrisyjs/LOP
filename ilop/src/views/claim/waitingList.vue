@@ -129,7 +129,6 @@ export default {
         this.waitingListData = data.map((item, index) => {
           return this.resetFromVuex(item, index);
         });
-        this.setOverflowScrollHeight();
       }
     },
     resetFromVuex(item, index) {

@@ -1,10 +1,11 @@
 import { placeOptions } from "lib/options";
 import {  } from "@/api";
+import Attention from "@/components/attention";
 import dayjs from 'dayjs';
 export default {
   data() {
     return {
-      userName: '',
+      /* userName: '',
       userMobile: '',
       place: '',
       placeOptions,
@@ -15,10 +16,30 @@ export default {
       showDatePicker: false,
       duration: '',
       reason: '',
+      showResonPicker: false,
+      detailReason: '',
       remark: '',
+      step: 0, */
+
+      userName: 'yjs',
+      userMobile: '15700084697',
+      place: '123',
+      placeOptions,
+      showPlacePicker: false,
+      minDate: new Date(),
+      useDate: '2020-10-10',
+      date: '2020-10-10',
+      showDatePicker: false,
+      duration: '2',
+      reason: '123',
+      showResonPicker: false,
+      detailReason: '456',
+      remark: '12',
+      step: 0,
     };
   },
   components: {
+    Attention
   },
   mounted() {
   },
