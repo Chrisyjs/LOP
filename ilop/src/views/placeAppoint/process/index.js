@@ -1,4 +1,4 @@
-import {  } from "@/api";
+import { getBaseInfo, getDetail } from "@/api/placeAppoint.js";
 import Attention from "@/components/attention";
 import dayjs from 'dayjs';
 export default {
@@ -16,13 +16,14 @@ export default {
       duration: '',
       reason: '',
       showResonPicker: false,
+      reasonOptions: []
       detailReason: '',
       remark: '',
       step: 0, */
 
       userName: 'yjs',
       userMobile: '15700084697',
-      place: '123',
+      place: '',
       placeOptions: [],
       showPlacePicker: false,
       minDate: new Date(),
@@ -30,24 +31,62 @@ export default {
       date: '2020-10-10',
       showDatePicker: false,
       duration: '2',
-      reason: '123',
+      reason: '',
       showResonPicker: false,
+      reasonOptions: [],
       detailReason: '456',
       remark: '12',
       step: 0,
+      attention: ''
     };
   },
   components: {
     Attention
   },
   mounted() {
-    
+    this.getBaseInfo();
   },
   computed: {
   },
   watch: {
+    place(n) {
+      this.attention = this.placeOptions.find(item => item.name == n).notice;
+    } 
   },
   methods: {
+    /**
+     * 获取基本信息
+     */
+    async getBaseInfo() {
+      const { data, code } = await getBaseInfo();
+      if (code === 200) {
+        this.placeOptions = data.placeList;
+        this.reasonOptions = data.reasonList;
+      }
+    },
+    /**
+     * 获取申请详情
+     */
+    async getDetail() {
+      let id = 1;
+      const { data, code } = await getDetail(id);
+      if (code === 200) {
+      }
+    },
+    /**
+     * 选择场地
+     */
+    onPlaceConfirm(val) {
+      this.place = val.name;
+      this.showPlacePicker = false;
+    },
+    /**
+     * 选择原因
+     */
+    onReasonConfirm(val) {
+      this.reason = val.name;
+      this.showResonPicker = false;
+    },
     /**
      * 提交表单
      */

@@ -4,7 +4,8 @@
     <Attention title="申请须知" :handleSubmit="onSubmit" :step.sync="step" v-if="step === 1">
       <div class="content font-size-14">
         <div>
-          因疫情防控需求，目前聚会采用座位预约制。请仔细阅读以下须知内容：
+          请仔细阅读以下须知内容：
+          <div v-html="attention"></div>
         </div>
       </div>
       <div class="part-title text-center font-size-15">
@@ -63,6 +64,8 @@
               <van-picker
                 show-toolbar
                 :columns="placeOptions"
+                value-key="name"
+                @confirm="onPlaceConfirm"
                 @cancel="showPlacePicker = false"
               />
             </van-popup>
@@ -103,20 +106,22 @@
             />
             <van-field
               key="reason"
-              :rules="[{ required: true, message: '请选择场地' }]"
+              :rules="[{ required: true, message: '请选择申请原因' }]"
               readonly
               clickable
               required
               name="reason"
               :value="reason"
-              label="申请场地"
+              label="申请原因"
               placeholder="请选择"
               @click="showResonPicker = true"
             />
             <van-popup v-model="showResonPicker" position="bottom">
               <van-picker
                 show-toolbar
-                :columns="placeOptions"
+                :columns="reasonOptions"
+                value-key="name"
+                @confirm="onReasonConfirm"
                 @cancel="showResonPicker = false"
               />
             </van-popup>
