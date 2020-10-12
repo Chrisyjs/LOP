@@ -43,10 +43,9 @@
               label="申请人手机号"
               placeholder="请输入"
               maxlength="11"
-              readonly
               required
               border
-              :rules="[{ required: true, message: '请输入申请人手机号' }]"
+              :rules="[{ required: true, message: '请输入申请人手机号' }, { validator: $utils.checkPhone, message: '请输入正确的手机号' }]"
             />
             <van-field
               key="place"

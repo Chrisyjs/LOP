@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import OrderPanel from "components/orderPanel";
-import { getClaimDetail, uploadImage, submitOrder } from "api";
+import OrderPanel from "@/components/orderPanel";
+import { getClaimDetail, uploadImage, submitOrder } from "@/api/claim.js";
 
 export default {
   data() {

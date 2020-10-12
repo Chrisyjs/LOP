@@ -18,6 +18,9 @@ const cdn = {
 };
 const isPro = process.env.NODE_ENV === "production" ? true : false;
 const appName = process.env.appName;
+const domain = isPro
+  ? `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`
+  : "/api";
 const output = appConfig[process.env.appName].output;
 module.exports = {
   lintOnSave: true,
@@ -27,8 +30,7 @@ module.exports = {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
       "/api": {
-        target: `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix
-          }/api`, //代理接口
+        target: `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`, //代理接口
         // target: `http://192.168.0.100:8080/api`,   //代理接口
         changeOrigin: true,
         pathRewrite: {
@@ -61,18 +63,12 @@ module.exports = {
     }
     config.resolve.alias
       .set("@", resolve("src"))
-      .set("assets", resolve("src/assets"))
-      .set("components", resolve("src/components"))
-      .set("mixins", resolve("src/mixins"))
-      .set("utils", resolve("src/utils"))
-      .set("api", resolve("src/api"))
-      .set("views", resolve("src/views"))
-      .set("lib", resolve("src/lib"));
     config
       .plugin("define") // appConfig 全局使用
       .tap((args) => {
         args[0].appConfig = JSON.stringify(appConfig[appName]);
         args[0].isPro = isPro;
+        args[0].domain = JSON.stringify(domain);
         return args;
       });
     config.plugin("html").tap((args) => {

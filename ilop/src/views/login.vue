@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { getValidCode, login } from 'api';
+import { getValidCode, login } from '@/api';
 export default {
   data() {
     return {

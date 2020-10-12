@@ -85,8 +85,8 @@
 
 <script>
 import { mapGetters, mapState, mapMutations } from "vuex";
-import OrderPanel from "components/orderPanel";
-import { confirmClaim } from "api";
+import OrderPanel from "@/components/orderPanel";
+import { confirmClaim } from "@/api/claim.js";
 
 export default {
   data() {

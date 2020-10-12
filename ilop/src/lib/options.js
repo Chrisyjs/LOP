@@ -25,11 +25,3 @@ export const relationshipOptions = [
   "同事",
   "同学"
 ]
-/**
- * 场地
- */
-export const placeOptions = [
-  "402-大堂",
-  "404-主日学",
-  "405-母婴室"
-]

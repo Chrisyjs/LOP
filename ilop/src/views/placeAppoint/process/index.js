@@ -1,4 +1,3 @@
-import { placeOptions } from "lib/options";
 import {  } from "@/api";
 import Attention from "@/components/attention";
 import dayjs from 'dayjs';
@@ -8,7 +7,7 @@ export default {
       /* userName: '',
       userMobile: '',
       place: '',
-      placeOptions,
+      placeOptions: [],
       showPlacePicker: false,
       minDate: new Date(),
       useDate: '',
@@ -24,7 +23,7 @@ export default {
       userName: 'yjs',
       userMobile: '15700084697',
       place: '123',
-      placeOptions,
+      placeOptions: [],
       showPlacePicker: false,
       minDate: new Date(),
       useDate: '2020-10-10',
@@ -42,6 +41,7 @@ export default {
     Attention
   },
   mounted() {
+    
   },
   computed: {
   },

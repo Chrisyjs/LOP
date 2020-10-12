@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import { getMyListData, cancelOrder } from "api";
-import OrderPanel from "components/orderPanel";
+import { getMyListData, cancelOrder } from "@/api/claim.js";
+import OrderPanel from "@/components/orderPanel";
 import Header from "./header";
 
 export default {

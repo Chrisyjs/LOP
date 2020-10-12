@@ -67,7 +67,7 @@
   </div>
 </template>
 <script>
-import { getMyAppointmentList, cancelAppointment } from "@/api";
+import { getMyAppointmentList, cancelAppointment } from "@/api/sundayAppoint.js";
 export default {
   data() {
     return {

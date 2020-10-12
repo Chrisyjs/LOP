@@ -1,6 +1,6 @@
-import { relationshipOptions } from "lib/options";
+import { relationshipOptions } from "@/lib/options";
 import Attention from "@/components/attention";
-import { getAppointmentInfo, submitAppointmentInfo } from "@/api";
+import { getAppointmentInfo, submitAppointmentInfo } from "@/api/sundayAppoint.js";
 const defaultPerson = {
   name: "",
   mobile: "",

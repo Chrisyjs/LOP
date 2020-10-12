@@ -11,7 +11,7 @@ module.exports = {
     apiPrefix: 'lop_project'
   },
   iAppointment: {
-    appGreet: '预约系统',
+    appGreet: '内部系统',
     appName: 'iLop',
     output: 'dist_appointment',
     apiPrefix: 'lop_project'

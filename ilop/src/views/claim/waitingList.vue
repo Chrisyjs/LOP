@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import { getWaitingListData } from "api/index.js";
+import { getWaitingListData } from "@/api/claim.js";
 import { debounce } from "lodash";
 import { mapGetters, mapState, mapMutations } from "vuex";
 import Header from "./header";
