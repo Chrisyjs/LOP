@@ -34,5 +34,6 @@ export default {
 <style lang="scss" scoped>
 .goback {
   position: fixed;
+  cursor: pointer;
 }
 </style>
