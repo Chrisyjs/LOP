@@ -1,8 +1,12 @@
 <template>
   <div class="appointmentList-wrap">
-    <div class="title text-center border-bottom" style="borderColor: #dbdbdb">
-      我的预约
-    </div>
+    <van-nav-bar
+      class="fixed-header title"
+      @click-left="$router.replace('/home')"
+      left-arrow
+      left-text="返回"
+      title="我的预约"
+    ></van-nav-bar>
     <van-empty v-if="!listData.length" description="暂无预约信息"></van-empty>
     <div v-else class="list overflow-scroll">
       <div class="panel" v-for="(item, idx) in listData" :key="idx">
@@ -24,13 +28,13 @@
             <div class="item" flex="main:left cross:center">
               <div class="label">日&nbsp;&nbsp;&nbsp;&nbsp;期：</div>
               <div>
-                {{item.appointmentTime}}
+                {{ item.appointmentTime }}
               </div>
             </div>
             <div class="item" flex="main:left cross:center">
               <div class="label">第几堂：</div>
               <div>
-                {{item.sessionInfo}}
+                {{ item.sessionInfo }}
               </div>
             </div>
           </div>
@@ -48,7 +52,7 @@
               <tr v-for="(jtem, jdx) in item.appointmentlist" :key="jdx">
                 <td>{{ jtem.name }}</td>
                 <td>{{ jtem.mobile }}</td>
-                <td>{{ jtem.relationship ? jtem.relationship : '自己' }}</td>
+                <td>{{ jtem.relationship ? jtem.relationship : "自己" }}</td>
                 <td v-if="item.canCancel">
                   <van-button
                     @click="() => handleCancel(jtem)"
@@ -67,7 +71,10 @@
   </div>
 </template>
 <script>
-import { getMyAppointmentList, cancelAppointment } from "@/api/sundayAppoint.js";
+import {
+  getMyAppointmentList,
+  cancelAppointment,
+} from "@/api/sundayAppoint.js";
 export default {
   data() {
     return {
@@ -84,9 +91,16 @@ export default {
      */
     async getListData() {
       this.$utils.loading();
-      const { code, data } = await getMyAppointmentList(this.$utils.getCookie('mobile'));
+      const { code, data } = await getMyAppointmentList(
+        this.$utils.getCookie("mobile")
+      );
       if (code === 200) {
-        data.length && (data[0].canCancel = new Date().valueOf() < new Date(`${data[0].appointmentTime.replace(/-/g, '/')} 00:00:00`).valueOf());
+        data.length &&
+          (data[0].canCancel =
+            new Date().valueOf() <
+            new Date(
+              `${data[0].appointmentTime.replace(/-/g, "/")} 00:00:00`
+            ).valueOf());
         this.listData = data;
       }
     },
@@ -100,12 +114,12 @@ export default {
           message: "确定要取消预约吗？",
         })
         .then(() => {
-          cancelAppointment(item.id).then(data => {
+          cancelAppointment(item.id).then((data) => {
             if (data.code === 200) {
-              this.$toast('取消成功');
+              this.$toast("取消成功");
               this.getListData();
             }
-          })
+          });
         })
         .catch(() => {});
     },
@@ -115,13 +129,11 @@ export default {
 <style lang="scss" scoped>
 .appointmentList-wrap {
   font-size: 14px;
-  padding-top: 16px;
   .overflow-scroll {
-    height: calc(100vh - 132px);
+    height: calc(100vh - 108px);
   }
   .list {
     padding: 0 16px;
-    margin: 16px 0;
     .label {
       margin-right: 10px;
       font-weight: bold;

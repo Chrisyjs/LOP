@@ -1,79 +1,96 @@
 <template>
   <div class="appointmentList-wrap">
-    <div class="title text-center border-bottom" style="borderColor: #dbdbdb">
-      我的申请
-    </div>
-    <van-empty v-if="!listData.length" description="暂无预约信息"></van-empty>
-    <div v-else class="list overflow-scroll">
-      <div class="panel" v-for="(item, idx) in listData" :key="idx">
-        <div class="part">
-          <div class="part-title border-bottom font-size-15">主日信息</div>
-          <div class="content" style="padding-left: 10px;">
-            <div class="item" flex="main:left cross:center">
-              <div class="label">主&nbsp;&nbsp;&nbsp;&nbsp;题：</div>
-              <div style="margin-left: -7px;">《{{ item.topic }}》</div>
-            </div>
-            <div class="item" flex="main:left cross:center">
-              <div class="label">讲&nbsp;&nbsp;&nbsp;&nbsp;员：</div>
-              <div>{{ item.speakerName }}</div>
-            </div>
-            <div class="item" flex="main:left cross:center">
-              <div class="label">经&nbsp;&nbsp;&nbsp;&nbsp;文：</div>
-              <div>{{ item.scripture }}</div>
-            </div>
-            <div class="item" flex="main:left cross:center">
-              <div class="label">日&nbsp;&nbsp;&nbsp;&nbsp;期：</div>
-              <div>
-                {{item.appointmentTime}}
+    <!-- 注意事项 -->
+    <Attention
+      title="注意事项"
+      :handleSubmit="useEnd"
+      :step.sync="step"
+      btnText="使用结束"
+      v-if="step === 1"
+    >
+      <div class="content font-size-14">
+        <div>
+          请仔细阅读以下须知内容：
+          <div v-html="attention"></div>
+        </div>
+      </div>
+      <div class="part-title text-center font-size-15">
+        愿神赐福弟兄姊妹！以马内利！
+      </div>
+    </Attention>
+    <div v-if="step === 0">
+      <van-nav-bar
+        class="fixed-header"
+        @click-left="$router.replace('/home')"
+        left-arrow
+        left-text="返回"
+        title="我的申请"
+      ></van-nav-bar>
+      <van-empty v-if="!listData.length" description="暂无申请信息"></van-empty>
+      <div v-else class="list overflow-scroll">
+        <div class="panel" v-for="(item, idx) in listData" :key="idx">
+          <div class="part">
+            <div class="part-title border-bottom font-size-15">申请信息</div>
+            <div class="content" style="padding-left: 10px;">
+              <div class="item" flex="main:left cross:center">
+                <div class="label">申请人姓名：</div>
+                <div style="margin-left: -7px;">《{{ item.topic }}》</div>
               </div>
-            </div>
-            <div class="item" flex="main:left cross:center">
-              <div class="label">第几堂：</div>
-              <div>
-                {{item.sessionInfo}}
+              <div class="item" flex="main:left cross:center">
+                <div class="label">申请人手机：</div>
+                <div>{{ item.speakerName }}</div>
+              </div>
+              <div class="item" flex="main:left cross:center">
+                <div class="label">申请场地：</div>
+                <div>{{ item.scripture }}</div>
+              </div>
+              <div class="item" flex="main:left cross:center">
+                <div class="label">使用时间：</div>
+                <div>
+                  {{ item.appointmentTime }}
+                </div>
+              </div>
+              <div class="item" flex="main:left cross:center">
+                <div class="label">申请原因：</div>
+                <div>
+                  {{ item.sessionInfo }}
+                </div>
+              </div>
+              <div class="item" flex="main:left cross:center">
+                <div class="label">详细原因：</div>
+                <div>
+                  {{ item.sessionInfo }}
+                </div>
+              </div>
+              <div flex="main:right">
+                <van-button @click="() => {}" type="info" plain size="mini"
+                  >取消申请</van-button
+                >
+                <van-button @click="step = 1" type="info" plain size="mini"
+                  >使用结束</van-button
+                >
               </div>
             </div>
           </div>
-        </div>
-        <div class="part">
-          <div class="part-title border-bottom font-size-15">预约信息</div>
-          <table class="content table">
-            <thead>
-              <th>姓名</th>
-              <th>手机号</th>
-              <th>关系</th>
-              <th v-if="item.canCancel">操作</th>
-            </thead>
-            <tbody>
-              <tr v-for="(jtem, jdx) in item.appointmentlist" :key="jdx">
-                <td>{{ jtem.name }}</td>
-                <td>{{ jtem.mobile }}</td>
-                <td>{{ jtem.relationship ? jtem.relationship : '自己' }}</td>
-                <td v-if="item.canCancel">
-                  <van-button
-                    @click="() => handleCancel(jtem)"
-                    type="info"
-                    plain
-                    size="mini"
-                    >取消预约</van-button
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { getMyAppointmentList, cancelAppointment } from "@/api";
+import { getMyAppointmentList, cancelAppointment, useEnd } from "@/api/sundayAppoint";
+import Attention from "@/components/attention";
 export default {
   data() {
     return {
+      step: 0,
+      attention: '',
       currentYear: new Date().getFullYear(),
       listData: [],
     };
+  },
+  components: {
+    Attention
   },
   created() {
     this.getListData();
@@ -84,9 +101,16 @@ export default {
      */
     async getListData() {
       this.$utils.loading();
-      const { code, data } = await getMyAppointmentList(this.$utils.getCookie('mobile'));
+      const { code, data } = await getMyAppointmentList(
+        this.$utils.getCookie("mobile")
+      );
       if (code === 200) {
-        data.length && (data[0].canCancel = new Date().valueOf() < new Date(`${data[0].appointmentTime.replace(/-/g, '/')} 00:00:00`).valueOf());
+        data.length &&
+          (data[0].canCancel =
+            new Date().valueOf() <
+            new Date(
+              `${data[0].appointmentTime.replace(/-/g, "/")} 00:00:00`
+            ).valueOf());
         this.listData = data;
       }
     },
@@ -100,28 +124,36 @@ export default {
           message: "确定要取消预约吗？",
         })
         .then(() => {
-          cancelAppointment(item.id).then(data => {
+          cancelAppointment(item.id).then((data) => {
             if (data.code === 200) {
-              this.$toast('取消成功');
+              this.$toast("取消成功");
               this.getListData();
             }
-          })
+          });
         })
         .catch(() => {});
     },
+    /**
+     * 使用结束
+     */
+    async useEnd() {
+      const { code, data } = await useEnd(id);
+      if (code === 200) {
+        this.step = 0;
+        this.getListData();
+      }
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
 .appointmentList-wrap {
   font-size: 14px;
-  padding-top: 16px;
   .overflow-scroll {
-    height: calc(100vh - 132px);
+    height: calc(100vh - 110px);
   }
   .list {
     padding: 0 16px;
-    margin: 16px 0;
     .label {
       margin-right: 10px;
       font-weight: bold;

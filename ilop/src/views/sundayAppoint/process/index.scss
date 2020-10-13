@@ -5,14 +5,14 @@
     }
   }
   .tip {
+    padding-top: 0;
     padding-bottom: 8px;
   }
   .form {
-    padding: 16px;
-    padding-top: 0;
+    padding: 0 16px;
   }
   .overflow-scroll {
-    height: calc(100vh - 164px);
+    height: calc(100vh - 174px);
   }
   .part-title {
     font-size: 14px;

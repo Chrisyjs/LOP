@@ -8,7 +8,7 @@ export function getBaseInfo() {
 export function getDetail(id) {
   return axios.get(`${domain}/function/place/apply/deatial/${id}`);
 }
-// 提交预约信息
-export function submitForm(params) {
-  return axios.post(`${domain}/function/place/apply/add`, params);
+// 使用结束
+export function useEnd(id) {
+  return axios.post(`${domain}/function/place/apply/update/finish${id}`);
 }

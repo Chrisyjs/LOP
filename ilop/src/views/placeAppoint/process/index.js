@@ -71,6 +71,12 @@ export default {
       }
     },
     /**
+     * 回退
+     */
+    handleClickLeft() {
+      this.$router.replace('/home');
+    },
+    /**
      * 获取申请详情
      */
     async getDetail() {

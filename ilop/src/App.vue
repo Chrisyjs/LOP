@@ -63,10 +63,8 @@ export default {
     font-size: 12px;
     // color: $blue;
     position: fixed;
-    // top: 15px;
-    top: 20px;
-    // right: 14px;
-    right: 36px;
+    top: 16px;
+    right: 24px;
     z-index: 2000;
   }
 }

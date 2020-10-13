@@ -26,7 +26,7 @@
       </div>
     </div>
     <van-button @click="clickSubmit" class="bottom-btn" block type="info">
-      提 交
+      {{ btnText }}
     </van-button>
   </div>
 </template>
@@ -45,6 +45,10 @@ export default {
     title: {
       type: String,
       default: '预约须知'
+    },
+    btnText: {
+      type: String,
+      default: '提 交'
     }
   },
   data() {

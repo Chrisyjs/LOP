@@ -1,6 +1,5 @@
 <template>
   <div>
-    <goback @callback="goback"></goback>
     <div style="margin-bottom: 50px;">
       <router-view></router-view>
     </div>
@@ -36,9 +35,6 @@ export default {
   computed: {
   },
   methods: {
-    goback() {
-      this.$router.replace('/home')
-    },
     handleChangeActive(index) {
       this.$router.push(`${index}`)
     },

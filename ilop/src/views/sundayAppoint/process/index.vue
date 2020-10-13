@@ -77,8 +77,14 @@
       </div>
     </Attention>
     <!-- 预约信息填写 -->
-    <div style="padding: 16px 0;" v-if="step === 0">
-      <div class="title text-center">主日预约</div>
+    <div v-if="step === 0">
+      <van-nav-bar
+        class="fixed-header title"
+        @click-left="$router.replace('/home')"
+        left-arrow
+        left-text="返回"
+        title="主日预约"
+      ></van-nav-bar>
       <div class="tip">(预约可取消或修改)</div>
       <div class="form overflow-scroll">
         <van-form

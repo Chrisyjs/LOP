@@ -7,9 +7,13 @@
       title="提交确认"
       show-cancel-button
     >
-      <div class="panel" flex="dir:top cross:center main:center">
+      <div
+        style="lineHeight: 24px;"
+        class="panel"
+        flex="dir:top cross:center main:center"
+      >
         <div>您确定申请于</div>
-        <div>{{ useDate }}-{{ dayjs(useEndeTime).format(`HH:mm`)}}</div>
+        <div>{{ useDate }}-{{ dayjs(useEndeTime).format(`HH:mm`) }}</div>
         <div>使用LOP场地吗？</div>
       </div>
     </van-dialog>
@@ -30,8 +34,14 @@
         愿神赐福弟兄姊妹！以马内利！
       </div>
     </Attention>
-    <div style="padding: 16px 0;" v-if="step === 0">
-      <div class="title text-center">场地申请</div>
+    <div v-if="step === 0">
+      <van-nav-bar
+        class="fixed-header title"
+        @click-left="handleClickLeft"
+        left-arrow
+        left-text="返回"
+        title="场地申请"
+      ></van-nav-bar>
       <div class="form overflow-scroll">
         <van-form
           :validate-first="true"
