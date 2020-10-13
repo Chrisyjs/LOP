@@ -9,6 +9,6 @@ export function getDetail(id) {
   return axios.get(`${domain}/function/place/apply/deatial/${id}`);
 }
 // 提交预约信息
-export function submitAppointmentInfo(params) {
-  return axios.post(`${domain}/function/party/submit`, params);
+export function submitForm(params) {
+  return axios.post(`${domain}/function/place/apply/add`, params);
 }

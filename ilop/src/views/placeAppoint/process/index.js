@@ -1,10 +1,11 @@
-import { getBaseInfo, getDetail } from "@/api/placeAppoint.js";
+import { getBaseInfo, getDetail, submitForm } from "@/api/placeAppoint.js";
 import Attention from "@/components/attention";
 import dayjs from 'dayjs';
 export default {
   data() {
     return {
-      /* userName: '',
+      /* dialogVisible: false,
+      userName: '',
       userMobile: '',
       place: '',
       placeOptions: [],
@@ -21,14 +22,15 @@ export default {
       remark: '',
       step: 0, */
 
+      dialogVisible: false,
       userName: 'yjs',
       userMobile: '15700084697',
       place: '',
       placeOptions: [],
       showPlacePicker: false,
       minDate: new Date(),
-      useDate: '2020-10-10',
-      date: '2020-10-10',
+      useDate: '',
+      date: '',
       showDatePicker: false,
       duration: '2',
       reason: '',
@@ -47,6 +49,9 @@ export default {
     this.getBaseInfo();
   },
   computed: {
+    useEndeTime() {
+      return dayjs(this.useDate).add(this.duration, 'hour').format('YYYY-MM-DD HH:mm')
+    }
   },
   watch: {
     place(n) {
@@ -54,6 +59,7 @@ export default {
     } 
   },
   methods: {
+    dayjs,
     /**
      * 获取基本信息
      */
@@ -90,8 +96,21 @@ export default {
     /**
      * 提交表单
      */
-    onSubmit() {
-
+    async handleConfirmSubmit() {
+      const params = {
+        "applicantMobile": this.userMobile,
+        "applicantName": this.userName,
+        "applyReasonDetail": this.detailReason,
+        "applyReasonType": this.reason,
+        "placeNumber": this.place,
+        "remark": this.remark,
+        "useEndTime": this.useEndeTime,
+        "useStartTime": this.useDate
+      }
+      const { code, data } = await submitForm(params);
+      if (code === 200) {
+        this.$router.push('/placeAppoint/list')
+      }
     },
     /**
      * 失败校验
@@ -111,9 +130,9 @@ export default {
      * 时间过滤
      */
     dateFilter(type, options) {
-      if (type === 'minute') {
-        return options.filter((option) => option % 15 === 0);
-      } 
+      // if (type === 'minute') {
+      //   return options.filter((option) => option % 15 === 0);
+      // } 
       return options;
     }
   },

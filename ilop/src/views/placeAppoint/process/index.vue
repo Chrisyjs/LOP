@@ -1,7 +1,25 @@
 <template>
   <div class="place-appoint">
+    <!-- 提交弹框 -->
+    <van-dialog
+      @confirm="handleConfirmSubmit"
+      v-model="dialogVisible"
+      title="提交确认"
+      show-cancel-button
+    >
+      <div class="panel" flex="dir:top cross:center main:center">
+        <div>您确定申请于</div>
+        <div>{{ useDate }}-{{ dayjs(useEndeTime).format(`HH:mm`)}}</div>
+        <div>使用LOP场地吗？</div>
+      </div>
+    </van-dialog>
     <!-- 申请须知 -->
-    <Attention title="申请须知" :handleSubmit="onSubmit" :step.sync="step" v-if="step === 1">
+    <Attention
+      title="申请须知"
+      :handleSubmit="() => (dialogVisible = true)"
+      :step.sync="step"
+      v-if="step === 1"
+    >
       <div class="content font-size-14">
         <div>
           请仔细阅读以下须知内容：
@@ -46,7 +64,10 @@
               maxlength="11"
               required
               border
-              :rules="[{ required: true, message: '请输入申请人手机号' }, { validator: $utils.checkPhone, message: '请输入正确的手机号' }]"
+              :rules="[
+                { required: true, message: '请输入申请人手机号' },
+                { validator: $utils.checkPhone, message: '请输入正确的手机号' },
+              ]"
             />
             <van-field
               key="place"
