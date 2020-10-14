@@ -34,7 +34,8 @@ import {
   CheckboxGroup,
   Empty,
   Grid,
-  GridItem
+  GridItem,
+  NoticeBar
 } from 'vant';
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
@@ -74,6 +75,7 @@ Vue.use(Field)
   .use(Empty)
   .use(Grid)
   .use(GridItem)
+  .use(NoticeBar)
 
 Vue.component('goback', Goback)
 Vue.config.productionTip = false

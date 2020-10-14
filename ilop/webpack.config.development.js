@@ -1,7 +1,7 @@
 {
   mode: 'development',
   context: '/Users/whr2016/learning/self/LOP/ilop',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   node: {
     setImmediate: false,
     dgram: 'empty',
@@ -11,12 +11,13 @@
     child_process: 'empty'
   },
   output: {
-    path: '/Users/whr2016/learning/self/LOP/ilop/dist',
+    path: '/Users/whr2016/learning/self/LOP/ilop/dist_appointment',
     filename: '[name].js',
     publicPath: '',
     globalObject: '(typeof self !== \'undefined\' ? self : this)'
   },
   resolve: {
+    symlinks: true,
     alias: {
       '@': '/Users/whr2016/learning/self/LOP/ilop/src',
       vue$: 'vue/dist/vue.runtime.esm.js'
@@ -56,7 +57,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: '/Users/whr2016/learning/self/LOP/ilop/node_modules/.cache/vue-loader',
-              cacheIdentifier: 'b726a18a'
+              cacheIdentifier: 'c755b5d2'
             }
           },
           /* config.module.rule('vue').use('vue-loader') */
@@ -67,7 +68,7 @@
                 preserveWhitespace: false
               },
               cacheDirectory: '/Users/whr2016/learning/self/LOP/ilop/node_modules/.cache/vue-loader',
-              cacheIdentifier: 'b726a18a'
+              cacheIdentifier: 'c755b5d2'
             }
           }
         ]
@@ -459,6 +460,53 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
                   data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
@@ -496,6 +544,53 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
                   data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
@@ -535,6 +630,53 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
                   data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
@@ -571,6 +713,53 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
                   data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
@@ -616,8 +805,55 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
-                  data: '\n          @import "@/assets/styles/_variable.scss";\n        ',
-                  indentedSyntax: true
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
+                  indentedSyntax: true,
+                  data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
             ]
@@ -654,8 +890,55 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
-                  data: '\n          @import "@/assets/styles/_variable.scss";\n        ',
-                  indentedSyntax: true
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
+                  indentedSyntax: true,
+                  data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
             ]
@@ -694,8 +977,55 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
-                  data: '\n          @import "@/assets/styles/_variable.scss";\n        ',
-                  indentedSyntax: true
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
+                  indentedSyntax: true,
+                  data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
             ]
@@ -731,8 +1061,55 @@
                 loader: 'sass-loader',
                 options: {
                   sourceMap: false,
-                  data: '\n          @import "@/assets/styles/_variable.scss";\n        ',
-                  indentedSyntax: true
+                  implementation: {
+                    render: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    renderSync: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            },
+                    info: 'dart-sass\t1.26.11\t(Sass Compiler)\t[Dart]\ndart2js\t2.9.3\t(Dart Compiler)\t[Dart]',
+                    types: {
+                      Boolean: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Color: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      List: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Map: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Null: function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              },
+                      Number: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      String: function() {
+                                return _call(f, this, Array.prototype.slice.apply(arguments));
+                              },
+                      Error: function Error() { [native code] }
+                    },
+                    NULL: {
+                      'toString': function() {
+                                return _call(f, Array.prototype.slice.apply(arguments));
+                              }
+                    },
+                    TRUE: {
+                      value: true
+                    },
+                    FALSE: {
+                      value: false
+                    },
+                    cli_pkg_main_0_: function() {
+                              return _call(f, Array.prototype.slice.apply(arguments));
+                            }
+                  },
+                  indentedSyntax: true,
+                  data: '\n          @import "@/assets/styles/_variable.scss";\n        '
                 }
               }
             ]
@@ -1061,7 +1438,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: '/Users/whr2016/learning/self/LOP/ilop/node_modules/.cache/babel-loader',
-              cacheIdentifier: '14e1a5c2'
+              cacheIdentifier: 'f422999a'
             }
           },
           /* config.module.rule('js').use('babel-loader') */
@@ -1089,7 +1466,7 @@
                 '.vue'
               ],
               cache: true,
-              cacheIdentifier: '241564cf',
+              cacheIdentifier: '68b82016',
               emitWarning: true,
               emitError: false,
               eslintPath: '/Users/whr2016/learning/self/LOP/ilop/node_modules/eslint',
@@ -1109,7 +1486,10 @@
         'process.env': {
           NODE_ENV: '"development"',
           BASE_URL: '""'
-        }
+        },
+        appConfig: '{"appGreet":"内部系统","appName":"iLop","output":"dist_appointment","apiPrefix":"lop_project"}',
+        isPro: false,
+        domain: '"/api"'
       }
     ),
     /* config.plugin('case-sensitive-paths') */
@@ -1133,7 +1513,13 @@
     new HtmlWebpackPlugin(
       {
         templateParameters: function () { /* omitted long function */ },
-        template: '/Users/whr2016/learning/self/LOP/ilop/public/index.html'
+        template: '/Users/whr2016/learning/self/LOP/ilop/public/index.html',
+        appConfig: {
+          appGreet: '内部系统',
+          appName: 'iLop',
+          output: 'dist_appointment',
+          apiPrefix: 'lop_project'
+        }
       }
     ),
     /* config.plugin('preload') */
@@ -1159,10 +1545,14 @@
       [
         {
           from: '/Users/whr2016/learning/self/LOP/ilop/public',
-          to: '/Users/whr2016/learning/self/LOP/ilop/dist',
+          to: '/Users/whr2016/learning/self/LOP/ilop/dist_appointment',
           toType: 'dir',
           ignore: [
-            '.DS_Store'
+            '.DS_Store',
+            {
+              glob: 'index.html',
+              matchBase: false
+            }
           ]
         }
       ]

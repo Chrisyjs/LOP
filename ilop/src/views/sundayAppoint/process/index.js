@@ -1,6 +1,7 @@
 import { relationshipOptions } from "@/lib/options";
 import Attention from "@/components/attention";
 import { getAppointmentInfo, submitAppointmentInfo } from "@/api/sundayAppoint.js";
+import { mapMutations } from 'vuex';
 const defaultPerson = {
   name: "",
   mobile: "",
@@ -26,6 +27,7 @@ export default {
       relationshipOptions,
       showRelationshipPicker: false,
       remark: "",
+      notice: "",
     };
   },
   components: {
@@ -33,6 +35,9 @@ export default {
   },
   mounted() {
     this.getPersonList();
+  },
+  destroyed() {
+    this.setHasNotice(false);
   },
   computed: {
     personCount: function() {
@@ -58,6 +63,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setHasNotice']),
     /**
      * 提交预约
      */
@@ -90,6 +96,8 @@ export default {
           speaker: speakerName,
           remarkPlaceholder: "如带小朋友前来聚会，请填写小朋友的人数和年龄",
         };
+        this.notice = remark;
+        this.notice && (this.setHasNotice(true));
         this.userName = loginName;
         this.hallOptions = partySessionInfoList.map(item => item.time);
         this.hallInfoList = partySessionInfoList;

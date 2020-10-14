@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div flex="main:right">
-                <van-button @click="() => {}" type="info" plain size="mini"
+                <van-button @click="handleCancel" type="info" plain size="mini"
                   >取消申请</van-button
                 >
                 <van-button @click="step = 1" type="info" plain size="mini"
@@ -78,7 +78,7 @@
   </div>
 </template>
 <script>
-import { getMyAppointmentList, cancelAppointment, useEnd } from "@/api/sundayAppoint";
+import { getList, useEnd, useCancel } from "@/api/placeAppoint";
 import Attention from "@/components/attention";
 export default {
   data() {
@@ -101,7 +101,7 @@ export default {
      */
     async getListData() {
       this.$utils.loading();
-      const { code, data } = await getMyAppointmentList(
+      const { code, data } = await getList(
         this.$utils.getCookie("mobile")
       );
       if (code === 200) {
@@ -121,10 +121,10 @@ export default {
       this.$dialog
         .confirm({
           title: "系统提示",
-          message: "确定要取消预约吗？",
+          message: "确定要取消申请吗？",
         })
         .then(() => {
-          cancelAppointment(item.id).then((data) => {
+          useCancel(item.id).then((data) => {
             if (data.code === 200) {
               this.$toast("取消成功");
               this.getListData();

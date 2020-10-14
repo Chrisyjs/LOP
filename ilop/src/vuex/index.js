@@ -9,6 +9,7 @@ const state = {
   waitingListData: [],
   imagePreview: [],
   showImagePreview: false,
+  hasNotice: false,  // 头部是否有 notice 滚动，影响号码显示位置
 }
 
 const mutations = {
@@ -30,6 +31,9 @@ const mutations = {
   setShowImagePreview(state, showImagePreview) {
     state.showImagePreview = showImagePreview;
   },
+  setHasNotice(state, hasNotice) {
+    state.hasNotice = hasNotice;
+  }
 }
 
 const getters = {

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="$utils.getCookie('mobile')" class="user cursor-pointer" flex="main:center cross:center" @click="handleLogout">
+    <div v-if="$utils.getCookie('mobile')" :class="['user', 'cursor-pointer', hasNotice && 'hasNotice']" flex="main:center cross:center" @click="handleLogout">
       <van-icon name="user-circle-o"></van-icon>
       <span class="account">{{$utils.getCookie('mobile')}}</span>
     </div>
@@ -33,7 +33,7 @@ export default {
         this.setShowImagePreview(n);
       }
     },
-    ...mapState(['showLoading', 'imagePreview'])
+    ...mapState(['showLoading', 'imagePreview', 'hasNotice'])
   },
   mounted() {
   },
@@ -66,6 +66,9 @@ export default {
     top: 16px;
     right: 24px;
     z-index: 2000;
+  }
+  .hasNotice {
+    top: 54px;
   }
 }
 </style>

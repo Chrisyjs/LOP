@@ -17,11 +17,11 @@ const cdn = {
   ],
 };
 const isPro = process.env.NODE_ENV === "production" ? true : false;
-const appName = process.env.appName;
+const appName = process.env.appName || 'iAppointment';
 const domain = isPro
   ? `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`
   : "/api";
-const output = appConfig[process.env.appName].output;
+const output = appConfig[appName].output;
 module.exports = {
   lintOnSave: true,
   publicPath: "./",

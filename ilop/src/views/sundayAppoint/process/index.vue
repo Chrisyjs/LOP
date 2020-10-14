@@ -1,5 +1,6 @@
 <template>
   <div class="appointment-wrap">
+    <van-notice-bar left-icon="volume-o" :text="notice" />
     <!-- 提交弹框 -->
     <van-dialog
       @confirm="handleConfirmSubmit"
