@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
+  token: '',
   authList: [],  // 菜单权限
   choosedList: [],
   waitingListData: [],
@@ -37,6 +38,9 @@ const mutations = {
   },
   setAuthList(state, authList) {
     state.authList = authList;
+  },
+  setToken(state, token) {
+    state.token = token;
   }
 }
 

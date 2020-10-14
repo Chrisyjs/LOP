@@ -12,11 +12,15 @@ export function getDetail(id) {
 export function getList() {
   return axios.get(`${domain}/function/place/apply/list`);
 }
+// 申请使用
+export function submitForm(params) {
+  return axios.post(`${domain}/function/place/apply/add`, params);
+}
 // 使用取消
 export function useCancel(id) {
   return axios.post(`${domain}/function/place/apply/cancel/${id}`);
 }
-// 使用结束
+// 结束使用
 export function useEnd(id) {
   return axios.post(`${domain}/function/place/apply/update/finish/${id}`);
 }

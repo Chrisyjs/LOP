@@ -26,6 +26,7 @@ export default {
       userName: 'yjs',
       userMobile: '15700084697',
       place: '',
+      placeId: '',
       placeOptions: [],
       showPlacePicker: false,
       minDate: new Date(),
@@ -34,6 +35,7 @@ export default {
       showDatePicker: false,
       duration: '2',
       reason: '',
+      reasonId: '',
       showResonPicker: false,
       reasonOptions: [],
       detailReason: '456',
@@ -90,6 +92,7 @@ export default {
      */
     onPlaceConfirm(val) {
       this.place = val.name;
+      this.placeId = val.id;
       this.showPlacePicker = false;
     },
     /**
@@ -97,6 +100,7 @@ export default {
      */
     onReasonConfirm(val) {
       this.reason = val.name;
+      this.reasonId = val.id;
       this.showResonPicker = false;
     },
     /**
@@ -107,11 +111,11 @@ export default {
         "applicantMobile": this.userMobile,
         "applicantName": this.userName,
         "applyReasonDetail": this.detailReason,
-        "applyReasonType": this.reason,
-        "placeNumber": this.place,
+        "applyReasonType": this.reasonId,
+        "placeNumber": this.placeId,
         "remark": this.remark,
-        "useEndTime": this.useEndeTime,
-        "useStartTime": this.useDate
+        "useEndTime": this.useEndeTime + ':00',
+        "useStartTime": this.useDate + ':00'
       }
       const { code, data } = await submitForm(params);
       if (code === 200) {

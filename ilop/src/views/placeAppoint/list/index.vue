@@ -5,7 +5,7 @@
       title="注意事项"
       :handleSubmit="useEnd"
       :step.sync="step"
-      btnText="使用结束"
+      btnText="结束使用"
       v-if="step === 1"
     >
       <div class="content font-size-14">
@@ -34,11 +34,11 @@
             <div class="content" style="padding-left: 10px;">
               <div class="item" flex="main:left cross:center">
                 <div class="label">申请人姓名：</div>
-                <div style="margin-left: -7px;">《{{ item.topic }}》</div>
+                <div style="margin-left: -7px;">{{ item.applicantName }}</div>
               </div>
               <div class="item" flex="main:left cross:center">
                 <div class="label">申请人手机：</div>
-                <div>{{ item.speakerName }}</div>
+                <div>{{ item.applicantMobile }}</div>
               </div>
               <div class="item" flex="main:left cross:center">
                 <div class="label">申请场地：</div>
@@ -47,7 +47,7 @@
               <div class="item" flex="main:left cross:center">
                 <div class="label">使用时间：</div>
                 <div>
-                  {{ item.appointmentTime }}
+                  {{ item.time }}
                 </div>
               </div>
               <div class="item" flex="main:left cross:center">
@@ -59,15 +59,15 @@
               <div class="item" flex="main:left cross:center">
                 <div class="label">详细原因：</div>
                 <div>
-                  {{ item.sessionInfo }}
+                  {{ item.applyReasonDetail }}
                 </div>
               </div>
-              <div flex="main:right">
-                <van-button @click="handleCancel" type="info" plain size="mini"
+              <div v-if="item.useStatus != 3" flex="main:right">
+                <van-button @click="() => handleCancel(item)" type="info" plain size="mini"
                   >取消申请</van-button
                 >
-                <van-button @click="step = 1" type="info" plain size="mini"
-                  >使用结束</van-button
+                <van-button @click="() => handleUseEnd(item)" type="info" plain size="mini"
+                  >结束使用</van-button
                 >
               </div>
             </div>
@@ -80,11 +80,13 @@
 <script>
 import { getList, useEnd, useCancel } from "@/api/placeAppoint";
 import Attention from "@/components/attention";
+import dayjs from 'dayjs';
 export default {
   data() {
     return {
       step: 0,
-      attention: '',
+      curId: '',  // 当前操作的 id
+      attention: '',  // 注意事项
       currentYear: new Date().getFullYear(),
       listData: [],
     };
@@ -101,18 +103,20 @@ export default {
      */
     async getListData() {
       this.$utils.loading();
-      const { code, data } = await getList(
-        this.$utils.getCookie("mobile")
-      );
+      const { code, data } = await getList();
       if (code === 200) {
-        data.length &&
-          (data[0].canCancel =
-            new Date().valueOf() <
-            new Date(
-              `${data[0].appointmentTime.replace(/-/g, "/")} 00:00:00`
-            ).valueOf());
-        this.listData = data;
+        this.listData = data.map(item => {
+          return {...item, time: `${dayjs(item.useStartTime).format('YYYY/MM/DD HH:mm')}-${dayjs(item.useEndTime).format('HH:mm')}`}
+        });
       }
+    },
+    /**
+     * 点击结束使用
+     */
+    handleUseEnd(item) {
+      this.step = 1;
+      this.curId = item.id;
+      this.attention = item.notice;
     },
     /**
      * 取消预约
@@ -134,14 +138,24 @@ export default {
         .catch(() => {});
     },
     /**
-     * 使用结束
+     * 结束使用
      */
     async useEnd() {
-      const { code, data } = await useEnd(id);
-      if (code === 200) {
-        this.step = 0;
-        this.getListData();
-      }
+      this.$dialog
+        .confirm({
+          title: "系统提示",
+          message: "确认已按注意事项操作，并结束使用吗？",
+        })
+        .then(() => {
+          useEnd(this.curId).then((data) => {
+            if (data.code === 200) {
+              this.$toast("结束成功");
+              this.step = 0;
+              this.getListData();
+            }
+          });
+        })
+        .catch(() => {});
     }
   },
 };
