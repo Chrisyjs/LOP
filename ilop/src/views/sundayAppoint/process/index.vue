@@ -38,7 +38,7 @@
       </div>
     </van-dialog>
     <!-- 预约须知 -->
-    <Attention :handleSubmit="handleSubmit" :step.sync="step" v-if="step === 1">
+    <Attention :scrollOffset="notice && 190" :handleSubmit="handleSubmit" :step.sync="step" v-if="step === 1">
       <div class="content font-size-14">
         <div>
           因疫情防控需求，目前聚会采用座位预约制。请仔细阅读以下须知内容：

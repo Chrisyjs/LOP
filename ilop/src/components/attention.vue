@@ -7,7 +7,7 @@
       left-text="返回"
       :title="title"
     ></van-nav-bar>
-    <div class="overflow-scroll">
+    <div :style="{height: `calc(100vh - ${scrollOffset || 144}px)`}" class="overflow-scroll">
       <div class="panel">
         <div
           style="margin-bottom: 8px;"
@@ -49,6 +49,10 @@ export default {
     btnText: {
       type: String,
       default: '提 交'
+    },
+    scrollOffset: {
+      type: Number | String,
+      default: 144
     }
   },
   data() {
@@ -85,7 +89,7 @@ export default {
   line-height: 22px;
 }
 .overflow-scroll {
-  height: calc(100vh - 144px);
+  // height: calc(100vh - 144px);
   padding: 0 16px;
 }
 .content {

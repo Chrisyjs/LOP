@@ -4,19 +4,20 @@
       <div class="small">{{ appGreet }}</div>
       <div class="big">{{ appName }}</div>
     </div>
-    <van-grid clickable :column-num="hasPermissionList.length > 1 ? 2 : 1">
+    <!-- <van-grid clickable :column-num="hasPermissionList.length > 1 ? 2 : 1"> -->
+        <!-- v-if="hasPermissionList.includes(1)" -->
+    <van-grid clickable :column-num="1">
       <van-grid-item
-        v-if="hasPermissionList.includes(1)"
         icon="phone-o"
         text="主日预约"
         to="/sundayAppoint"
       ></van-grid-item>
-      <van-grid-item
+      <!-- <van-grid-item
         v-if="hasPermissionList.includes(2)"
         icon="location-o"
         text="场地申请"
         to="/placeAppoint"
-      ></van-grid-item>
+      ></van-grid-item> -->
       <!-- <van-grid-item
         icon-prefix="icon"
         icon="location-o"

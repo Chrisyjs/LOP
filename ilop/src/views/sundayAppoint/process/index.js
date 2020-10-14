@@ -163,7 +163,7 @@ export default {
       })
       if (code === 200) {
         this.$toast('预约成功！');
-        this.$router.push('/myself');
+        this.$router.push('/sundayAppoint/list');
       }
     },
     /**

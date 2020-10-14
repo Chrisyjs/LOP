@@ -43,6 +43,7 @@ module.exports = {
   chainWebpack: (config) => {
     config.resolve.symlinks(true);
     if (isPro) {
+      // https://blog.csdn.net/weixin_41855143/article/details/103427765
       config.plugin("prefetch").tap((options) => {
         options[0].fileBlacklist = options[0].fileBlacklist || [];
         options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/);
