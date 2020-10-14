@@ -4,13 +4,15 @@
       <div class="small">{{ appGreet }}</div>
       <div class="big">{{ appName }}</div>
     </div>
-    <van-grid clickable column-num="2">
+    <van-grid clickable :column-num="hasPermissionList.length > 1 ? 2 : 1">
       <van-grid-item
+        v-if="hasPermissionList.includes(1)"
         icon="phone-o"
         text="主日预约"
         to="/sundayAppoint"
       ></van-grid-item>
       <van-grid-item
+        v-if="hasPermissionList.includes(2)"
         icon="location-o"
         text="场地申请"
         to="/placeAppoint"
@@ -25,13 +27,26 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       appGreet: appConfig.appGreet,
       appName: appConfig.appName,
+      hasPermissionList: []
     };
   },
+  computed: {
+    ...mapState(['authList']),
+  },
+  mounted() {
+    this.initPermissionList()
+  },
+  methods: {
+    initPermissionList() {
+      this.hasPermissionList = this.authList.filter(item => item.authFlag).map(item => item.key)
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

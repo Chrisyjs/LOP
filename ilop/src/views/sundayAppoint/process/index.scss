@@ -11,8 +11,11 @@
   .form {
     padding: 0 16px;
   }
-  .overflow-scroll {
+  .overflow-scroll-1 {
     height: calc(100vh - 174px);
+  }
+  .overflow-scroll-2 {
+    height: calc(100vh - 214px);
   }
   .part-title {
     font-size: 14px;

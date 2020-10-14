@@ -30,6 +30,7 @@
 
 <script>
 import { getValidCode, login } from '@/api';
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -51,6 +52,7 @@ export default {
     })
   },
   methods: {
+    ...mapMutations(['setAuthList']),
     sendValidCode () {
       if (this.isSending) return;
       this.checkPhone();
@@ -90,6 +92,18 @@ export default {
         this.$utils.setCookie('mobile', '15700084697', 1000 * 30 * 60);
         // this.$utils.setCookie('mobile', '15990154742', 1000 * 30 * 60);
         // this.$utils.setCookie('mobile', '15757190962', 1000 * 30 * 60);
+        this.setAuthList([
+          {
+            name: '聚会预约',
+            key: 1,
+            authFlag: 1
+          },
+          {
+            name: '场地预约',
+            key: 2,
+            authFlag: 1
+          },
+        ]);
         this.$router.push({
           path: '/home'
         })
@@ -103,6 +117,7 @@ export default {
           code: this.validCode
         })
         if (code === 200) {
+          this.setAuthList(data.authList);
           this.$utils.setCookie('mobile', data.mobile, 1000 * 60 * 60);
           this.$router.push({
             path: '/home'

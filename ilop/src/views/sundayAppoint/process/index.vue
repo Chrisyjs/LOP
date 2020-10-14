@@ -1,6 +1,6 @@
 <template>
   <div class="appointment-wrap">
-    <van-notice-bar left-icon="volume-o" :text="notice" />
+    <van-notice-bar v-if="notice" left-icon="volume-o" :text="notice" />
     <!-- 提交弹框 -->
     <van-dialog
       @confirm="handleConfirmSubmit"
@@ -87,7 +87,7 @@
         title="主日预约"
       ></van-nav-bar>
       <div class="tip">(预约可取消或修改)</div>
-      <div class="form overflow-scroll">
+      <div :class="['form', 'overflow-scroll', !notice ? 'overflow-scroll-1' : 'overflow-scroll-2']">
         <van-form
           :validate-first="true"
           ref="form"
