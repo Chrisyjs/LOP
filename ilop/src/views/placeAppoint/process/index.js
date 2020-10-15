@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 export default {
   data() {
     return {
-      /* dialogVisible: false,
+      dialogVisible: false,
       userName: '',
       userMobile: '',
       place: '',
@@ -17,31 +17,33 @@ export default {
       duration: '',
       reason: '',
       showResonPicker: false,
-      reasonOptions: []
+      reasonOptions: [],
       detailReason: '',
       remark: '',
-      step: 0, */
-
-      dialogVisible: false,
-      userName: 'yjs',
-      userMobile: '15700084697',
-      place: '',
-      placeId: '',
-      placeOptions: [],
-      showPlacePicker: false,
-      minDate: new Date(),
-      useDate: '',
-      date: '',
-      showDatePicker: false,
-      duration: '2',
-      reason: '',
-      reasonId: '',
-      showResonPicker: false,
-      reasonOptions: [],
-      detailReason: '456',
-      remark: '12',
       step: 0,
       attention: ''
+      
+
+      // dialogVisible: false,
+      // userName: 'yjs',
+      // userMobile: '15700084697',
+      // place: '',
+      // placeId: '',
+      // placeOptions: [],
+      // showPlacePicker: false,
+      // minDate: new Date(),
+      // useDate: '',
+      // date: '',
+      // showDatePicker: false,
+      // duration: '2',
+      // reason: '',
+      // reasonId: '',
+      // showResonPicker: false,
+      // reasonOptions: [],
+      // detailReason: '456',
+      // remark: '12',
+      // step: 0,
+      // attention: ''
     };
   },
   components: {

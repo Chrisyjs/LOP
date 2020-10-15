@@ -19,7 +19,7 @@ const cdn = {
 const isPro = process.env.NODE_ENV === "production" ? true : false;
 const appName = process.env.appName || 'iAppointment';
 const domain = isPro
-  ? `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`
+  ? `http://landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`
   : "/api";
 const output = appConfig[appName].output;
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
       "/api": {
-        target: `http://www.landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`, //代理接口
+        target: `http://landofpromise.co:8080/${appConfig[appName].apiPrefix}/api`, //代理接口
         // target: `http://192.168.0.100:8080/api`,   //代理接口
         changeOrigin: true,
         pathRewrite: {
