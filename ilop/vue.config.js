@@ -70,6 +70,10 @@ module.exports = {
         args[0].appConfig = JSON.stringify(appConfig[appName]);
         args[0].isPro = isPro;
         args[0].domain = JSON.stringify(domain);
+        // args[0].test = 'alert(123)';
+        // args[0].test = {1: 2};
+        // args[0].test = () => console.log(123);
+        // args[0].test = true;
         return args;
       });
     config.plugin("html").tap((args) => {

@@ -64,6 +64,7 @@ export default {
     };
   },
   created() {
+    // console.log(test)
     this.isWeiXinEnv &&
       this.$notify({
         message: "如遇问题，可尝试用浏览器打开",
