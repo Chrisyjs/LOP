@@ -42,7 +42,7 @@
               </div>
               <div class="item" flex="main:left cross:center">
                 <div class="label">申请场地：</div>
-                <div>{{ item.scripture }}</div>
+                <div>{{ item.placeName }}</div>
               </div>
               <div class="item" flex="main:left cross:center">
                 <div class="label">使用时间：</div>
@@ -53,7 +53,7 @@
               <div class="item" flex="main:left cross:center">
                 <div class="label">申请原因：</div>
                 <div>
-                  {{ item.sessionInfo }}
+                  {{ item.applyReasonTypeName }}
                 </div>
               </div>
               <div class="item" flex="main:left cross:center">
@@ -87,7 +87,6 @@ export default {
       step: 0,
       curId: '',  // 当前操作的 id
       attention: '',  // 注意事项
-      currentYear: new Date().getFullYear(),
       listData: [],
     };
   },
