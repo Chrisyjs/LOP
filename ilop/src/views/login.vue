@@ -121,26 +121,23 @@ export default {
         if (code === 200) {
           this.$utils.setCookie("mobile", data.mobile, 1000 * 60 * 60);
           this.$utils.setCookie("token", data.token, 1000 * 60 * 60);
-          this.$utils.setCookie(
-            "authList",
-            JSON.stringify(
-              isPro
-                ? data.authList
-                : [
-                    {
-                      name: "聚会预约",
-                      key: 1,
-                      authFlag: 1,
-                    },
-                    {
-                      name: "场地预约",
-                      key: 2,
-                      authFlag: 1,
-                    },
-                  ]
-            ),
-            1000 * 60 * 60
-          );
+          const authListJson = isPro
+            ? JSON.stringify(data.authList)
+            : JSON.stringify([
+                {
+                  name: "聚会预约",
+                  key: 1,
+                  authFlag: 1,
+                },
+                {
+                  name: "场地预约",
+                  key: 2,
+                  authFlag: 1,
+                },
+              ]);
+          localStorage.setItem('authList', authListJson);
+          // 使用 cookie 存储 json 字符串，苹果手机会有问题
+          // this.$utils.setCookie("authList", authList, 1000 * 60 * 60);
           this.$router.push({
             path: "/home",
           });

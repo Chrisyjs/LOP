@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     initPermissionList() {
-      const authList = JSON.parse(this.$utils.getCookie('authList') || '{}');
+      const authList = JSON.parse(localStorage.getItem('authList') || '{}');
       this.hasPermissionList = authList.filter(item => item.authFlag).map(item => item.key)
     }
   }
