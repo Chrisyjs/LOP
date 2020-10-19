@@ -128,7 +128,7 @@ function submitTo() {
         leaveMsg: saySomething,
     }
     $.ajax({
-        url: 'http://www.landofpromise.co:8088/lop/app/freshman/add',
+        url: 'https://www.landofpromise.co:8088/lop/app/freshman/add',
         type: 'post',
         contentType: 'application/json;charset=UTF-8',
         dataType: 'json',
