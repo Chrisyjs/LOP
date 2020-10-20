@@ -9,7 +9,8 @@
     "build-iLop": "cross-env appName=iLop vue-cli-service build",
     "build-iMask": "cross-env appName=iMask vue-cli-service build",
     "build-iAppointment": "cross-env appName=iAppointment vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "inspect": "vue-cli-service inspect > inspect.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
