@@ -59,6 +59,7 @@
 
 <script>
 import OrderPanel from "@/components/orderPanel";
+import { mapMutations } from "vuex";
 import { getClaimDetail, uploadImage, submitOrder } from "@/api/claim.js";
 
 export default {
@@ -97,6 +98,7 @@ export default {
 
   },
   methods: {
+    ...mapMutations(["setImagePreview"]),
     async _getClaimDetail() {
       const { code, data } = await getClaimDetail(this.id);
       this.detail = data;

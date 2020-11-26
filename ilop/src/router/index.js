@@ -10,25 +10,25 @@ const routerArr = [
   {
     path: '/home',
   },
-  // {
-  //   path: '/claim',
-  //   redirect: '/claim/waitingList',
-  //   component: '/routerView',
-  //   children: [
-  //     {
-  //       path: 'waitingList'
-  //     },
-  //     {
-  //       path: 'myList'
-  //     },
-  //     {
-  //       path: 'confirmClaim'
-  //     },
-  //     {
-  //       path: 'claimDetail'
-  //     }
-  //   ]
-  // },
+  {
+    path: '/claim',
+    redirect: '/claim/waitingList',
+    component: '/routerView',
+    children: [
+      {
+        path: 'waitingList'
+      },
+      {
+        path: 'myList'
+      },
+      {
+        path: 'confirmClaim'
+      },
+      {
+        path: 'claimDetail'
+      }
+    ]
+  },
   {
     path: '/sundayAppoint',
     redirect: '/sundayAppoint/process',

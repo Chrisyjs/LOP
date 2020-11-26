@@ -18,12 +18,12 @@
         text="场地申请"
         to="/placeAppoint"
       ></van-grid-item>
-      <!-- <van-grid-item
-        icon-prefix="icon"
+      <van-grid-item
+        v-if="hasPermissionList.includes(3)"
         icon="location-o"
-        text="奉献认领"
+        text="为 i 认领"
         to="/claim"
-      ></van-grid-item> -->
+      ></van-grid-item>
     </van-grid>
   </div>
 </template>

@@ -1,22 +1,24 @@
 <template>
-  <div class="top-btn-group text-center fixed-header">
+  <div class="top-btn-group fixed-header">
     <goback :styleObj="{top: '18px'}" @callback="$router.replace('/home')"></goback>
-    <van-button
-      class="left-btn"
-      type="info"
-      to="/claim/waitingList"
-      :plain="currentTab !== 'waitingList'"
-      size="small"
-      >待认领物品</van-button
-    >
-    <van-button
-      class="right-btn"
-      type="info"
-      to="/claim/myList"
-      :plain="currentTab !== 'myList'"
-      size="small"
-      >我的认领</van-button
-    >
+    <div class="btns">
+      <van-button
+        class="left-btn"
+        type="info"
+        to="/claim/waitingList"
+        :plain="currentTab !== 'waitingList'"
+        size="small"
+        >待认领物品</van-button
+      >
+      <van-button
+        class="right-btn"
+        type="info"
+        to="/claim/myList"
+        :plain="currentTab !== 'myList'"
+        size="small"
+        >我的认领</van-button
+      >
+    </div>
   </div>
 </template>
 <script>
@@ -35,6 +37,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btns {
+  margin-left: 82px;
+}
 .top-btn-group {
   padding: 10px;
 }

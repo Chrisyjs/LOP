@@ -121,7 +121,7 @@ export default {
   mounted() {},
   watch: {},
   methods: {
-    ...mapMutations(["setChoosedList"]),
+    ...mapMutations(["setChoosedList", "setImagePreview"]),
     async _getWaitingListData() {
       this.$utils.loading();
       const { code, data } = await getWaitingListData();

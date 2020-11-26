@@ -134,6 +134,11 @@ export default {
                   key: 2,
                   authFlag: 1,
                 },
+                {
+                  name: "为 i 认领",
+                  key: 3,
+                  authFlag: 1,
+                },
               ]);
           localStorage.setItem('authList', authListJson);
           // 使用 cookie 存储 json 字符串，苹果手机会有问题
