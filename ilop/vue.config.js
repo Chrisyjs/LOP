@@ -1,4 +1,5 @@
 const UglifyPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const appConfig = require("./appConfig");
 const WebpackBundleAnalyzer = require("webpack-bundle-analyzer");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
@@ -133,8 +134,9 @@ module.exports = {
             },
           },
         },
+        minimize: true,
         minimizer: [
-          new UglifyPlugin({
+          /* new UglifyPlugin({
             uglifyOptions: {
               compress: {
                 // warnings: false,
@@ -143,6 +145,22 @@ module.exports = {
                 pure_funcs: ["console.log"], // 移除console
               },
             },
+          }), */
+          new TerserPlugin({
+            terserOptions: {
+              ecma: undefined,
+              parse: {},
+              compress: {},
+              mangle: true, // Note `mangle.properties` is `false` by default.
+              module: false,
+              output: null,
+              toplevel: false,
+              nameCache: null,
+              ie8: false,
+              keep_classnames: undefined,
+              keep_fnames: false,
+              safari10: false,
+            },
           }),
         ],
       };
@@ -150,7 +168,7 @@ module.exports = {
         optimization,
       });
       config.plugins = config.plugins.concat([
-        // new WebpackBundleAnalyzer.BundleAnalyzerPlugin(),
+        new WebpackBundleAnalyzer.BundleAnalyzerPlugin(),
       ]);
       /* prod end */
     } else {

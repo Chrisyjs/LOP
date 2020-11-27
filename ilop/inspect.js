@@ -57,7 +57,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: '/Users/whr2016/learning/self/LOP/ilop/node_modules/.cache/vue-loader',
-              cacheIdentifier: '7472e199'
+              cacheIdentifier: '9ab74b64'
             }
           },
           /* config.module.rule('vue').use('vue-loader') */
@@ -68,7 +68,7 @@
                 preserveWhitespace: false
               },
               cacheDirectory: '/Users/whr2016/learning/self/LOP/ilop/node_modules/.cache/vue-loader',
-              cacheIdentifier: '7472e199'
+              cacheIdentifier: '9ab74b64'
             }
           }
         ]
@@ -1430,7 +1430,8 @@
       {
         test: /\.m?jsx?$/,
         exclude: [
-          function () { /* omitted long function */ }
+          function () { /* omitted long function */ },
+          /node_modules/
         ],
         use: [
           /* config.module.rule('js').use('cache-loader') */
@@ -1438,7 +1439,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: '/Users/whr2016/learning/self/LOP/ilop/node_modules/.cache/babel-loader',
-              cacheIdentifier: '548b50f2'
+              cacheIdentifier: 'fbfae0ce'
             }
           },
           /* config.module.rule('js').use('babel-loader') */
@@ -1466,7 +1467,7 @@
                 '.vue'
               ],
               cache: true,
-              cacheIdentifier: '14aa0b5e',
+              cacheIdentifier: '0bae238c',
               emitWarning: true,
               emitError: false,
               eslintPath: '/Users/whr2016/learning/self/LOP/ilop/node_modules/eslint',
@@ -1556,7 +1557,249 @@
           ]
         }
       ]
-    )
+    ),
+    {
+      options: {
+        manifest: {
+          name: '_dll_vendor',
+          content: {
+            './node_modules/axios/lib/defaults.js': {
+              id: './node_modules/axios/lib/defaults.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/webpack/buildin/global.js': {
+              id: './node_modules/webpack/buildin/global.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/timers-browserify/main.js': {
+              id: './node_modules/timers-browserify/main.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/setimmediate/setImmediate.js': {
+              id: './node_modules/setimmediate/setImmediate.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/process/browser.js': {
+              id: './node_modules/process/browser.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/vue-router/dist/vue-router.esm.js': {
+              id: './node_modules/vue-router/dist/vue-router.esm.js',
+              buildMeta: {
+                exportsType: 'namespace',
+                providedExports: [
+                  'default'
+                ]
+              }
+            },
+            './node_modules/axios/index.js': {
+              id: './node_modules/axios/index.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/axios.js': {
+              id: './node_modules/axios/lib/axios.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/utils.js': {
+              id: './node_modules/axios/lib/utils.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/bind.js': {
+              id: './node_modules/axios/lib/helpers/bind.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/Axios.js': {
+              id: './node_modules/axios/lib/core/Axios.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/buildURL.js': {
+              id: './node_modules/axios/lib/helpers/buildURL.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/InterceptorManager.js': {
+              id: './node_modules/axios/lib/core/InterceptorManager.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/dispatchRequest.js': {
+              id: './node_modules/axios/lib/core/dispatchRequest.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/transformData.js': {
+              id: './node_modules/axios/lib/core/transformData.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/cancel/isCancel.js': {
+              id: './node_modules/axios/lib/cancel/isCancel.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/vue/dist/vue.runtime.esm.js': {
+              id: './node_modules/vue/dist/vue.runtime.esm.js',
+              buildMeta: {
+                exportsType: 'namespace',
+                providedExports: [
+                  'default'
+                ]
+              }
+            },
+            './node_modules/axios/lib/helpers/normalizeHeaderName.js': {
+              id: './node_modules/axios/lib/helpers/normalizeHeaderName.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/adapters/xhr.js': {
+              id: './node_modules/axios/lib/adapters/xhr.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/settle.js': {
+              id: './node_modules/axios/lib/core/settle.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/createError.js': {
+              id: './node_modules/axios/lib/core/createError.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/enhanceError.js': {
+              id: './node_modules/axios/lib/core/enhanceError.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/buildFullPath.js': {
+              id: './node_modules/axios/lib/core/buildFullPath.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/isAbsoluteURL.js': {
+              id: './node_modules/axios/lib/helpers/isAbsoluteURL.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/combineURLs.js': {
+              id: './node_modules/axios/lib/helpers/combineURLs.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/parseHeaders.js': {
+              id: './node_modules/axios/lib/helpers/parseHeaders.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/isURLSameOrigin.js': {
+              id: './node_modules/axios/lib/helpers/isURLSameOrigin.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/cookies.js': {
+              id: './node_modules/axios/lib/helpers/cookies.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/core/mergeConfig.js': {
+              id: './node_modules/axios/lib/core/mergeConfig.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/cancel/Cancel.js': {
+              id: './node_modules/axios/lib/cancel/Cancel.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/cancel/CancelToken.js': {
+              id: './node_modules/axios/lib/cancel/CancelToken.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/axios/lib/helpers/spread.js': {
+              id: './node_modules/axios/lib/helpers/spread.js',
+              buildMeta: {
+                providedExports: true
+              }
+            },
+            './node_modules/vuex/dist/vuex.esm.js': {
+              id: './node_modules/vuex/dist/vuex.esm.js',
+              buildMeta: {
+                exportsType: 'namespace',
+                providedExports: [
+                  'default',
+                  'Store',
+                  'createLogger',
+                  'createNamespacedHelpers',
+                  'install',
+                  'mapActions',
+                  'mapGetters',
+                  'mapMutations',
+                  'mapState'
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      assets: [
+        {
+          filepath: '/Users/whr2016/learning/self/LOP/ilop/dist_dll/*.js',
+          publicPath: './dist_dll',
+          outputPath: './dist_dll'
+        }
+      ],
+      addedAssets: []
+    },
+    {
+      profile: false,
+      handler: function () { /* omitted long function */ },
+      modulesCount: 500,
+      showEntries: false,
+      showModules: true,
+      showActiveModules: true
+    }
   ],
   entry: {
     app: [
