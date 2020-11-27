@@ -5,6 +5,7 @@ const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const DllReferencePlugin = require("webpack/lib/DllReferencePlugin");
 const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const HappyPack = require("happypack");
 const chalk = require("chalk");
 const path = require("path");
 function resolve(dir) {
@@ -66,7 +67,12 @@ module.exports = {
         },
       ]);
     } else {
-      config.module.rule("js").exclude.add(/node_modules/).end().use("babel-loader").loader('babel-loader');
+      config.module
+        .rule("js")
+        .exclude.add(/node_modules/)
+        .end()
+        .use('babel-loader')
+        .loader('babel-loader');
     }
     config.resolve.alias.set("@", resolve("src"));
     config
@@ -175,6 +181,13 @@ module.exports = {
           " (:elapsed seconds)",
         clear: false,
       }),
+      // // happyPack 开启多进程打包
+      // new HappyPack({
+      //   // 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件
+      //   id: "babel",
+      //   // 如何处理 .js 文件，用法和 Loader 配置中一样
+      //   loaders: ["babel-loader?cacheDirectory"],
+      // }),
     ]);
     config.devtool = "source-map";
   },
