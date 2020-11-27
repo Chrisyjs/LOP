@@ -66,7 +66,7 @@ module.exports = {
         },
       ]);
     } else {
-      // config.module.rule("js").exclude.add(/node_modules/).end().use("babel-loader").loader('babel-loader');
+      config.module.rule("js").exclude.add(/node_modules/).end().use("babel-loader").loader('babel-loader');
     }
     config.resolve.alias.set("@", resolve("src"));
     config
@@ -99,34 +99,34 @@ module.exports = {
       // 将每个依赖包打包成单独的js文件
       let optimization = {
         // 分割代码块
-        // splitChunks: {
-        //   chunks: "all",
-        //   /**
-        //    * initial 入口 chunk，对于异步导入的文件不处理
-        //       async 异步 chunk，只对异步导入的文件处理
-        //       all 全部 chunk
-        //    */
+        splitChunks: {
+          chunks: "all",
+          /**
+           * initial 入口 chunk，对于异步导入的文件不处理
+              async 异步 chunk，只对异步导入的文件处理
+              all 全部 chunk
+           */
 
-        //   // 缓存分组
-        //   cacheGroups: {
-        //     // 第三方模块
-        //     vendor: {
-        //       name: "vendor", // chunk 名称
-        //       priority: 1, // 权限更高，优先抽离，重要！！！
-        //       test: /node_modules/,
-        //       minSize: 0, // 大小限制
-        //       minChunks: 1, // 最少复用过几次
-        //     },
+          // 缓存分组
+          cacheGroups: {
+            // 第三方模块
+            vendor: {
+              name: "vendor", // chunk 名称
+              priority: 1, // 权限更高，优先抽离，重要！！！
+              test: /node_modules/,
+              minSize: 0, // 大小限制
+              minChunks: 1, // 最少复用过几次
+            },
 
-        //     // 公共的模块
-        //     common: {
-        //       name: "common", // chunk 名称
-        //       priority: 0, // 优先级
-        //       minSize: 0, // 公共模块的大小限制
-        //       minChunks: 2, // 公共模块最少复用过几次
-        //     },
-        //   },
-        // },
+            // 公共的模块
+            common: {
+              name: "common", // chunk 名称
+              priority: 0, // 优先级
+              minSize: 0, // 公共模块的大小限制
+              minChunks: 2, // 公共模块最少复用过几次
+            },
+          },
+        },
         minimizer: [
           new UglifyPlugin({
             uglifyOptions: {
@@ -148,23 +148,23 @@ module.exports = {
       ]);
       /* prod end */
     } else {
-      // config.plugins = config.plugins.concat([
-      //   // 第三，告诉 Webpack 使用了哪些动态链接库
-      //   new DllReferencePlugin({
-      //     // 描述 vue 动态链接库的文件内容
-      //     manifest: require(path.join(
-      //       resolve("dist_dll"),
-      //       "vendor.manifest.json"
-      //     )),
-      //   }),
-      //   new AddAssetHtmlPlugin({
-      //     // dll文件位置
-      //     filepath: path.resolve(__dirname, "./dist_dll/*.js"),
-      //     // dll 引用路径
-      //     publicPath: "./dist_dll",
-      //     outputPath: "./dist_dll", // 输出的目录地址
-      //   }),
-      // ]);
+      config.plugins = config.plugins.concat([
+        // 第三，告诉 Webpack 使用了哪些动态链接库
+        new DllReferencePlugin({
+          // 描述 vue 动态链接库的文件内容
+          manifest: require(path.join(
+            resolve("dist_dll"),
+            "vendor.manifest.json"
+          )),
+        }),
+        new AddAssetHtmlPlugin({
+          // dll文件位置
+          filepath: path.resolve(__dirname, "./dist_dll/*.js"),
+          // dll 引用路径
+          publicPath: "./dist_dll",
+          outputPath: "./dist_dll", // 输出的目录地址
+        }),
+      ]);
     }
 
     config.plugins = config.plugins.concat([
