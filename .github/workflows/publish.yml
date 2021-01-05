@@ -3,7 +3,7 @@ name: 打包应用并上传阿里云
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - ilop/*
 
