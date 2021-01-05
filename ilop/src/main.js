@@ -37,6 +37,7 @@ import {
   GridItem,
   NoticeBar
 } from 'vant';
+
 import VueClipboard from 'vue-clipboard2'
 import 'flex.css'
 import '@/api/interceptors.js';
