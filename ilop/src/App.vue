@@ -45,7 +45,7 @@ export default {
         message: '确认退出？'
       }).then(() => {
         this.$utils.delCookie('mobile');
-        this.$utils.delCookit('token');
+        this.$utils.delCookie('token');
         localStorage.clear();
         this.resetChoosedList();
         this.$router.push({
