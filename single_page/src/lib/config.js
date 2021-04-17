@@ -1,6 +1,6 @@
 const domainConfig = {
-  signUp: 'http://www.landofpromise.co:8088/lop',
-  signUp2021: 'http://www.landofpromise.co:8088/lop',
+  signUp: 'https://www.landofpromise.co:8088/lop',
+  signUp2021: 'https://www.landofpromise.co:8088/lop',
   fruit: 'https://www.landofpromise.co:8088/lop'
 }
 
