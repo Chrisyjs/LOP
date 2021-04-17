@@ -18,7 +18,7 @@ function resolve(dir) {
 module.exports = {
   lintOnSave: true,
   publicPath: "./",
-  outputDir: "dist",
+  outputDir: `dist_${pageName}`,
   devServer: {
     proxy: {
       // proxy all requests starting with /api to jsonplaceholder
