@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrap">
-    <div class="title">2020 ST 报名表</div>
+    <div class="title">2021 ST 报名表</div>
     <div class="tip">(建议使用手机浏览器打开该网页)</div>
     <div class="form">
       <van-form
@@ -430,7 +430,7 @@
           />
         </div>
         <div class="item-wrap">
-          <div class="item-label form-required">您对2020ST的期待</div>
+          <div class="item-label form-required">您对2021ST的期待</div>
           <van-field
             :key="26"
             :rules="[{ required: true, message: '请输入相应内容' }]"
@@ -471,7 +471,7 @@
           >
             <template #input>
               <van-checkbox v-model="hasRead" shape="square">
-                我已理解报名条件，确认报名信息无误，愿意报名2020ST
+                我已理解报名条件，确认报名信息无误，愿意报名2021ST
               </van-checkbox>
             </template>
           </van-field>
@@ -497,7 +497,7 @@
         @confirm="onReload"
         v-model="dialogVisible"
         title="报名成功"
-        :message="`感谢您报名2020ST，上帝纪念！`"
+        :message="`感谢您报名2021ST，上帝纪念！`"
       ></van-dialog>
     </div>
   </div>
