@@ -2,7 +2,7 @@
 /**
  * 衣服尺寸选项
  */
-export const sizeOptions = ["S", "M", "L", "XL", "XXL", "其他"];
+export const sizeOptions = ["S (155-165)", "M (165-170)", "L (170-175)", "XL (175-180)", "XXL (180-185)", "其他"];
 /**
  * 牧区选项
  */

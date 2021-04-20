@@ -306,7 +306,7 @@
         <!-- 公共需填 -->
         <div class="item-wrap">
           <div class="item-label form-required mb-10">
-            fishing参加时间(09/02-09/05)
+            fishing参加时间(08/25-08/28 周三至周六)
             <div class="fishing-date-warning" v-if="fishingDateWarning">
               目前选择时间不连续哦(也可提交)
             </div>
@@ -337,7 +337,7 @@
         </div>
         <div class="item-wrap">
           <div class="item-label form-required">
-            参加嘉年华(09/05晚-09/06晚)
+            参加嘉年华(08/29 周日)
           </div>
           <van-field
             :key="20"
@@ -385,7 +385,7 @@
             </van-radio-group>
           </template>
         </van-field>
-        <div v-if="hasJoinedST == '是'" class="item-wrap">
+        <!-- <div v-if="hasJoinedST == '是'" class="item-wrap">
           <div class="item-label form-required">您准备为今年ST预备什么？</div>
           <van-field
             :key="23"
@@ -398,8 +398,8 @@
             name="prepare"
             placeholder="请输入"
           />
-        </div>
-        <div v-if="hasJoinedST == '是'" class="item-wrap">
+        </div> -->
+        <!-- <div v-if="hasJoinedST == '是'" class="item-wrap">
           <div class="item-label form-required">
             分享一下您ST的美好回忆和见证
           </div>
@@ -414,8 +414,8 @@
             name="memory"
             placeholder="请输入"
           />
-        </div>
-        <div v-if="hasJoinedST == '否'" class="item-wrap">
+        </div> -->
+        <!-- <div v-if="hasJoinedST == '否'" class="item-wrap">
           <div class="item-label form-required">为什么报名ST？</div>
           <van-field
             :key="25"
@@ -428,7 +428,7 @@
             name="reason"
             placeholder="请输入"
           />
-        </div>
+        </div> -->
         <div class="item-wrap">
           <div class="item-label form-required">您对2021ST的期待</div>
           <van-field
@@ -443,7 +443,7 @@
             placeholder="请输入"
           />
         </div>
-        <div v-if="hasJoinedST == '否'" class="item-wrap">
+        <!-- <div v-if="hasJoinedST == '否'" class="item-wrap">
           <div class="item-label form-required">个人见证分享</div>
           <van-field
             :key="27"
@@ -456,7 +456,7 @@
             name="experience"
             placeholder="请输入"
           />
-        </div>
+        </div> -->
         <div class="need-know">
           <div class="nk-title">报名须知：</div>
           <div class="nk-content">

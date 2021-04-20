@@ -137,7 +137,7 @@ export default {
      */
     onSizeConfirm(val) {
       this.showSizePicker = false;
-      this.size = val;
+      this.size = val.split(' ')[0];
     },
     /**
      * 选择牧区
