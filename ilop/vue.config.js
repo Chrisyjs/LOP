@@ -10,11 +10,11 @@ const Timestamp = new Date().getTime();
 
 const cdn = {
   js: [
-    "https://cdn.bootcss.com/vue/2.6.10/vue.min.js",
-    "https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js",
-    "https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js",
-    "https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js",
-  ],
+    ["vue", "2.6.10"],
+    ["axios", "0.19.0-beta.1"],
+    ["vuex", "3.1.1"],
+    ["vue-router", "3.1.3"],
+  ].map(item => `https://unpkg.com/${item[0]}@${item[1]}/dist/${item[0]}.min.js`),
 };
 const isPro = process.env.NODE_ENV === "production" ? true : false;
 const appName = process.env.appName || 'iAppointment';
@@ -39,7 +39,7 @@ module.exports = {
       },
     },
   },
-  productionSourceMap: isPro ? false : true,
+  productionSourceMap: false,
   chainWebpack: (config) => {
     config.resolve.symlinks(true);
     if (isPro) {
@@ -110,7 +110,7 @@ module.exports = {
       });
       // config.plugins = config.plugins.concat([new WebpackBundleAnalyzer.BundleAnalyzerPlugin(), new LodashModuleReplacementPlugin()]);
     }
-    config.devtool = "source-map";
+    config.devtool = isPro ? '' : "source-map";
   },
   css: {
     loaderOptions: {
