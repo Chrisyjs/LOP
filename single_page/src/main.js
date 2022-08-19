@@ -55,6 +55,8 @@ if (pageConfig.pageName.indexOf('signUp') > -1) {
 
 Vue.config.productionTip = false;
 
+window.currentYear = new Date().getFullYear();
+
 new Vue({
   render: (h) => h(App),
 }).$mount("#app");

@@ -6,6 +6,7 @@ import myMixins from '@/mixins';
 export default {
   data() {
     return {
+      currentYear: window.currentYear,
       from: "LOP",
       username: "",
       gender: "",

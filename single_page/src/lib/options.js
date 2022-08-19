@@ -39,8 +39,8 @@ export const fruitTypeOptions = [
  * 禾场选项
  */
 export const fruitCityOptions = [
-  '宁波',
-  '嘉兴',
-  '绍兴',
-  '湖州'
+  '城东',
+  '城西',
+  '城南',
+  '城北'
 ]

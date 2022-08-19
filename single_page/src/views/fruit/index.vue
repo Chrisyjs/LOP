@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrap">
-    <div class="title">2020 ST 果子统计</div>
+    <div class="title">{{currentYear}} ST 果子统计</div>
     <div class="tip">(建议使用手机浏览器打开该网页)</div>
     <div class="form">
       <van-form

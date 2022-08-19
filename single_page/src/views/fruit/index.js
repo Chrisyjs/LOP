@@ -4,6 +4,7 @@ import myMixins from '@/mixins';
 export default {
   data() {
     return {
+      currentYear: window.currentYear,
       username: "",
       fruitName: "",
       gender: "",
@@ -25,6 +26,7 @@ export default {
     };
   },
   created() {
+    console.log('this.currentYear', this.currentYear)
     // console.log(this.areaList);
   },
   mixins: [myMixins],
